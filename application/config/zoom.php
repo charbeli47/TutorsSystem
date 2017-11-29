@@ -83,6 +83,15 @@ public function createAMeeting($host_id, $topic, $start_time, $duration){
   return $this->sendRequest('meeting/create', $createAMeetingArray);
 
 }
+public function deleteUser($email)
+{
+    $json = $this->getUserInfoByEmail($email);
+    $user = json_decode($json);
+    $deleteUserArray = array();
+    $deleteUserArray["userId"] = $user->id;
+    $deleteUserArray["access_token"] = $this->getToken();
+    return $this->sendRequest('user/delete',$deleteUserArray);
+}
 public function getUserInfoByEmail($email){
   $getUserInfoByEmailArray = array();
   $getUserInfoByEmailArray['email'] = $email;
