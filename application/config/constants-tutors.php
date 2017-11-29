@@ -129,6 +129,7 @@ define('URL_TUTOR_SEND_CREDITS_CONVERSION_REQUEST', SITEURL2."/send-credits-conv
 define('URL_TUTOR_CREDIT_CONVERSION_REQUESTS', SITEURL2."/credit-conversion-requests");
 define('URL_TUTOR_INITIATE_BATCH_SESSION', SITEURL2."/initiate-batch-session");
 define('URL_TUTOR_COMPLETE_BATCH_SESSION', SITEURL2."/complete-batch-session");
+define('URL_TUTOR_COMPLETE_SESSION', SITEURL2."/complete-session");
 define('URL_TUTOR_PURCHASED_COURSES', SITEURL2."/tutor/purchased-courses");
 
 

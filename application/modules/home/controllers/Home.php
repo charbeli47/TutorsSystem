@@ -561,8 +561,53 @@ class Home extends MY_Controller
                 $booking_det = $booking_det[0];
                 $booking_det->status = 'approved';
                 $inputdata = array();	
-                $inputdata['status'] = $booking_det->status; 
+                $inputdata['status'] = $booking_det->status;
+                $student_id 		= $this->ion_auth->get_user_id();
+                $tutor_id = $booking_det->tutor_id; 
                 $this->base_model->update_operation($inputdata, 'bookings', array('reference_number' => $reference_number));
+                $email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '5'));
+                if(!empty($email_tpl)) {
+
+					$email_tpl = $email_tpl[0];
+
+					$student_rec = getUserRec($student_id);
+					$tutor_rec 	 = getUserRec($tutor_id);
+
+
+					if(!empty($email_tpl->from_email)) {
+
+						$from = $email_tpl->from_email;
+
+					} else {
+
+						$from 	= get_system_settings('Portal_Email');
+					}
+
+					$to 	= $tutor_rec->email;
+
+					if(!empty($email_tpl->template_subject)) {
+
+						$sub = $email_tpl->template_subject;
+
+					} else {
+
+						$sub = get_languageword("Booking Request From Student");
+					}
+
+					if(!empty($email_tpl->template_content)) {
+                    $course_name = $this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
+						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+
+					} else {
+
+						$msg = get_languageword('please')." <a href='".URL_AUTH_LOGIN."'> ".get_languageword('Login Here')."</a> ".get_languageword('to view the booking details');
+						$msg .= "<p>".get_languageword('Thank you')."</p>";
+					}
+
+					sendEmail($from, $to, $sub, $msg);
+				}
                 $this->prepare_flashmessage(get_languageword('your_slot_with_the_tutor_booked_successfully_and_have_been_approved. You_can_start_the_course_on_the_booked_date'), 0);
 			
 			redirect(URL_STUDENT_ENQUIRIES);

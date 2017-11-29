@@ -155,13 +155,15 @@ $route['complete-batch-session']		= 'tutor/complete_batch_session';
 $route['complete-batch-session/(:any)']	= 'tutor/complete_batch_session/$1';
 $route['complete-batch-session/(:any)/(:any)']	= 'tutor/complete_batch_session/$1/$2';
 
+$route['complete-session']		= 'tutor/complete_session';
 
 $route['send-message']				= 'home/send_message';
 
 //cybersource payment
 $route['confirm-payment'] = 'home/confirm_payment';
 $route['receipt'] = 'home/receipt';
-
+$route['zoom'] = 'tutor/openzoom';
+$route["session-started/(:any)"] = 'tutor/session_started/$1';
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes

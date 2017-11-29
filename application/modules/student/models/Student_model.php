@@ -266,6 +266,9 @@ class Student_model extends CI_Model
 		$query = "select count(*) pending_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$student_id." And status='pending'";
 		$student_dashboard_data['pending_bookings'] = $this->db->query($query)->row()->pending_bookings;
 
+        $query = "select count(*) initiated_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$student_id." And status='session_initiated'";
+		$student_dashboard_data['initiated_bookings'] = $this->db->query($query)->row()->initiated_bookings;
+
 		$query = "select count(*) completed_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$student_id." And status='completed'";
 		$student_dashboard_data['completed_bookings'] = $this->db->query($query)->row()->completed_bookings;
 

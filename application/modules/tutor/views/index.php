@@ -25,28 +25,22 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 pad10">
-                        <div class="dash-block d-block3">
-                            <h2><?php echo $tutor_dashboard_data['pending_bookings']?><a class="pull-right" href="<?php echo base_url();?>student-enquiries/pending"><?php echo get_languageword('view');?></a></h2>
-                            <p><?php echo get_languageword('Bookings Pending');?></p>
-                        </div>
-                    </div>
-
-
 
                     <div class="col-md-4 pad10">
                         <div class="dash-block d-block4">
-                            <h2><?php echo $tutor_dashboard_data['completed_bookings'];?><a class="pull-right" href="<?php echo base_url();?>student-enquiries/completed"><?php echo get_languageword('view');?></a></h2>
-                            <p><?php echo get_languageword('Booking Completd');?></p>
+                            <h2><?php echo $tutor_dashboard_data['approved_bookings'];?><a class="pull-right" href="<?php echo base_url();?>student-enquiries/approved"><?php echo get_languageword('view');?></a></h2>
+                            <p><?php echo get_languageword('Booking Approved');?></p>
                         </div>
                     </div>
 
                     <div class="col-md-4 pad10">
                         <div class="dash-block d-block5">
-                            <h2><?php echo $tutor_dashboard_data['running_bookings'];?><a class="pull-right" href="<?php echo base_url();?>student-enquiries/running"><?php echo get_languageword('view');?></a></h2>
-                            <p><?php echo get_languageword('Booking Running');?></p>
+                            <h2><?php echo $tutor_dashboard_data['completed_bookings'];?><a class="pull-right" href="<?php echo base_url();?>student-enquiries/completed"><?php echo get_languageword('view');?></a></h2>
+                            <p><?php echo get_languageword('Booking Completd');?></p>
                         </div>
                     </div>
+
+                    
 
                     <div class="col-md-4 pad10">
                         <div class="dash-block d-block6">

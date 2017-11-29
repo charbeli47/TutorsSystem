@@ -22,8 +22,8 @@
 		</div>
 		<div class="col-md-4 pad10">
 			<div class="dash-block d-block4">
-				<h2><?php echo $student_dashboard_data['completed_bookings'];?><a class="pull-right" href="<?php echo base_url();?>enquiries/completed"><?php echo get_languageword('View');?></a></h2>
-				<p><?php echo get_languageword('Bookings Completd');?></p>
+				<h2><?php echo $student_dashboard_data['initiated_bookings'];?><a class="pull-right" href="<?php echo base_url();?>enquiries/session_initiated"><?php echo get_languageword('View');?></a></h2>
+				<p><?php echo get_languageword('Sessions Initiated');?></p>
 			</div>
 		</div>
 		<div class="col-md-4 pad10">

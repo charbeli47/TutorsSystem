@@ -297,8 +297,8 @@
 <input type="hidden" name="updated_by" value="None">
 <input type="hidden" id="roomid" name="roomsession" value="None"> 
 <!-- hawde zeyedooun addimin bass 3am bessta3meloun also-->
-<input type="hidden" name="access_key" value="350f8a6fa6fb36d3867450f8f478f74c">   
-<input type="hidden" name="profile_id" value="4CCD975B-9934-4508-A802-3E822B9CD6B0">
+<input type="hidden" name="access_key" value="24f6e06277213c87b95243543f386954">   
+<input type="hidden" name="profile_id" value="C5FDFC38-D38B-4598-8C40-DA46A3EA23EE">
 <input type="hidden" name="transaction_uuid" value="<?php echo uniqid() ;?>">
 <input type="hidden" name="signed_date_time" value="<?php echo gmdate("Y-m-d\TH:i:s\Z"); ?>">    
 <input type="hidden" name="locale" value="en">
@@ -318,7 +318,7 @@
 <input type="hidden" name="bill_to_address_city" value="<?php echo set_value('city', ($this->session->userdata('city')) ? $this->session->userdata('city') : ''); ?>">
 <input type="hidden" name="bill_to_address_country" value="LB">
 <input type="hidden" name="amount" value="<?php echo $row->fee; ?>">
-<input type="hidden" id="override_custom_receipt_page" name="override_custom_receipt_page" value="http://localhost:85/receipt"/>
+<input type="hidden" id="override_custom_receipt_page" name="override_custom_receipt_page" value="<?php echo SITEURL?>/receipt"/>
 <button id="request_tutor_btn" onclick="getvaluesforhiddeninputs();" class="btn btn-link-dark" name="Submit" type="submit"><?php echo get_languageword('request_this_tutor'); ?></button>
 <!--end ana zeyeddoun -->	
 <?php echo form_close(); ?>

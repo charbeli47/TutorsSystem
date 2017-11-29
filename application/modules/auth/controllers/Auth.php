@@ -296,7 +296,9 @@ class Auth extends MY_Controller {
 
 		$email 		= strtolower($post_array['email']);
 		$password 	= $post_array['password'];
-
+        $zoomclass=new ZoomAPI();
+        $resp = $zoomclass->createAUser($email);
+        
 		$first_name = ucfirst(strtolower($post_array['first_name']));
 		$last_name = ucfirst(strtolower($post_array['last_name']));
 		$username =  $first_name.' '.$last_name;
@@ -897,7 +899,8 @@ class Auth extends MY_Controller {
 				$id = $this->ion_auth->register($identity, $password, $email, $additional_data,$group);
 				
 				if ($id)
-				{										
+				{
+                 										
 					$this->prepare_flashmessage(get_languageword($this->ion_auth->messages()), 0);	
 					redirect(URL_AUTH_LOGIN);
 				}
@@ -1365,7 +1368,8 @@ class Auth extends MY_Controller {
 			$username =  $first_name.' '.$last_name;
 
 			$slug = prepare_slug($username, 'slug', 'users');
-
+                
+            
             $additional_data = array(
                 'username' => $username,
                 'slug' => $slug,
@@ -1377,9 +1381,10 @@ class Auth extends MY_Controller {
         $group = array(GRP_USER);
 		
 		$id = $this->ion_auth->register($identity, $password, $email, $additional_data, $group);
-				
+			
         if ($id)
         {
+            
 			$email_template = $this->db->get_where(TBL_PREFIX.TBL_EMAIL_TEMPLATES,array('template_key'=>'registration_template','status'=>'Active'))->result();
 			if(count($email_template)>0) 
 			{

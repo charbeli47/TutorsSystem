@@ -69,6 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(APPPATH.'config/constants.php');
     require_once(APPPATH.'config/security.php');
+    require_once(APPPATH.'config/zoom.php');
 /*
  * ------------------------------------------------------
  *  Load the global functions

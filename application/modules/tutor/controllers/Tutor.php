@@ -556,13 +556,13 @@ class Tutor extends MY_Controller
 
 
 		//List Table Columns
-		$crud->columns('course_id','course_duration','fee','content','time_slots', 'days_off');
+		$crud->columns('course_id','course_duration','content','time_slots', 'days_off');
 
 		$crud->callback_column('course_duration',array($this,'_callback_course_duration'));
 
 		//Display Alias Names
 		$crud->display_as('course_id',get_languageword('course_name'));
-		$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
+		//$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 
 		//From Validations
@@ -652,7 +652,7 @@ class Tutor extends MY_Controller
 	function call_back_set_time_slots_field($value)
 	{
 		$value = !empty($value) ? $value : '';
-		return '<input type="text" name="time_slots" value="'.$value.'" placeholder="'.get_languageword('example_format').' 6-7,13-14,14-16,20.30-21.30">';
+		return '<input type="text" name="time_slots" value="'.$value.'" placeholder="'.get_languageword('example_format').' 01:30 PM, 3:00 PM">';
 	}
 
 
@@ -1376,7 +1376,77 @@ class Tutor extends MY_Controller
 		$this->_render_page('template/site/tutor-template', $this->data);
 
 	}
+    function complete_session($booking_id="")
+	{
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth/login', 'refresh');
+		}
 
+
+		$booking_id = ($this->input->post('booking_id')) ? $this->input->post('booking_id') : $booking_id;
+		
+		if(empty($booking_id)) {
+
+			$this->prepare_flashmessage(get_languageword('No Details Found'), 1);
+			redirect(URL_TUTOR_STUDENT_ENQUIRIES);
+		}
+
+		//$batch_det_recs = $this->base_model->fetch_records_from('inst_enrolled_students', array('batch_id' => $batch_id, 'status =' => 'running'));
+        $booking_det = $this->base_model->fetch_records_from('bookings', array('booking_id' => $booking_id));
+		if(empty($booking_det)) {
+
+			$this->prepare_flashmessage(get_languageword('No Details found'), 2);
+			redirect(URL_TUTOR_STUDENT_ENQUIRIES);
+		}
+
+
+		$booking_det = $booking_det[0];
+        $user_id   = $this->ion_auth->get_user_id();
+		//Check Whether Tutor updating their record only
+		if($user_id != $booking_det->tutor_id) {
+
+			$this->prepare_flashmessage(get_languageword('You dont have permission to perform this action'), 1);
+			redirect(URL_TUTOR_STUDENT_ENQUIRIES);
+		}
+
+
+		if($this->input->post()) {
+
+
+			if($booking_det->status == "approved" || $booking_det->status == "session_initiated") {
+
+				$up_data['prev_status'] = $booking_det->status;
+				$up_data['status'] 		= 'closed';
+
+				$up_data['updated_at'] 		= date('Y-m-d H:i:s');
+				$up_data['updated_by'] 		= $user_id;
+
+                if($this->base_model->update_operation($up_data, 'bookings', array('booking_id' => $booking_id))){
+                $reviews_info['student_id'] = $booking_det->student_id;
+                $reviews_info['tutor_id'] = $user_id;
+                $reviews_info['comments'] = $this->input->post('status_desc');
+                $reviews_info['created_at'] = date("Y-m-d H:i:s");
+                $reviews_info['status'] = 'Approved';
+                $reviews_info['booking_id'] = $booking_id;
+                $reviews_info['course_id'] = $this->input->post('course_id');
+                $this->base_model->insert_operation($reviews_info, 'tutor_reviews');
+                $this->send_credits_conversion_request($booking_id);
+                }
+				 else {
+
+					$this->prepare_flashmessage(get_languageword('Course not completed due to some technical issue'), 2);
+					redirect(URL_TUTOR_STUDENT_ENQUIRIES);
+				}
+
+			} else {
+
+				$this->prepare_flashmessage(get_languageword('Session not completed'), 2);
+				redirect(URL_TUTOR_STUDENT_ENQUIRIES);
+			}
+
+		}
+	}
 
 
 	function view_students($batch_id = "")
@@ -1714,12 +1784,12 @@ class Tutor extends MY_Controller
 		//List Table Columns
 		// hayde li tahet ana cheltta///
 		//$crud->columns('student_id', 'course_id', 'course_duration', 'fee', 'admin_commission_val','content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status','roomsession');
- $crud->columns('student_id', 'course_id', 'course_duration', 'fee','content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status','roomsession');
+ $crud->columns('student_id', 'course_id', 'course_duration', 'content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status', 'booking_id');
 
-		if( $param == 'session_initiated' || $param == 'running' ) {
-			$crud->add_action(get_languageword('join'), '', '', 'fa fa-mixcloud', array($this, 'join_link') );
-			
-		}
+		//if($param == 'approved' || $param == 'session_initiated' || $param == 'running' ) {
+			$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', '', 'fa fa-mixcloud', array($this, 'join_link') );
+			//$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', 'http://localhost/tutorsproj/web/tokbox.php?&user=student', 'fa fa-mixcloud', array($this, 'join_link') );
+		//}
 		//$crud->unset_add();
 
 		$crud->callback_column('course_duration',array($this,'_callback_course_duration'));
@@ -1731,12 +1801,10 @@ class Tutor extends MY_Controller
 		$crud->display_as('status',get_languageword('booking_status'));
 		$crud->display_as('student_id',get_languageword('student_name'));
 		$crud->display_as('course_id',get_languageword('course_seeking'));
-		$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
 		$crud->display_as('admin_commission_val',get_languageword('admin_commission_val').' ('.get_languageword('in_credits').')');
 		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage').' ('.get_languageword('with_credits').')');
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
-		$crud->display_as('roomsession','Room session');
 
 
 
@@ -1749,6 +1817,7 @@ class Tutor extends MY_Controller
 		} else {
 
 			$crud->unset_columns('payment_status');
+            $crud->unset_columns('booking_id');
 		}
 
 		//Form fields for Edit Record
@@ -1937,7 +2006,124 @@ class Tutor extends MY_Controller
 		$this->data['grocery'] = TRUE;
 		$this->grocery_output($this->data);
 	}
-	
+	function OpenZoom()
+    {
+    
+    if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth/login', 'refresh');
+		}
+        
+        $bookingId = $_REQUEST["bookingId"];
+    $booking_det = $this->base_model->fetch_records_from('bookings', array('booking_id' => $bookingId));
+        $profile = getUserRec();
+        $zoomclass=new ZoomAPI();
+$jsonUser = $zoomclass->getUserInfoByEmail($profile->email);
+$zoomUser = json_decode($jsonUser, true);
+
+if(isset($zoomUser["error"]))
+    {
+    $this->prepare_flashmessage($zoomUser["error"]["message"], 2);
+	redirect(URL_TUTOR_STUDENT_ENQUIRIES);      
+    }
+    else
+    {    
+    if(!empty($booking_det)) {
+            $booking_det = $booking_det[0];
+            
+      // var_dump($zoomUser);exit; 
+$meetingTime = $booking_det->start_date ." ".   explode("-",$booking_det->time_slot)[0]+":00:00";         
+$jsonformat=$zoomclass->createAMeeting($zoomUser['id'],'Course Video Chat', $meetingTime, $booking_det->duration_value);
+$json_a=json_decode($jsonformat,true);
+  
+$zoomstart_url=$json_a['start_url'];
+        $zoomjoin_url=$json_a['join_url'];
+            //$booking_det = $booking_det[0];
+            $booking_det->roomsession = $zoomjoin_url;
+            $inputdata['roomsession'] = $booking_det->roomsession; 
+            $this->base_model->update_operation($inputdata, 'bookings', array('booking_id' => $bookingId));
+//send email to student
+$student_rec = getUserRec($booking_det->student_id);
+				$tutor_rec 	 = getUserRec($booking_det->tutor_id);
+$course_name = $this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+$email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '11'));
+
+					if(!empty($email_tpl)) {
+
+						$email_tpl = $email_tpl[0];
+
+						if(!empty($email_tpl->from_email)) {
+
+							$from = $email_tpl->from_email;
+
+						} else {
+
+							$from 	= get_system_settings('Portal_Email');
+						}
+
+						$to 	= $student_rec->email;
+
+						if(!empty($email_tpl->template_subject)) {
+
+							$sub = $email_tpl->template_subject;
+
+						} else {
+
+							$sub = get_languageword("Session Initiated By Tutor");
+						}
+
+						$course_name = $this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+
+						if(!empty($email_tpl->template_content)) {
+
+							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+							$temp_vars		= array('___STUDENT_NAME___', '___TUTOR_NAME___', '___COURSE_NAME___', '___DATE_TIME___',  '___LOGINLINK___');
+							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+
+						} else {
+
+							$msg = "<p>
+										".get_languageword('hello')." ".$student_rec->username.",</p>
+									<p>
+										".get_languageword('Tutor initiated the session Please start the session by logging in here')."<a href='".URL_AUTH_LOGIN."'>".get_languageword('Login Here')."</a></p>";
+
+							$msg .= "<p>".get_languageword('Thank you')."</p>";
+						}
+
+						sendEmail($from, $to, $sub, $msg);
+                        }
+//end send emaill to student
+        redirect($zoomstart_url);
+        }
+        else
+        {
+            redirect(URL_TUTOR_STUDENT_ENQUIRIES);  
+        }
+        }
+    }
+    function session_started($bookingId)
+    {
+    if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth/login', 'refresh');
+		}
+        $booking_det = $this->base_model->fetch_records_from('bookings', array('booking_id' => $bookingId));
+        if(!empty($booking_det)) {
+            $booking_det = $booking_det[0];
+            $booking_det->status = 'session_initiated';
+            $inputdata['status'] = 'session_initiated'; 
+            $this->base_model->update_operation($inputdata, 'bookings', array('booking_id' => $bookingId));
+        }
+        $this->data['bookingId'] = $bookingId;
+        $this->data['courseId'] = $booking_det->course_id;
+        $this->data['duration'] = $booking_det->duration_value;
+        $this->data['activemenu'] 		= "sell_courses_online";
+		$this->data['activesubmenu'] 	= "publish";
+		$this->data['pagetitle'] 		= get_languageword('Course_Online');
+		$this->data['content'] 			= 'session_started';
+		$this->data['texteditor'] 		= TRUE;
+        $this->_render_page('template/site/tutor-template', $this->data);
+    }
 	function join_link( $primary_key , $row ) {
 		$user_id = $this->ion_auth->get_user_id();
 		$now = date('Y-m-d');

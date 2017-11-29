@@ -6021,3 +6021,1248 @@ INFO - 2017-10-26 18:05:23 --> Model Class Initialized
 INFO - 2017-10-26 18:05:23 --> Form Validation Class Initialized
 INFO - 2017-10-26 18:05:23 --> Final output sent to browser
 DEBUG - 2017-10-26 18:05:23 --> Total execution time: 1.0953
+INFO - 2017-10-26 07:00:36 --> Config Class Initialized
+INFO - 2017-10-26 07:00:36 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:36 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:36 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:36 --> URI Class Initialized
+INFO - 2017-10-26 07:00:36 --> Router Class Initialized
+INFO - 2017-10-26 07:00:36 --> Output Class Initialized
+INFO - 2017-10-26 07:00:36 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:36 --> Input Class Initialized
+INFO - 2017-10-26 07:00:36 --> Language Class Initialized
+INFO - 2017-10-26 07:00:36 --> Language Class Initialized
+INFO - 2017-10-26 07:00:36 --> Config Class Initialized
+INFO - 2017-10-26 07:00:36 --> Loader Class Initialized
+INFO - 2017-10-26 07:00:36 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:00:36 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:00:36 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:00:36 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:00:36 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:00:36 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:00:36 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:00:37 --> Model Class Initialized
+INFO - 2017-10-26 07:00:37 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:00:37 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:00:37 --> Email Class Initialized
+INFO - 2017-10-26 07:00:37 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:00:37 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:00:37 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:00:37 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:00:37 --> Model Class Initialized
+INFO - 2017-10-26 07:00:37 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:00:37 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:00:37 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:00:37 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:37 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:00:37 --> Model Class Initialized
+INFO - 2017-10-26 06:00:37 --> Model Class Initialized
+INFO - 2017-10-26 06:00:37 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:00:37 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:00:37 --> Final output sent to browser
+DEBUG - 2017-10-26 06:00:37 --> Total execution time: 1.2981
+INFO - 2017-10-26 07:00:38 --> Config Class Initialized
+INFO - 2017-10-26 07:00:38 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:38 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:38 --> URI Class Initialized
+INFO - 2017-10-26 07:00:38 --> Router Class Initialized
+INFO - 2017-10-26 07:00:38 --> Output Class Initialized
+INFO - 2017-10-26 07:00:38 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:38 --> Input Class Initialized
+INFO - 2017-10-26 07:00:38 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:38 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:38 --> Config Class Initialized
+INFO - 2017-10-26 07:00:38 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:38 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:38 --> URI Class Initialized
+INFO - 2017-10-26 07:00:38 --> Router Class Initialized
+INFO - 2017-10-26 07:00:38 --> Output Class Initialized
+INFO - 2017-10-26 07:00:38 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:38 --> Input Class Initialized
+INFO - 2017-10-26 07:00:38 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:38 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:38 --> Config Class Initialized
+INFO - 2017-10-26 07:00:38 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:38 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:38 --> URI Class Initialized
+INFO - 2017-10-26 07:00:38 --> Router Class Initialized
+INFO - 2017-10-26 07:00:38 --> Output Class Initialized
+INFO - 2017-10-26 07:00:38 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:38 --> Input Class Initialized
+INFO - 2017-10-26 07:00:38 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:38 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:55 --> Config Class Initialized
+INFO - 2017-10-26 07:00:55 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:55 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:55 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:55 --> URI Class Initialized
+INFO - 2017-10-26 07:00:55 --> Router Class Initialized
+INFO - 2017-10-26 07:00:55 --> Output Class Initialized
+INFO - 2017-10-26 07:00:55 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:55 --> Input Class Initialized
+INFO - 2017-10-26 07:00:55 --> Language Class Initialized
+INFO - 2017-10-26 07:00:55 --> Language Class Initialized
+INFO - 2017-10-26 07:00:55 --> Config Class Initialized
+INFO - 2017-10-26 07:00:55 --> Loader Class Initialized
+INFO - 2017-10-26 07:00:55 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:00:55 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:00:55 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:00:55 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:00:55 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:00:55 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:00:55 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:00:56 --> Model Class Initialized
+INFO - 2017-10-26 07:00:56 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:00:56 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:00:56 --> Email Class Initialized
+INFO - 2017-10-26 07:00:56 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:00:56 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:00:56 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:00:56 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:00:56 --> Model Class Initialized
+INFO - 2017-10-26 07:00:56 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:00:56 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:00:56 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:00:56 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:56 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:00:56 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:56 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:00:56 --> Model Class Initialized
+INFO - 2017-10-26 06:00:56 --> Model Class Initialized
+INFO - 2017-10-26 06:00:57 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:57 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:00:57 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:00:57 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:00:57 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:00:57 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:00:57 --> Final output sent to browser
+DEBUG - 2017-10-26 06:00:57 --> Total execution time: 1.2876
+INFO - 2017-10-26 07:00:57 --> Config Class Initialized
+INFO - 2017-10-26 07:00:57 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:57 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:57 --> URI Class Initialized
+INFO - 2017-10-26 07:00:57 --> Router Class Initialized
+INFO - 2017-10-26 07:00:57 --> Output Class Initialized
+INFO - 2017-10-26 07:00:57 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:57 --> Input Class Initialized
+INFO - 2017-10-26 07:00:57 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:57 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:57 --> Config Class Initialized
+INFO - 2017-10-26 07:00:57 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:57 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:57 --> URI Class Initialized
+INFO - 2017-10-26 07:00:57 --> Router Class Initialized
+INFO - 2017-10-26 07:00:57 --> Output Class Initialized
+INFO - 2017-10-26 07:00:57 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:57 --> Input Class Initialized
+INFO - 2017-10-26 07:00:57 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:57 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:57 --> Config Class Initialized
+INFO - 2017-10-26 07:00:57 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:57 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:57 --> URI Class Initialized
+INFO - 2017-10-26 07:00:57 --> Router Class Initialized
+INFO - 2017-10-26 07:00:57 --> Output Class Initialized
+INFO - 2017-10-26 07:00:57 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:57 --> Input Class Initialized
+INFO - 2017-10-26 07:00:57 --> Language Class Initialized
+ERROR - 2017-10-26 07:00:57 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:00:58 --> Config Class Initialized
+INFO - 2017-10-26 07:00:58 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:00:58 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:00:58 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:00:58 --> URI Class Initialized
+INFO - 2017-10-26 07:00:58 --> Router Class Initialized
+INFO - 2017-10-26 07:00:58 --> Output Class Initialized
+INFO - 2017-10-26 07:00:58 --> Security Class Initialized
+DEBUG - 2017-10-26 07:00:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:00:58 --> Input Class Initialized
+INFO - 2017-10-26 07:00:58 --> Language Class Initialized
+INFO - 2017-10-26 07:00:58 --> Language Class Initialized
+INFO - 2017-10-26 07:00:58 --> Config Class Initialized
+INFO - 2017-10-26 07:00:58 --> Loader Class Initialized
+INFO - 2017-10-26 07:00:58 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:00:58 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:00:58 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:00:58 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:00:58 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:00:58 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:00:58 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:00:59 --> Model Class Initialized
+INFO - 2017-10-26 07:00:59 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:00:59 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:00:59 --> Email Class Initialized
+INFO - 2017-10-26 07:00:59 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:00:59 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:00:59 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:00:59 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:00:59 --> Model Class Initialized
+INFO - 2017-10-26 07:00:59 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:00:59 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:00:59 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:00:59 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:59 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:00:59 --> Model Class Initialized
+INFO - 2017-10-26 06:00:59 --> Model Class Initialized
+INFO - 2017-10-26 06:00:59 --> Model Class Initialized
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:00:59 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:00:59 --> Final output sent to browser
+DEBUG - 2017-10-26 06:00:59 --> Total execution time: 1.2975
+INFO - 2017-10-26 07:01:00 --> Config Class Initialized
+INFO - 2017-10-26 07:01:00 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:00 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:00 --> URI Class Initialized
+INFO - 2017-10-26 07:01:00 --> Router Class Initialized
+INFO - 2017-10-26 07:01:00 --> Output Class Initialized
+INFO - 2017-10-26 07:01:00 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:00 --> Input Class Initialized
+INFO - 2017-10-26 07:01:00 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:00 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:00 --> Config Class Initialized
+INFO - 2017-10-26 07:01:00 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:00 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:00 --> URI Class Initialized
+INFO - 2017-10-26 07:01:00 --> Router Class Initialized
+INFO - 2017-10-26 07:01:00 --> Output Class Initialized
+INFO - 2017-10-26 07:01:00 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:00 --> Input Class Initialized
+INFO - 2017-10-26 07:01:00 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:00 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:00 --> Config Class Initialized
+INFO - 2017-10-26 07:01:00 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:00 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:00 --> URI Class Initialized
+INFO - 2017-10-26 07:01:00 --> Router Class Initialized
+INFO - 2017-10-26 07:01:00 --> Output Class Initialized
+INFO - 2017-10-26 07:01:00 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:00 --> Input Class Initialized
+INFO - 2017-10-26 07:01:00 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:00 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:03 --> Config Class Initialized
+INFO - 2017-10-26 07:01:03 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:03 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:03 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:03 --> URI Class Initialized
+INFO - 2017-10-26 07:01:03 --> Router Class Initialized
+INFO - 2017-10-26 07:01:03 --> Output Class Initialized
+INFO - 2017-10-26 07:01:03 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:03 --> Input Class Initialized
+INFO - 2017-10-26 07:01:03 --> Language Class Initialized
+INFO - 2017-10-26 07:01:03 --> Language Class Initialized
+INFO - 2017-10-26 07:01:03 --> Config Class Initialized
+INFO - 2017-10-26 07:01:03 --> Loader Class Initialized
+INFO - 2017-10-26 07:01:03 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:01:03 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:01:03 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:01:03 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:01:03 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:01:03 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:01:03 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:01:04 --> Model Class Initialized
+INFO - 2017-10-26 07:01:04 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:01:04 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:01:04 --> Email Class Initialized
+INFO - 2017-10-26 07:01:04 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:01:04 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:01:04 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:01:04 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:01:04 --> Model Class Initialized
+INFO - 2017-10-26 07:01:04 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:01:04 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:01:04 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:01:04 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:04 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:01:04 --> Model Class Initialized
+INFO - 2017-10-26 06:01:04 --> Model Class Initialized
+INFO - 2017-10-26 06:01:04 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:01:04 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:01:04 --> Final output sent to browser
+DEBUG - 2017-10-26 06:01:04 --> Total execution time: 1.2769
+INFO - 2017-10-26 07:01:05 --> Config Class Initialized
+INFO - 2017-10-26 07:01:05 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:05 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:05 --> URI Class Initialized
+INFO - 2017-10-26 07:01:05 --> Router Class Initialized
+INFO - 2017-10-26 07:01:05 --> Output Class Initialized
+INFO - 2017-10-26 07:01:05 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:05 --> Input Class Initialized
+INFO - 2017-10-26 07:01:05 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:05 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:05 --> Config Class Initialized
+INFO - 2017-10-26 07:01:05 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:05 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:05 --> URI Class Initialized
+INFO - 2017-10-26 07:01:05 --> Router Class Initialized
+INFO - 2017-10-26 07:01:05 --> Output Class Initialized
+INFO - 2017-10-26 07:01:05 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:05 --> Input Class Initialized
+INFO - 2017-10-26 07:01:05 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:05 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:05 --> Config Class Initialized
+INFO - 2017-10-26 07:01:05 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:05 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:05 --> URI Class Initialized
+INFO - 2017-10-26 07:01:05 --> Router Class Initialized
+INFO - 2017-10-26 07:01:05 --> Output Class Initialized
+INFO - 2017-10-26 07:01:05 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:05 --> Input Class Initialized
+INFO - 2017-10-26 07:01:05 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:05 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:06 --> Config Class Initialized
+INFO - 2017-10-26 07:01:06 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:06 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:06 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:06 --> URI Class Initialized
+INFO - 2017-10-26 07:01:06 --> Router Class Initialized
+INFO - 2017-10-26 07:01:06 --> Output Class Initialized
+INFO - 2017-10-26 07:01:06 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:06 --> Input Class Initialized
+INFO - 2017-10-26 07:01:06 --> Language Class Initialized
+INFO - 2017-10-26 07:01:06 --> Language Class Initialized
+INFO - 2017-10-26 07:01:06 --> Config Class Initialized
+INFO - 2017-10-26 07:01:06 --> Loader Class Initialized
+INFO - 2017-10-26 07:01:06 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:01:06 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:01:06 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:01:06 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:01:06 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:01:06 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:01:06 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:01:07 --> Model Class Initialized
+INFO - 2017-10-26 07:01:07 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:01:07 --> Email Class Initialized
+INFO - 2017-10-26 07:01:07 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:01:07 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:01:07 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:01:07 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:01:07 --> Model Class Initialized
+INFO - 2017-10-26 07:01:07 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:01:07 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:01:07 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:01:07 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:07 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:01:07 --> Model Class Initialized
+INFO - 2017-10-26 06:01:07 --> Model Class Initialized
+INFO - 2017-10-26 06:01:07 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:01:07 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:01:07 --> Final output sent to browser
+DEBUG - 2017-10-26 06:01:07 --> Total execution time: 1.2793
+INFO - 2017-10-26 07:01:07 --> Config Class Initialized
+INFO - 2017-10-26 07:01:07 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:07 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:07 --> URI Class Initialized
+INFO - 2017-10-26 07:01:07 --> Router Class Initialized
+INFO - 2017-10-26 07:01:07 --> Output Class Initialized
+INFO - 2017-10-26 07:01:07 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:07 --> Input Class Initialized
+INFO - 2017-10-26 07:01:07 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:07 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:07 --> Config Class Initialized
+INFO - 2017-10-26 07:01:07 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:07 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:07 --> URI Class Initialized
+INFO - 2017-10-26 07:01:07 --> Router Class Initialized
+INFO - 2017-10-26 07:01:07 --> Output Class Initialized
+INFO - 2017-10-26 07:01:07 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:07 --> Input Class Initialized
+INFO - 2017-10-26 07:01:07 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:07 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:07 --> Config Class Initialized
+INFO - 2017-10-26 07:01:07 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:07 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:07 --> URI Class Initialized
+INFO - 2017-10-26 07:01:07 --> Router Class Initialized
+INFO - 2017-10-26 07:01:07 --> Output Class Initialized
+INFO - 2017-10-26 07:01:07 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:07 --> Input Class Initialized
+INFO - 2017-10-26 07:01:07 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:07 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:37 --> Config Class Initialized
+INFO - 2017-10-26 07:01:37 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:37 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:37 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:37 --> URI Class Initialized
+INFO - 2017-10-26 07:01:37 --> Router Class Initialized
+INFO - 2017-10-26 07:01:37 --> Output Class Initialized
+INFO - 2017-10-26 07:01:37 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:37 --> Input Class Initialized
+INFO - 2017-10-26 07:01:37 --> Language Class Initialized
+INFO - 2017-10-26 07:01:37 --> Language Class Initialized
+INFO - 2017-10-26 07:01:37 --> Config Class Initialized
+INFO - 2017-10-26 07:01:37 --> Loader Class Initialized
+INFO - 2017-10-26 07:01:37 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:01:37 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:01:37 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:01:37 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:01:37 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:01:37 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:01:37 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:01:38 --> Model Class Initialized
+INFO - 2017-10-26 07:01:38 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:01:38 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:01:38 --> Email Class Initialized
+INFO - 2017-10-26 07:01:38 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:01:38 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:01:38 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:01:38 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:01:38 --> Model Class Initialized
+INFO - 2017-10-26 07:01:38 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:01:38 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:01:38 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:01:38 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:38 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:01:38 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:38 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:01:38 --> Model Class Initialized
+INFO - 2017-10-26 06:01:38 --> Model Class Initialized
+INFO - 2017-10-26 06:01:39 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:39 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:01:39 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:01:39 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:01:39 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:01:39 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:01:39 --> Final output sent to browser
+DEBUG - 2017-10-26 06:01:39 --> Total execution time: 1.3302
+INFO - 2017-10-26 07:01:39 --> Config Class Initialized
+INFO - 2017-10-26 07:01:39 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:39 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:39 --> URI Class Initialized
+INFO - 2017-10-26 07:01:39 --> Router Class Initialized
+INFO - 2017-10-26 07:01:39 --> Output Class Initialized
+INFO - 2017-10-26 07:01:39 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:39 --> Input Class Initialized
+INFO - 2017-10-26 07:01:39 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:39 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:39 --> Config Class Initialized
+INFO - 2017-10-26 07:01:39 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:39 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:39 --> URI Class Initialized
+INFO - 2017-10-26 07:01:39 --> Router Class Initialized
+INFO - 2017-10-26 07:01:39 --> Output Class Initialized
+INFO - 2017-10-26 07:01:39 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:39 --> Input Class Initialized
+INFO - 2017-10-26 07:01:39 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:39 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:39 --> Config Class Initialized
+INFO - 2017-10-26 07:01:39 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:39 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:39 --> URI Class Initialized
+INFO - 2017-10-26 07:01:39 --> Router Class Initialized
+INFO - 2017-10-26 07:01:39 --> Output Class Initialized
+INFO - 2017-10-26 07:01:39 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:39 --> Input Class Initialized
+INFO - 2017-10-26 07:01:39 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:39 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:53 --> Config Class Initialized
+INFO - 2017-10-26 07:01:53 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:53 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:53 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:53 --> URI Class Initialized
+INFO - 2017-10-26 07:01:53 --> Router Class Initialized
+INFO - 2017-10-26 07:01:53 --> Output Class Initialized
+INFO - 2017-10-26 07:01:53 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:53 --> Input Class Initialized
+INFO - 2017-10-26 07:01:53 --> Language Class Initialized
+INFO - 2017-10-26 07:01:54 --> Language Class Initialized
+INFO - 2017-10-26 07:01:54 --> Config Class Initialized
+INFO - 2017-10-26 07:01:54 --> Loader Class Initialized
+INFO - 2017-10-26 07:01:54 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:01:54 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:01:54 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:01:54 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:01:54 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:01:54 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:01:54 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:01:55 --> Model Class Initialized
+INFO - 2017-10-26 07:01:55 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:01:55 --> Email Class Initialized
+INFO - 2017-10-26 07:01:55 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:01:55 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:01:55 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:01:55 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:01:55 --> Model Class Initialized
+INFO - 2017-10-26 07:01:55 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:01:55 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:01:55 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:01:55 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:55 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:01:55 --> Model Class Initialized
+INFO - 2017-10-26 06:01:55 --> Model Class Initialized
+INFO - 2017-10-26 06:01:55 --> Model Class Initialized
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:01:55 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:01:55 --> Final output sent to browser
+DEBUG - 2017-10-26 06:01:55 --> Total execution time: 1.3208
+INFO - 2017-10-26 07:01:55 --> Config Class Initialized
+INFO - 2017-10-26 07:01:55 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:55 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:55 --> URI Class Initialized
+INFO - 2017-10-26 07:01:55 --> Router Class Initialized
+INFO - 2017-10-26 07:01:55 --> Output Class Initialized
+INFO - 2017-10-26 07:01:55 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:55 --> Input Class Initialized
+INFO - 2017-10-26 07:01:55 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:55 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:55 --> Config Class Initialized
+INFO - 2017-10-26 07:01:55 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:55 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:55 --> URI Class Initialized
+INFO - 2017-10-26 07:01:55 --> Router Class Initialized
+INFO - 2017-10-26 07:01:55 --> Output Class Initialized
+INFO - 2017-10-26 07:01:55 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:55 --> Input Class Initialized
+INFO - 2017-10-26 07:01:55 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:55 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:01:55 --> Config Class Initialized
+INFO - 2017-10-26 07:01:55 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:01:55 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:01:55 --> URI Class Initialized
+INFO - 2017-10-26 07:01:55 --> Router Class Initialized
+INFO - 2017-10-26 07:01:55 --> Output Class Initialized
+INFO - 2017-10-26 07:01:55 --> Security Class Initialized
+DEBUG - 2017-10-26 07:01:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:01:55 --> Input Class Initialized
+INFO - 2017-10-26 07:01:55 --> Language Class Initialized
+ERROR - 2017-10-26 07:01:55 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:02:32 --> Config Class Initialized
+INFO - 2017-10-26 07:02:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:32 --> URI Class Initialized
+INFO - 2017-10-26 07:02:32 --> Router Class Initialized
+INFO - 2017-10-26 07:02:32 --> Output Class Initialized
+INFO - 2017-10-26 07:02:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:32 --> Input Class Initialized
+INFO - 2017-10-26 07:02:32 --> Language Class Initialized
+ERROR - 2017-10-26 07:02:32 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:02:32 --> Config Class Initialized
+INFO - 2017-10-26 07:02:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:32 --> URI Class Initialized
+INFO - 2017-10-26 07:02:32 --> Router Class Initialized
+INFO - 2017-10-26 07:02:32 --> Output Class Initialized
+INFO - 2017-10-26 07:02:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:32 --> Input Class Initialized
+INFO - 2017-10-26 07:02:32 --> Language Class Initialized
+INFO - 2017-10-26 07:02:32 --> Language Class Initialized
+INFO - 2017-10-26 07:02:32 --> Config Class Initialized
+INFO - 2017-10-26 07:02:32 --> Loader Class Initialized
+INFO - 2017-10-26 07:02:32 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:02:32 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:02:32 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:02:32 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:02:32 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:02:32 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:02:32 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:02:33 --> Model Class Initialized
+INFO - 2017-10-26 07:02:33 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:02:33 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:02:33 --> Email Class Initialized
+INFO - 2017-10-26 07:02:33 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:02:33 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:02:33 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:02:33 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:02:33 --> Model Class Initialized
+INFO - 2017-10-26 07:02:33 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:02:33 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:02:33 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:02:33 --> Model Class Initialized
+INFO - 2017-10-26 07:02:46 --> Config Class Initialized
+INFO - 2017-10-26 07:02:46 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:46 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:46 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:46 --> URI Class Initialized
+INFO - 2017-10-26 07:02:46 --> Router Class Initialized
+INFO - 2017-10-26 07:02:46 --> Output Class Initialized
+INFO - 2017-10-26 07:02:46 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:46 --> Input Class Initialized
+INFO - 2017-10-26 07:02:46 --> Language Class Initialized
+INFO - 2017-10-26 07:02:46 --> Language Class Initialized
+INFO - 2017-10-26 07:02:46 --> Config Class Initialized
+INFO - 2017-10-26 07:02:46 --> Loader Class Initialized
+INFO - 2017-10-26 07:02:46 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:02:46 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:02:46 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:02:46 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:02:46 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:02:46 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:02:46 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:02:47 --> Model Class Initialized
+INFO - 2017-10-26 07:02:47 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:02:47 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:02:47 --> Email Class Initialized
+INFO - 2017-10-26 07:02:47 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:02:47 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:02:47 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:02:47 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:02:47 --> Model Class Initialized
+INFO - 2017-10-26 07:02:47 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:02:47 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:02:47 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2017-10-26 06:02:47 --> Model Class Initialized
+DEBUG - 2017-10-26 06:02:47 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:02:47 --> Model Class Initialized
+DEBUG - 2017-10-26 06:02:47 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:02:48 --> Model Class Initialized
+INFO - 2017-10-26 06:02:48 --> Model Class Initialized
+INFO - 2017-10-26 06:02:48 --> Model Class Initialized
+DEBUG - 2017-10-26 06:02:48 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:02:48 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2017-10-26 06:02:48 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2017-10-26 06:02:48 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:02:48 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-grocery.php
+INFO - 2017-10-26 06:02:48 --> Final output sent to browser
+DEBUG - 2017-10-26 06:02:48 --> Total execution time: 1.3096
+INFO - 2017-10-26 07:02:48 --> Config Class Initialized
+INFO - 2017-10-26 07:02:48 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:48 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:48 --> URI Class Initialized
+INFO - 2017-10-26 07:02:48 --> Router Class Initialized
+INFO - 2017-10-26 07:02:48 --> Output Class Initialized
+INFO - 2017-10-26 07:02:48 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:48 --> Input Class Initialized
+INFO - 2017-10-26 07:02:48 --> Language Class Initialized
+ERROR - 2017-10-26 07:02:48 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:02:48 --> Config Class Initialized
+INFO - 2017-10-26 07:02:48 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:48 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:48 --> URI Class Initialized
+INFO - 2017-10-26 07:02:48 --> Router Class Initialized
+INFO - 2017-10-26 07:02:48 --> Output Class Initialized
+INFO - 2017-10-26 07:02:48 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:48 --> Input Class Initialized
+INFO - 2017-10-26 07:02:48 --> Language Class Initialized
+ERROR - 2017-10-26 07:02:48 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:02:48 --> Config Class Initialized
+INFO - 2017-10-26 07:02:48 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:02:48 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:02:48 --> URI Class Initialized
+INFO - 2017-10-26 07:02:48 --> Router Class Initialized
+INFO - 2017-10-26 07:02:48 --> Output Class Initialized
+INFO - 2017-10-26 07:02:48 --> Security Class Initialized
+DEBUG - 2017-10-26 07:02:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:02:48 --> Input Class Initialized
+INFO - 2017-10-26 07:02:48 --> Language Class Initialized
+ERROR - 2017-10-26 07:02:48 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:18 --> Config Class Initialized
+INFO - 2017-10-26 07:13:18 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:18 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:18 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:18 --> URI Class Initialized
+INFO - 2017-10-26 07:13:18 --> Router Class Initialized
+INFO - 2017-10-26 07:13:18 --> Output Class Initialized
+INFO - 2017-10-26 07:13:18 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:18 --> Input Class Initialized
+INFO - 2017-10-26 07:13:18 --> Language Class Initialized
+INFO - 2017-10-26 07:13:18 --> Language Class Initialized
+INFO - 2017-10-26 07:13:18 --> Config Class Initialized
+INFO - 2017-10-26 07:13:18 --> Loader Class Initialized
+INFO - 2017-10-26 07:13:18 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:13:18 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:13:18 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:13:18 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:13:18 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:13:18 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:13:18 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:13:19 --> Model Class Initialized
+INFO - 2017-10-26 07:13:19 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:13:19 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:13:19 --> Email Class Initialized
+INFO - 2017-10-26 07:13:19 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:13:19 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:13:19 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:13:19 --> Model Class Initialized
+INFO - 2017-10-26 07:13:19 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:13:19 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:13:19 --> Language file loaded: language/english/auth_lang.php
+INFO - 2017-10-26 07:13:19 --> Config Class Initialized
+INFO - 2017-10-26 07:13:19 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:19 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:19 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:19 --> URI Class Initialized
+INFO - 2017-10-26 07:13:19 --> Router Class Initialized
+INFO - 2017-10-26 07:13:19 --> Output Class Initialized
+INFO - 2017-10-26 07:13:19 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:19 --> Input Class Initialized
+INFO - 2017-10-26 07:13:19 --> Language Class Initialized
+INFO - 2017-10-26 07:13:19 --> Language Class Initialized
+INFO - 2017-10-26 07:13:19 --> Config Class Initialized
+INFO - 2017-10-26 07:13:19 --> Loader Class Initialized
+INFO - 2017-10-26 07:13:19 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:13:19 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:13:19 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:13:20 --> Model Class Initialized
+INFO - 2017-10-26 07:13:20 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:13:21 --> Email Class Initialized
+INFO - 2017-10-26 07:13:21 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:13:21 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:13:21 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:13:21 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:13:21 --> Model Class Initialized
+INFO - 2017-10-26 07:13:21 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:13:21 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:13:21 --> Language file loaded: language/english/auth_lang.php
+INFO - 2017-10-26 06:13:21 --> Model Class Initialized
+DEBUG - 2017-10-26 06:13:21 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2017-10-26 06:13:21 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/auth/views/login.php
+DEBUG - 2017-10-26 06:13:21 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2017-10-26 06:13:21 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/site-template.php
+INFO - 2017-10-26 06:13:21 --> Final output sent to browser
+DEBUG - 2017-10-26 06:13:21 --> Total execution time: 1.2178
+INFO - 2017-10-26 07:13:21 --> Config Class Initialized
+INFO - 2017-10-26 07:13:21 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:21 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:21 --> URI Class Initialized
+INFO - 2017-10-26 07:13:21 --> Router Class Initialized
+INFO - 2017-10-26 07:13:21 --> Output Class Initialized
+INFO - 2017-10-26 07:13:21 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:21 --> Input Class Initialized
+INFO - 2017-10-26 07:13:21 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:21 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:21 --> Config Class Initialized
+INFO - 2017-10-26 07:13:21 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:21 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:21 --> URI Class Initialized
+INFO - 2017-10-26 07:13:21 --> Router Class Initialized
+INFO - 2017-10-26 07:13:21 --> Output Class Initialized
+INFO - 2017-10-26 07:13:21 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:21 --> Input Class Initialized
+INFO - 2017-10-26 07:13:21 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:21 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:21 --> Config Class Initialized
+INFO - 2017-10-26 07:13:21 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:21 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:21 --> URI Class Initialized
+INFO - 2017-10-26 07:13:21 --> Router Class Initialized
+INFO - 2017-10-26 07:13:21 --> Output Class Initialized
+INFO - 2017-10-26 07:13:21 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:21 --> Input Class Initialized
+INFO - 2017-10-26 07:13:21 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:21 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:27 --> Config Class Initialized
+INFO - 2017-10-26 07:13:27 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:27 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:27 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:27 --> URI Class Initialized
+INFO - 2017-10-26 07:13:27 --> Router Class Initialized
+INFO - 2017-10-26 07:13:27 --> Output Class Initialized
+INFO - 2017-10-26 07:13:27 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:27 --> Input Class Initialized
+INFO - 2017-10-26 07:13:27 --> Language Class Initialized
+INFO - 2017-10-26 07:13:27 --> Language Class Initialized
+INFO - 2017-10-26 07:13:27 --> Config Class Initialized
+INFO - 2017-10-26 07:13:27 --> Loader Class Initialized
+INFO - 2017-10-26 07:13:27 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:13:27 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:13:27 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:13:27 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:13:27 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:13:27 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:13:27 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:13:28 --> Model Class Initialized
+INFO - 2017-10-26 07:13:28 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:13:28 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:13:28 --> Email Class Initialized
+INFO - 2017-10-26 07:13:28 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:13:28 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:13:28 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:13:28 --> Model Class Initialized
+INFO - 2017-10-26 07:13:28 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:13:28 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:13:28 --> Language file loaded: language/english/auth_lang.php
+INFO - 2017-10-26 06:13:28 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2017-10-26 07:13:28 --> Config Class Initialized
+INFO - 2017-10-26 07:13:28 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:28 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:28 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:28 --> URI Class Initialized
+INFO - 2017-10-26 07:13:28 --> Router Class Initialized
+INFO - 2017-10-26 07:13:28 --> Output Class Initialized
+INFO - 2017-10-26 07:13:28 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:28 --> Input Class Initialized
+INFO - 2017-10-26 07:13:28 --> Language Class Initialized
+INFO - 2017-10-26 07:13:28 --> Language Class Initialized
+INFO - 2017-10-26 07:13:28 --> Config Class Initialized
+INFO - 2017-10-26 07:13:28 --> Loader Class Initialized
+INFO - 2017-10-26 07:13:28 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:13:28 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:13:28 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:13:29 --> Model Class Initialized
+INFO - 2017-10-26 07:13:29 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:13:29 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:13:29 --> Email Class Initialized
+INFO - 2017-10-26 07:13:29 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:13:29 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:13:29 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:13:29 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:13:29 --> Model Class Initialized
+INFO - 2017-10-26 07:13:29 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:13:29 --> Form Validation Class Initialized
+DEBUG - 2017-10-26 06:13:30 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-navigation.php
+DEBUG - 2017-10-26 06:13:30 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-header.php
+DEBUG - 2017-10-26 06:13:30 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/admin/views/dashboard.php
+DEBUG - 2017-10-26 06:13:30 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-footer.php
+DEBUG - 2017-10-26 06:13:30 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-template.php
+INFO - 2017-10-26 06:13:30 --> Final output sent to browser
+DEBUG - 2017-10-26 06:13:30 --> Total execution time: 1.2087
+INFO - 2017-10-26 07:13:30 --> Config Class Initialized
+INFO - 2017-10-26 07:13:30 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:30 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:30 --> URI Class Initialized
+INFO - 2017-10-26 07:13:30 --> Router Class Initialized
+INFO - 2017-10-26 07:13:30 --> Output Class Initialized
+INFO - 2017-10-26 07:13:30 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:30 --> Input Class Initialized
+INFO - 2017-10-26 07:13:30 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:30 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:30 --> Config Class Initialized
+INFO - 2017-10-26 07:13:30 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:30 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:30 --> URI Class Initialized
+INFO - 2017-10-26 07:13:30 --> Router Class Initialized
+INFO - 2017-10-26 07:13:30 --> Output Class Initialized
+INFO - 2017-10-26 07:13:30 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:30 --> Input Class Initialized
+INFO - 2017-10-26 07:13:30 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:30 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:30 --> Config Class Initialized
+INFO - 2017-10-26 07:13:30 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:30 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:30 --> URI Class Initialized
+INFO - 2017-10-26 07:13:30 --> Router Class Initialized
+INFO - 2017-10-26 07:13:30 --> Output Class Initialized
+INFO - 2017-10-26 07:13:30 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:30 --> Input Class Initialized
+INFO - 2017-10-26 07:13:30 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:30 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:33 --> Config Class Initialized
+INFO - 2017-10-26 07:13:33 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:33 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:33 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:33 --> URI Class Initialized
+INFO - 2017-10-26 07:13:33 --> Router Class Initialized
+INFO - 2017-10-26 07:13:33 --> Output Class Initialized
+INFO - 2017-10-26 07:13:33 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:33 --> Input Class Initialized
+INFO - 2017-10-26 07:13:33 --> Language Class Initialized
+INFO - 2017-10-26 07:13:33 --> Language Class Initialized
+INFO - 2017-10-26 07:13:33 --> Config Class Initialized
+INFO - 2017-10-26 07:13:33 --> Loader Class Initialized
+INFO - 2017-10-26 07:13:33 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:13:33 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:13:33 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:13:33 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:13:33 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:13:33 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:13:33 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:13:34 --> Model Class Initialized
+INFO - 2017-10-26 07:13:34 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:13:34 --> Email Class Initialized
+INFO - 2017-10-26 07:13:34 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:13:34 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:13:34 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:13:34 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:13:34 --> Model Class Initialized
+INFO - 2017-10-26 07:13:34 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:13:34 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:13:34 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:13:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:13:34 --> Model Class Initialized
+DEBUG - 2017-10-26 06:13:34 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:13:34 --> Model Class Initialized
+INFO - 2017-10-26 06:13:34 --> Model Class Initialized
+DEBUG - 2017-10-26 06:13:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-navigation.php
+DEBUG - 2017-10-26 06:13:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-header.php
+DEBUG - 2017-10-26 06:13:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-footer.php
+DEBUG - 2017-10-26 06:13:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-template-grocery.php
+INFO - 2017-10-26 06:13:34 --> Final output sent to browser
+DEBUG - 2017-10-26 06:13:34 --> Total execution time: 1.2486
+INFO - 2017-10-26 07:13:34 --> Config Class Initialized
+INFO - 2017-10-26 07:13:34 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:34 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:34 --> URI Class Initialized
+INFO - 2017-10-26 07:13:34 --> Router Class Initialized
+INFO - 2017-10-26 07:13:34 --> Output Class Initialized
+INFO - 2017-10-26 07:13:34 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:34 --> Input Class Initialized
+INFO - 2017-10-26 07:13:34 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:34 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:34 --> Config Class Initialized
+INFO - 2017-10-26 07:13:34 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:34 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:34 --> URI Class Initialized
+INFO - 2017-10-26 07:13:34 --> Router Class Initialized
+INFO - 2017-10-26 07:13:34 --> Output Class Initialized
+INFO - 2017-10-26 07:13:34 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:34 --> Input Class Initialized
+INFO - 2017-10-26 07:13:34 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:34 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:13:34 --> Config Class Initialized
+INFO - 2017-10-26 07:13:34 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:13:34 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:13:34 --> URI Class Initialized
+INFO - 2017-10-26 07:13:34 --> Router Class Initialized
+INFO - 2017-10-26 07:13:34 --> Output Class Initialized
+INFO - 2017-10-26 07:13:34 --> Security Class Initialized
+DEBUG - 2017-10-26 07:13:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:13:34 --> Input Class Initialized
+INFO - 2017-10-26 07:13:34 --> Language Class Initialized
+ERROR - 2017-10-26 07:13:34 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:14:26 --> Config Class Initialized
+INFO - 2017-10-26 07:14:26 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:26 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:26 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:26 --> URI Class Initialized
+INFO - 2017-10-26 07:14:26 --> Router Class Initialized
+INFO - 2017-10-26 07:14:26 --> Output Class Initialized
+INFO - 2017-10-26 07:14:26 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:26 --> Input Class Initialized
+INFO - 2017-10-26 07:14:26 --> Language Class Initialized
+INFO - 2017-10-26 07:14:26 --> Language Class Initialized
+INFO - 2017-10-26 07:14:26 --> Config Class Initialized
+INFO - 2017-10-26 07:14:26 --> Loader Class Initialized
+INFO - 2017-10-26 07:14:26 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:14:26 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:14:26 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:14:26 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:14:26 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:14:26 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:14:26 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:14:27 --> Model Class Initialized
+INFO - 2017-10-26 07:14:27 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:14:27 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:14:27 --> Email Class Initialized
+INFO - 2017-10-26 07:14:27 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:14:27 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:14:27 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:14:27 --> Model Class Initialized
+INFO - 2017-10-26 07:14:27 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:14:27 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:27 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:14:27 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:14:27 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:27 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:14:27 --> Model Class Initialized
+INFO - 2017-10-26 06:14:27 --> Model Class Initialized
+INFO - 2017-10-26 06:14:27 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:27 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2017-10-26 07:14:27 --> Config Class Initialized
+INFO - 2017-10-26 07:14:27 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:27 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:27 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:27 --> URI Class Initialized
+INFO - 2017-10-26 07:14:27 --> Router Class Initialized
+INFO - 2017-10-26 07:14:27 --> Output Class Initialized
+INFO - 2017-10-26 07:14:27 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:27 --> Input Class Initialized
+INFO - 2017-10-26 07:14:27 --> Language Class Initialized
+INFO - 2017-10-26 07:14:27 --> Language Class Initialized
+INFO - 2017-10-26 07:14:27 --> Config Class Initialized
+INFO - 2017-10-26 07:14:27 --> Loader Class Initialized
+INFO - 2017-10-26 07:14:27 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:14:27 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:14:27 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:14:28 --> Model Class Initialized
+INFO - 2017-10-26 07:14:28 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:14:28 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:14:28 --> Email Class Initialized
+INFO - 2017-10-26 07:14:28 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:14:28 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:14:28 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:14:28 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:14:28 --> Model Class Initialized
+INFO - 2017-10-26 07:14:28 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:14:28 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:28 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:14:28 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:14:28 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:28 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:14:28 --> Model Class Initialized
+INFO - 2017-10-26 06:14:28 --> Model Class Initialized
+INFO - 2017-10-26 06:14:28 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:28 --> Language file loaded: language/english/form_validation_lang.php
+ERROR - 2017-10-26 06:14:30 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\helpers\global_helper.php 108
+INFO - 2017-10-26 07:14:30 --> Config Class Initialized
+INFO - 2017-10-26 07:14:30 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:30 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:30 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:30 --> URI Class Initialized
+INFO - 2017-10-26 07:14:30 --> Router Class Initialized
+INFO - 2017-10-26 07:14:30 --> Output Class Initialized
+INFO - 2017-10-26 07:14:30 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:30 --> Input Class Initialized
+INFO - 2017-10-26 07:14:30 --> Language Class Initialized
+INFO - 2017-10-26 07:14:30 --> Language Class Initialized
+INFO - 2017-10-26 07:14:30 --> Config Class Initialized
+INFO - 2017-10-26 07:14:30 --> Loader Class Initialized
+INFO - 2017-10-26 07:14:30 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:14:30 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:14:30 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:14:30 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:14:30 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:14:30 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:14:30 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:14:31 --> Model Class Initialized
+INFO - 2017-10-26 07:14:31 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:14:31 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:14:31 --> Email Class Initialized
+INFO - 2017-10-26 07:14:31 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:14:31 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:14:31 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:14:31 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:14:31 --> Model Class Initialized
+INFO - 2017-10-26 07:14:31 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:14:31 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:31 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:14:31 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:14:31 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:31 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:14:31 --> Model Class Initialized
+INFO - 2017-10-26 06:14:31 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:32 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-navigation.php
+DEBUG - 2017-10-26 06:14:32 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-header.php
+DEBUG - 2017-10-26 06:14:32 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-footer.php
+DEBUG - 2017-10-26 06:14:32 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/admin/admin-template-grocery.php
+INFO - 2017-10-26 06:14:32 --> Final output sent to browser
+DEBUG - 2017-10-26 06:14:32 --> Total execution time: 1.2681
+INFO - 2017-10-26 07:14:32 --> Config Class Initialized
+INFO - 2017-10-26 07:14:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:32 --> URI Class Initialized
+INFO - 2017-10-26 07:14:32 --> Router Class Initialized
+INFO - 2017-10-26 07:14:32 --> Output Class Initialized
+INFO - 2017-10-26 07:14:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:32 --> Input Class Initialized
+INFO - 2017-10-26 07:14:32 --> Language Class Initialized
+ERROR - 2017-10-26 07:14:32 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:14:32 --> Config Class Initialized
+INFO - 2017-10-26 07:14:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:32 --> URI Class Initialized
+INFO - 2017-10-26 07:14:32 --> Router Class Initialized
+INFO - 2017-10-26 07:14:32 --> Output Class Initialized
+INFO - 2017-10-26 07:14:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:32 --> Input Class Initialized
+INFO - 2017-10-26 07:14:32 --> Language Class Initialized
+ERROR - 2017-10-26 07:14:32 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:14:32 --> Config Class Initialized
+INFO - 2017-10-26 07:14:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:32 --> URI Class Initialized
+INFO - 2017-10-26 07:14:32 --> Router Class Initialized
+INFO - 2017-10-26 07:14:32 --> Output Class Initialized
+INFO - 2017-10-26 07:14:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:32 --> Input Class Initialized
+INFO - 2017-10-26 07:14:32 --> Language Class Initialized
+ERROR - 2017-10-26 07:14:32 --> 404 Page Not Found: /index
+INFO - 2017-10-26 07:14:32 --> Config Class Initialized
+INFO - 2017-10-26 07:14:32 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:32 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:32 --> URI Class Initialized
+INFO - 2017-10-26 07:14:32 --> Router Class Initialized
+INFO - 2017-10-26 07:14:32 --> Output Class Initialized
+INFO - 2017-10-26 07:14:32 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:32 --> Input Class Initialized
+INFO - 2017-10-26 07:14:32 --> Language Class Initialized
+INFO - 2017-10-26 07:14:32 --> Language Class Initialized
+INFO - 2017-10-26 07:14:32 --> Config Class Initialized
+INFO - 2017-10-26 07:14:32 --> Loader Class Initialized
+INFO - 2017-10-26 07:14:32 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:14:32 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:14:32 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:14:32 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:14:32 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:14:32 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:14:32 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:14:33 --> Model Class Initialized
+INFO - 2017-10-26 07:14:33 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:14:33 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:14:33 --> Email Class Initialized
+INFO - 2017-10-26 07:14:33 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:14:33 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:14:33 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:14:33 --> Model Class Initialized
+INFO - 2017-10-26 07:14:33 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:14:33 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:33 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:14:33 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:14:33 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:33 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:14:33 --> Model Class Initialized
+INFO - 2017-10-26 06:14:33 --> Model Class Initialized
+INFO - 2017-10-26 07:14:33 --> Config Class Initialized
+INFO - 2017-10-26 07:14:33 --> Hooks Class Initialized
+DEBUG - 2017-10-26 07:14:33 --> UTF-8 Support Enabled
+INFO - 2017-10-26 07:14:33 --> Utf8 Class Initialized
+INFO - 2017-10-26 07:14:33 --> URI Class Initialized
+INFO - 2017-10-26 07:14:33 --> Router Class Initialized
+INFO - 2017-10-26 07:14:33 --> Output Class Initialized
+INFO - 2017-10-26 07:14:33 --> Security Class Initialized
+DEBUG - 2017-10-26 07:14:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2017-10-26 07:14:33 --> Input Class Initialized
+INFO - 2017-10-26 07:14:33 --> Language Class Initialized
+INFO - 2017-10-26 07:14:33 --> Language Class Initialized
+INFO - 2017-10-26 07:14:33 --> Config Class Initialized
+INFO - 2017-10-26 07:14:33 --> Loader Class Initialized
+INFO - 2017-10-26 07:14:33 --> Helper loaded: security_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: form_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: url_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: global_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: inflector_helper
+INFO - 2017-10-26 07:14:33 --> Helper loaded: text_helper
+INFO - 2017-10-26 07:14:33 --> Database Driver Class Initialized
+INFO - 2017-10-26 07:14:34 --> Model Class Initialized
+INFO - 2017-10-26 07:14:34 --> Controller Class Initialized
+DEBUG - 2017-10-26 07:14:34 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2017-10-26 07:14:34 --> Email Class Initialized
+INFO - 2017-10-26 07:14:34 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2017-10-26 07:14:34 --> Helper loaded: cookie_helper
+INFO - 2017-10-26 07:14:34 --> Helper loaded: language_helper
+INFO - 2017-10-26 07:14:34 --> Session: Class initialized using 'database' driver.
+INFO - 2017-10-26 07:14:34 --> Model Class Initialized
+INFO - 2017-10-26 07:14:34 --> Helper loaded: date_helper
+INFO - 2017-10-26 06:14:34 --> Form Validation Class Initialized
+INFO - 2017-10-26 06:14:34 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2017-10-26 06:14:34 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2017-10-26 06:14:34 --> Model Class Initialized
+DEBUG - 2017-10-26 06:14:34 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/grocery_crud.php
+INFO - 2017-10-26 06:14:34 --> Model Class Initialized
+INFO - 2017-10-26 06:14:34 --> Model Class Initialized

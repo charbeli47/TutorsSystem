@@ -49,7 +49,7 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('session_initiated')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/session_initiated"><?php echo get_languageword('session_initiated'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('running')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/running"><?php echo get_languageword('running'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
-				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>
+				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('closed')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/closed"><?php echo get_languageword('closed'); ?> </a></li>
 			</ul>
 		</div>
@@ -153,9 +153,9 @@
 </div>
 
 
-<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'user_credit_transactions') echo 'class="active"';?> href="<?php echo URL_TUTOR_CREDITS_TRANSACTION_HISTORY;?>"><i class="fa fa-exchange"></i><?php echo get_languageword('credits_Transactions');?><span class="hidden-xs"> <?php echo get_languageword('History')?> </span></a></div>
+<!--<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'user_credit_transactions') echo 'class="active"';?> href="<?php echo URL_TUTOR_CREDITS_TRANSACTION_HISTORY;?>"><i class="fa fa-exchange"></i><?php echo get_languageword('credits_Transactions');?><span class="hidden-xs"> <?php echo get_languageword('History')?> </span></a></div>-->
 
-<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'reviews') echo 'class="active"';?> href="<?php echo URL_TUTOR_USER_REVIEWS; ?>"><i class="fa fa-retweet"></i><?php echo get_languageword('Reviews');?></a></div>    
+<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'reviews') echo 'class="active"';?> href="<?php echo URL_TUTOR_USER_REVIEWS; ?>"><i class="fa fa-retweet"></i><?php echo get_languageword('Reviews');?></a></div>
 
 <?php } ?>
 <!-- /.panel -->

@@ -53,7 +53,7 @@
 							'newline' 	=> "\r\n",
 							'wordwrap' 	=> TRUE
 						);
-
+                    
 					$CI->email->initialize($config);
 
 					$CI->email->from($smtp_user, $CI->config->item('site_settings')->site_title);
@@ -72,9 +72,11 @@
 
 					$CI->email->subject($sub);
 					$CI->email->message($msg);
-
+                    
 						if( $CI->email->send() )
+                        { 
 						return true;
+                        }
 				}
 				elseif($default == 'default')
 				{		

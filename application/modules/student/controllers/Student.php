@@ -1483,13 +1483,14 @@ class Student extends MY_Controller
 
 		//Unset Actions
 		$crud->unset_add();
+        $crud->unset_edit();
 		$crud->unset_delete();
 
 		//List Table Columns
-		$crud->columns('course_id', 'tutor_id', 'course_duration', 'fee','content', 'start_date', 'time_slot', 'preferred_location', 'status','roomsession');
+		$crud->columns('course_id', 'tutor_id', 'course_duration', 'fee','content', 'start_date', 'time_slot', 'preferred_location', 'status', 'roomsession');
 		
 		//if( $param == 'session_initiated' || $param == 'running' ) {
-			$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', 'http://localhost/tutorsproj/web/tokbox.php?&user=student', 'fa fa-mixcloud', array($this, 'join_link') );
+			//$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', 'http://localhost/tutorsproj/web/tokbox.php?&user=student', 'fa fa-mixcloud', array($this, 'join_link') );
 		//}
 
 		$crud->callback_column('course_duration',array($this,'_callback_course_duration'));
@@ -1502,7 +1503,7 @@ class Student extends MY_Controller
 		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage_in_credits'));
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
-		$crud->display_as('roomsession','Room Session');
+		$crud->display_as('roomsession',get_languageword('join_session'));
 
 
 		if($param == "closed") {
