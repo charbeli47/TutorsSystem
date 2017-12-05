@@ -212,6 +212,11 @@ class Tutor extends MY_Controller
 				$inputdata['willing_to_travel'] = $this->input->post('willing_to_travel');
 				$inputdata['own_vehicle'] = $this->input->post('own_vehicle');
 				
+				//by youssef keryakos
+				// i added this so user when he clicks on save changes in his profile profile will be updated in db
+				$inputdata['is_profile_update'] ='1';
+				////
+				
 				$image 	= $_FILES['photo']['name'];
 				//Upload User Photo
 				if (!empty($image)) 
