@@ -49,7 +49,7 @@ Table of Contents
 
 ----------------------------------------
 [Colors]       - #e27d7f (primary-color)
-               - #534051 (secondary-color)
+               - #1e79be (secondary-color)
 [Typography]   - Lato.
 
 ------------------------------------- */
@@ -60,7 +60,7 @@ body {
     -webkit-font-smoothing: antialiased !important;
     font-family: 'Lato', sans-serif;
     /*    overflow-x: hidden;*/
-    color: #534051;
+    color: #1e79be;
     font-weight: 400;
     background-color: #fdfdfd;
 }
@@ -94,13 +94,13 @@ h2 {
     font-size: 30px;
     line-height: 24px;
     font-weight: 400;
-    color: #534051;
+    color: #1e79be;
 }
 
 p {
     font-size: 15px;
     font-weight: 400;
-    color: #534051;
+    color: #1e79be;
     line-height: 24px;
 }
 
@@ -111,13 +111,13 @@ a {
 .heading {
     font-size: 30px;
     font-weight: 400;
-    color: #534051;
+    color: #1e79be;
     text-align: center;
     margin-bottom: 65px;
 }
 
 .heading-tag {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 28px;
@@ -151,7 +151,7 @@ a {
 }
 
 .heading-border-btm span {
-    color: #534051;
+    color: #1e79be;
 }
 
 ul {
@@ -191,8 +191,8 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 .uneditable-input:focus {
-    border-color: #534051;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #534051;
+    border-color: #1e79be;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #1e79be;
     outline: 0 none;
 }
 
@@ -201,8 +201,8 @@ input[type="email"]:focus,
 }
 
 .form-control:focus {
-    border-color: #534051;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #534051;
+    border-color: #1e79be;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #1e79be;
 }
 
 textarea {
@@ -249,12 +249,12 @@ div.error, p.error {
 /* Primary button styling */
 
 .btn-link {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 400;
     margin-top: 50px;
     padding: 14px 28px;
-    border: 2px solid #534051;
+    border: 2px solid #1e79be;
     border-radius: 5px;
     text-align: center;
 }
@@ -316,8 +316,8 @@ div.error, p.error {
 }
 
 .btn-danger:hover {
-    background: #534051;
-    border-color: #534051;
+    background: #1e79be;
+    border-color: #1e79be;
 }
 
 .btn-accept {
@@ -386,7 +386,7 @@ div.error, p.error {
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    background-color: #534051;
+    background-color: #1e79be;
     margin: 20px 10px 10px 0;
     display: inline-block;
 }
@@ -624,12 +624,12 @@ Dropdown Select2 styling
 }
 
 .select2-results__options::-webkit-scrollbar-thumb {
-    background-color: #534051;
+    background-color: #1e79be;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    border-color: #534051;
-    outline-color: #534051;
+    border-color: #1e79be;
+    outline-color: #1e79be;
     border-radius: 2px;
 }
 
@@ -824,9 +824,9 @@ input[type=radio]:not(old):checked + label > span > span {
 }
 
 .checkbox input:checked + .checkbox-content .item-content {
-    color: #534051;
+    color: #1e79be;
     font-weight: 400;
-    color: #534051;
+    color: #1e79be;
     font-weight: 400;
 }
 
@@ -1044,13 +1044,13 @@ Bredcrumbs
 }
 
 .breadcrumb>.active {
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
 }
 
 .breadcrumb>li+li:before {
     padding: 0 5px;
-    color: #534051;
+    color: #1e79be;
     content: "»";
 }
 
@@ -1076,7 +1076,7 @@ Pagination
 }
 
 .pagination>li {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 700;
 }
@@ -1088,7 +1088,7 @@ Pagination
 
 .pagination>li>a,
 .pagination>li>span {
-    color: #534051;
+    color: #1e79be;
     background: transparent;
 }
 
@@ -1130,13 +1130,13 @@ Topbar - navbar-inverse
 }
 
 .navbar-inverse {
-    background: #534051;
+    background: #1e79be;
     color: #ffffff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: #b6a4b4;
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
 }
@@ -1175,7 +1175,7 @@ Main Navigation bar  - Navbar-default
 ---------------------------------------- */
 
 .navbar-default {
-    background: #534051;
+    background: #1e79be;
     padding: 20px 0px 20px 0;
     z-index: 1;
 }
@@ -1232,7 +1232,7 @@ Main Navigation bar  - Navbar-default
 }
 
 .nav-btn:hover {
-    background: #534051;
+    background: #1e79be;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
     -webkit-transition: 0.3s;
@@ -1344,7 +1344,7 @@ Main Navigation bar  - Navbar-default
 }
 
 .nav-head {
-    color: #534051;
+    color: #1e79be;
     font-size: 20px;
     font-weight: 700;
     line-height: 45px;
@@ -1387,7 +1387,7 @@ Main Navigation bar  - Navbar-default
 }
 
 .nav-links li a {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     display: inline-block;
@@ -1447,11 +1447,11 @@ Footer
 }
 
 .footer-color-head span {
-    color: #534051;
+    color: #1e79be;
 }
 
 .footer-text {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     margin-top: 0;
@@ -1459,7 +1459,7 @@ Footer
 }
 
 .footer-links li>a {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 22px;
@@ -1476,7 +1476,7 @@ Footer
     content: "\279e";
     display: inline-block;
     margin-right: 11px;
-    color: #534051;
+    color: #1e79be;
 }
 
 .footer-links li {
@@ -1511,7 +1511,7 @@ Footer
 }
 
 .media-team h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     margin: 10px 0 0;
     font-weight: 700;
@@ -1551,7 +1551,7 @@ Footer
     border-radius: 0;
     background-color: #e6e6e6;
     box-shadow: none;
-    color: #534051;
+    color: #1e79be;
     height: 44px;
 }
 
@@ -1566,7 +1566,7 @@ Footer
 .newsletter-btn {
     font-size: 16px;
     color: #ffffff;
-    background: #534051;
+    background: #1e79be;
     padding: 10px 16px;
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
@@ -1677,14 +1677,14 @@ Footer
 .footer-contact {
     float: right;
     vertical-align: middle;
-    color: #534051;
+    color: #1e79be;
     font-size: 13px;
     font-weight: 400;
 }
 
 .footer-contact i {
     border-radius: 50%;
-    background-color: #534051;
+    background-color: #1e79be;
     width: 35px;
     height: 35px;
     line-height: 37px;
@@ -1695,7 +1695,7 @@ Footer
 
 .footer-help {
     position: relative;
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 700;
     margin-right: 30px;
@@ -1729,7 +1729,7 @@ Footer
 }
 
 .btn-footer:hover {
-    background: #534051;
+    background: #1e79be;
     color: #ffffff;
 }
 
@@ -1774,7 +1774,7 @@ Side bar / Widget bar
 }
 
 .widget-text {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -1796,7 +1796,7 @@ Side bar / Widget bar
 }
 
 .widget-share li a:hover {
-    color: #534051;
+    color: #1e79be;
 }
 
 
@@ -1814,7 +1814,7 @@ Side bar / Widget bar
 }
 
 .widget-list li a {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 400;
     line-height: 40px;
@@ -1842,7 +1842,7 @@ Side bar / Widget bar
 }
 
 .widget-tags li a:hover {
-    background: #534051;
+    background: #1e79be;
 }
 
 
@@ -1876,7 +1876,7 @@ Side bar / Widget bar
 }
 
 .widget-team h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     margin: 14px 0 0;
     font-weight: 700;
@@ -1887,13 +1887,13 @@ Side bar / Widget bar
 }
 
 .widget-team .date {
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 400;
 }
 
 .widget-team .comments {
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 400;
     float: right;
@@ -1918,12 +1918,12 @@ Side bar / Widget bar
     height: 40px;
     background-color: #f3f3f3;
     box-shadow: none;
-    color: #534051;
+    color: #1e79be;
     min-width: 270px;
 }
 
 .widget-newsletter input::-webkit-input-placeholder {
-    color: #534051;
+    color: #1e79be;
 }
 
 .widget-newsletter-btn {
@@ -1937,7 +1937,7 @@ Side bar / Widget bar
 }
 
 .widget-newsletter-btn:hover {
-    color: #534051;
+    color: #1e79be;
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
 }
@@ -2014,7 +2014,11 @@ Side bar / Widget bar
 ---------------------------------- */
 
 .header-homepage {
-    background-color: #534051;
+    background-color: #1e79be;
+    /* background-image: url("../images/jospeh-1.png");
+    background-size: cover;
+    background-repeat: no-repeat;*/
+    min-height: 600px;
 }
 
 .header-margin {
@@ -2101,13 +2105,13 @@ Side bar / Widget bar
     position: relative;
     font-size: 18px;
     font-weight: 700;
-    color: #534051;
+    color: #1e79be;
     margin: 0 0 15px;
     padding-bottom: 8px;
 }
 
 .advantage a {
-    color: #534051;
+    color: #1e79be;
 }
 
 .advantage a:hover {
@@ -2127,7 +2131,7 @@ Side bar / Widget bar
 .advantage p {
     font-size: 15px;
     font-weight: 400;
-    color: #534051;
+    color: #1e79be;
     line-height: 24px;
 }
 
@@ -2165,7 +2169,7 @@ section.our-popular {
 }
 
 .pop-list ul>li>a {
-    color: #534051;
+    color: #1e79be;
     line-height: 35px;
     font-size: 15px;
     padding-left: 10px;
@@ -2209,7 +2213,7 @@ section.our-popular {
 ---------------------------------- */
 
 .featured-on {
-    background: #534051;
+    background: #1e79be;
 }
 
 .featured-on .row {
@@ -2275,7 +2279,7 @@ section.lession-cards .row-margin {
 }
 
 .card-content {
-    background-color: #534051;
+    background-color: #1e79be;
     padding: 20px;
     position: absolute;
     left: 0;
@@ -2361,14 +2365,14 @@ How-it-works
 .step-block h4 {
     margin-top: 20px;
     text-transform: uppercase;
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     line-height: 37px;
 }
 
 .step-block p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -2449,7 +2453,7 @@ Homepage >> call-to register
 }
 
 .choose-block p {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -2475,7 +2479,7 @@ Homepage >> call-to register
 
 .left-arrow:after {
     content: "\f177  ";
-    color: #534051;
+    color: #1e79be;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: 17px;
     -webkit-transition: all .2s ease;
@@ -2484,7 +2488,7 @@ Homepage >> call-to register
 
 .right-arrow:after {
     content: "\f178";
-    color: #534051;
+    color: #1e79be;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: 17px;
     -webkit-transition: all .2s ease;
@@ -2532,12 +2536,12 @@ Homepage >> call-to register
     border-radius: 6px;
 }
 .profile-img-block p{
-    color: #534051;
+    color: #1e79be;
 }
 
 .profile-block h4 {
     font-size: 18px;
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
     margin: 0;
     margin-top: 20px;
@@ -2610,7 +2614,7 @@ Homepage >> call-to register
 }
 
 .comment p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-style: italic;
     margin: 0;
@@ -2666,7 +2670,7 @@ Flexbox styling cards
 }
 
 .flex-card ul>li>a {
-    color: #534051;
+    color: #1e79be;
     line-height: 35px;
     font-size: 15px;
     padding-left: 10px;
@@ -2714,21 +2718,21 @@ Accordation Styling #About Us Page >>Frequently Asked Questions
 }
 
 .panel-title {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 700;
     line-height: 28px;
 }
 
 .panel-body {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
 }
 
 a.collapsed .panel-icn {
-    background-color: #534051;
+    background-color: #1e79be;
     color: #ffffff;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
@@ -2769,14 +2773,14 @@ Page >>Subject Listing
 }
 
 .list-check li {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 35px;
 }
 
 .color-heading {
-    color: #534051;
+    color: #1e79be;
     font-size: 35px;
     font-weight: 400;
 }
@@ -2787,7 +2791,7 @@ Page >>Subject Listing
 
 .skype-contact-text {
     margin-top: 30px;
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 26px;
@@ -2800,14 +2804,14 @@ Page >>Subject Listing
 }
 
 .find-tutor h2 {
-    color: #534051;
+    color: #1e79be;
     font-size: 30px;
     font-weight: 700;
     line-height: 20px;
 }
 
 .find-tutor p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -2830,14 +2834,14 @@ Page >>Abouts Us
 }
 
 .about-block h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     line-height: 20px;
 }
 
 .about-block p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -2937,7 +2941,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-card-title {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     margin-top: 15px;
@@ -2948,14 +2952,14 @@ Page >>Blog     #Blog cards
 .blog-fullcard-title {
     margin-top: 15px;
     margin-bottom: 10px;
-    color: #534051;
+    color: #1e79be;
     font-size: 30px;
     font-weight: 700;
     line-height: 35px
 }
 
 .blog-card-title a {
-    color: #534051;
+    color: #1e79be;
 }
 
 .blog-card-title a:hover {
@@ -2963,7 +2967,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-card-content li {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 26px;
@@ -2983,7 +2987,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-post-description p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -2991,7 +2995,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-post-description h2 {
-    color: #534051;
+    color: #1e79be;
     font-size: 30px;
     font-weight: 400;
     line-height: 30px;
@@ -2999,7 +3003,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-quote {
-    color: #534051;
+    color: #1e79be;
     font-size: 24px;
     font-weight: 400;
     line-height: 30px;
@@ -3035,7 +3039,7 @@ Page >>Blog     #Blog cards
 }
 
 .single-post-tags .tag {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -3053,7 +3057,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-profile-head {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
@@ -3061,7 +3065,7 @@ Page >>Blog     #Blog cards
 }
 
 .blog-profile-head a {
-    color: #534051;
+    color: #1e79be;
 }
 
 .blog-author {
@@ -3086,7 +3090,7 @@ Page >>Blog     #Blog cards
 }
 
 .comments-list h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 400;
     margin: 0;
@@ -3099,14 +3103,14 @@ Page >>Blog     #Blog cards
 }
 
 .comments-list p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
 }
 
 .comments-list .media-body a {
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 700;
     float: right;
@@ -3150,7 +3154,7 @@ Page >>Blog     #Blog cards
     border-radius: 5px !important;
     background-color: #f7f7f7;
     border: 0;
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
 }
@@ -3161,7 +3165,7 @@ Page >>Blog     #Blog cards
     font-weight: 400;
     padding-left: 10px;
     border: 0;
-    color: #534051;
+    color: #1e79be;
     padding-top: 10px;
     background-color: #ccc;
     border-radius: 5px;
@@ -3321,7 +3325,7 @@ Page >>Single Tutor Details
 }
 
 .send-quote-block .heading-line {
-    color: #534051;
+    color: #1e79be;
 }
 
 .form-quote p {
@@ -3336,7 +3340,7 @@ Page >>Single Tutor Details
     border-radius: 5px !important;
     background-color: #e7e7e7;
     border: 0;
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
 }
@@ -3347,7 +3351,7 @@ Page >>Single Tutor Details
     font-weight: 400;
     padding-left: 10px;
     border: 0;
-    color: #534051;
+    color: #1e79be;
     padding-top: 10px;
     background-color: #e7e7e7;
     border-radius: 5px;
@@ -3449,8 +3453,8 @@ Page >>Single Tutor Details
 }
 
 .user-profile-content .user-badges>li:first-child>a {
-    border-color: #534051;
-    color: #534051;
+    border-color: #1e79be;
+    color: #1e79be;
 }
 
 .user-profile-content .user-badges>li:last-child>a {
@@ -3459,7 +3463,7 @@ Page >>Single Tutor Details
 }
 
 .user-profile-content .user-badges>li:first-child>a:hover {
-    background-color: #534051;
+    background-color: #1e79be;
     color: #ffffff;
 }
 
@@ -3482,7 +3486,7 @@ Page >>Single Tutor Details
 }
 
 .user-profile-content p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 26px;
@@ -3490,21 +3494,21 @@ Page >>Single Tutor Details
 }
 
 .user-profile-content h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 31px;
 }
 
 .user-profile-content .title {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     margin: 0;
 }
 
 .user-profile-content .title a {
-    color: #534051;
+    color: #1e79be;
 }
 
 .user-profile-content .title a:hover {
@@ -3522,7 +3526,7 @@ Page >>Single Tutor Details
 
 .user-more-details li {
     border: 0;
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -3607,7 +3611,7 @@ Page >>Single Tutor Details
 /* Reserve Your Spot */
 
 .fee {
-    color: #534051;
+    color: #1e79be;
     font-size: 35px;
     font-weight: 400;
 }
@@ -3620,7 +3624,7 @@ Page >>Single Tutor Details
 
 .location,
 .role {
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 400;
 }
@@ -3633,14 +3637,14 @@ Page >>Single Tutor Details
 
 .reserve-form li {
     margin-bottom: 40px;
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 700;
 }
 
 .step-num {
     border-radius: 50%;
-    background-color: #534051;
+    background-color: #1e79be;
     padding: 8px 13px;
     color: #ffffff;
     font-size: 14px;
@@ -3691,14 +3695,14 @@ label {
     text-align: center;
     font-size: 12px;
     font-weight: 700;
-    color: #534051;
+    color: #1e79be;
     padding: 13px 8px;
 }
 
 .appointment-table tbody tr td {
     font-size: 12px;
     font-weight: 700;
-    color: #534051;
+    color: #1e79be;
     padding: 14px 8px;
     border-color: #e9e9e9;
 }
@@ -3746,7 +3750,7 @@ label {
 .popover.top {
     min-width: 180px;
     text-align: center;
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
@@ -3768,7 +3772,7 @@ label {
 }
 
 [data-style=primary] + .popover {
-    border-color: #534051;
+    border-color: #1e79be;
 }
 
 .profile-view {
@@ -3812,7 +3816,7 @@ Page >> Contact Us
 ---------------------------------- */
 
 .contact-head {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
@@ -3830,7 +3834,7 @@ Page >> Contact Us
 }
 
 .contact-details li p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
 }
@@ -3859,7 +3863,7 @@ Page >> Login / Register
 }
 
 .sign-block h2 {
-    color: #534051;
+    color: #1e79be;
     font-size: 24px;
     font-weight: 400;
     position: relative;
@@ -3941,7 +3945,7 @@ Page >> Login / Register
 
 .forgot-pass:hover {
     text-decoration: underline;
-    color: #534051;
+    color: #1e79be;
 }
 
 .check {
@@ -4093,7 +4097,7 @@ Dashboard Layout and Content
 }
 
 .dashboard-menu .panel-title {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 400;
 }
@@ -4162,7 +4166,7 @@ Dashboard Layout and Content
 }
 
 .cat-list>li>a {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 400;
     display: block;
@@ -4201,7 +4205,7 @@ ul.cat-list {
 }
 
 .dashboard-link a {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 400;
 }
@@ -4262,7 +4266,7 @@ ul.photos-crud {
 .dashboard-list li div {
     display: inline-block;
     min-width: 200px;
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
 }
 
@@ -4272,7 +4276,7 @@ ul.photos-crud {
 }
 
 .dashboard-list h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -4291,7 +4295,7 @@ ul.photos-crud {
 }
 
 .dashboard-list strong {
-    color: #534051;
+    color: #1e79be;
 }
 
 .dashboard-links {
@@ -4299,7 +4303,7 @@ ul.photos-crud {
 }
 
 .dashboard-links li a {
-    color: #534051;
+    color: #1e79be;
     font-size: 16px;
     font-weight: 400;
     line-height: 48px;
@@ -4328,7 +4332,7 @@ color: #e27d7f;
     content: "\279e";
     display: inline-block;
     margin-right: 11px;
-    color: #534051;
+    color: #1e79be;
     position: absolute;
     left: 0;
     top: 12px;
@@ -4360,7 +4364,7 @@ color: #e27d7f;
 .dash-user-btn:focus,
 .dash-user-btn:hover {
     color: #ffffff;
-    background: #534051;
+    background: #1e79be;
 }
 
 .change-pass-block {
@@ -4465,7 +4469,7 @@ color: #e27d7f;
 }
 
 .dash-head {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     border-bottom: 1px solid #f2f2f2;
@@ -4495,7 +4499,7 @@ a.morelink {
 }
 
 .current-bal {
-    color: #534051;
+    color: #1e79be;
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 30px;
@@ -4541,7 +4545,7 @@ a.morelink {
 }
 
 .pack-list p span {
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
     margin-left: 4px;
 }
@@ -4641,14 +4645,14 @@ a.morelink {
 }
 
 .memeber-features h4 {
-    color: #534051;
+    color: #1e79be;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
 .memeber-features p {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     margin-top: 0;
@@ -4663,7 +4667,7 @@ a.morelink {
 }
 
 .memeber-features ul li {
-    color: #534051;
+    color: #1e79be;
     font-size: 15px;
     font-weight: 400;
     line-height: 36px;
@@ -4681,8 +4685,8 @@ select[multiple] option {
 }
 
 select[multiple]:focus option:checked {
-    background: #534051 -webkit-linear-gradient(bottom, #534051 0%, #534051 100%);
-    background: #534051 linear-gradient(0deg, #534051 0%, #534051 100%);
+    background: #1e79be -webkit-linear-gradient(bottom, #1e79be 0%, #1e79be 100%);
+    background: #1e79be linear-gradient(0deg, #1e79be 0%, #1e79be 100%);
 }
 
 select[multiple]::-webkit-scrollbar-track {
@@ -4763,8 +4767,8 @@ select[multiple]::-webkit-scrollbar-thumb {
 }
 
 .btn-primary:hover {
-    background: #534051;
-    border-color: #534051;
+    background: #1e79be;
+    border-color: #1e79be;
 }
 
 .form-control {
@@ -4773,7 +4777,7 @@ select[multiple]::-webkit-scrollbar-thumb {
 }
 
 .file-tag {
-    color: #534051;
+    color: #1e79be;
     font-size: 12px;
     font-weight: 400;
 }
@@ -4911,7 +4915,7 @@ Media Queries for Responsive
         margin-top: 20px;
     }
     .navbar-collapse {
-        background: #655063;
+        background: #1e79be;
         margin-top: 5px;
     }
     .mtop7 {
@@ -5549,7 +5553,7 @@ ul.dashboard-links li {
     -webkit-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
     opacity: 0;
-    color: #534051;
+    color: #1e79be;
 }
 .back-to-top.show:hover {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -5592,7 +5596,7 @@ ul.dashboard-links li {
 }
 
 .flexigrid div.fbutton span {
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
 }
 
@@ -5702,7 +5706,7 @@ ul.dashboard-links li {
 }
 
 .tutor-not-avilble {
-    background: #534051;
+    background: #1e79be;
     color: #fff;
     border-radius: 5px;
     padding: 7px 10px;
@@ -5733,7 +5737,7 @@ ul.dashboard-links li {
 
 .dash-block-inst .media-left {
     font-size: 40px;
-    color: #534051;
+    color: #1e79be;
     font-weight: 700;
 }
 
