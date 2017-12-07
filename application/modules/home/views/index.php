@@ -1,6 +1,7 @@
     
 <!-- Header #homepage -->
     <section class="header-homepage">
+	<img src="<?php echo URL_FRONT_IMAGES;?>mainimage.png" alt="" class="img-responsive">
         <div class="container">
             <div class="row header-margin">
                 <div class="col-sm-12">
@@ -19,7 +20,7 @@
                 </div>
                 <?php } ?>
                 <div class="col-sm-12">
-                    <img src="<?php echo URL_FRONT_IMAGES;?>headericons.png" alt="" class="img-responsive">
+                    <!--<img src="<?php echo URL_FRONT_IMAGES;?>headericons.png" alt="" class="img-responsive">-->
                 </div>
             </div>
         </div>
