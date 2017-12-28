@@ -43,7 +43,7 @@ define('URL_BLOG_SINGLE', SITEURL2."/blog/single");
 define('OUR_POPULAR_COURSES', 'Our Popular <span>Courses</span>');
 define('CHECK_ALL_COURSES', 'Check <strong>All Courses</strong>');
 define('LIMIT_COURSE_LIST', 16);
-define('LIMIT_PROFILES_LIST', 4);
+define('LIMIT_PROFILES_LIST', 20);
 define('MAX_DISPLAY_CATS_MENU', 6);
 
 

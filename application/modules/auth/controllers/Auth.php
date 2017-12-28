@@ -97,14 +97,18 @@ class Auth extends MY_Controller {
 			$crud->display_as('admin_approved', get_languageword('is_approved'));
 			$crud->display_as('active', get_languageword('status'));
 
-			$crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
+			
 			//i will change this gd gd sah sah 
 			//$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group');
+            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
 			if($param=='3'){
-			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group','fee');
+			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'fee','video', 'user_belongs_group');
 			}
 			else
+            {
+            
 			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group');
+            }
 
 			$crud->callback_field('phone_code', array($this, 'callback_field_phone_code'));
 
@@ -306,7 +310,6 @@ class Auth extends MY_Controller {
 		$slug = prepare_slug($username, 'username', 'users');
 
 		$code_country = explode('_', $post_array['phone_code']);
-
 		$additional_data = array(
 								'username' 				=> $username,
 								'slug' 					=> $slug,
@@ -317,7 +320,7 @@ class Auth extends MY_Controller {
 								'phone' 				=> $post_array['phone'],
 								'gender' 				=> $post_array['gender'],
 								'user_belongs_group'	=> $post_array['user_belongs_group'],
-								'last_updated' 			=> date('Y-m-d H:i:s'),
+								'last_updated' 			=> date('Y-m-d H:i:s')
 								
 							);
 
@@ -340,7 +343,8 @@ class Auth extends MY_Controller {
 		$username =  $first_name.' '.$last_name;
 
 		$code_country = explode('_', $post_array['phone_code']);
-
+        $f = isset($post_array['fee'])?$post_array['fee']:0;
+        $video = isset($post_array['video'])?$post_array['video']:'';
 		$additional_data = array(
 								'username' 				=> $username,
 								'first_name' 			=> $first_name,
@@ -352,7 +356,8 @@ class Auth extends MY_Controller {
 								'active' 				=> $post_array['active'],
 								'user_belongs_group' 	=> $post_array['user_belongs_group'],
 								'last_updated' 			=> date('Y-m-d H:i:s'),
-								'fee'	=> $post_array['fee'],
+								'fee'	=> $f,
+                                'video'=> $video
 							);
 
 		$prev_username = $this->base_model->fetch_value('users', 'username', array('id' => $primary_key));
@@ -1524,6 +1529,7 @@ class Auth extends MY_Controller {
 				'required'=>'true',
                 'value' => $this->form_validation->set_value('phone'),
             );
+
             $this->data['password'] = array(
                 'name'  => 'password',
                 'id'    => 'password',
@@ -1679,6 +1685,7 @@ class Auth extends MY_Controller {
 			'required'=>'true',
 			'value' => $this->form_validation->set_value('phone', $user->mobile_number),
 		);
+
 		$this->data['password'] = array(
 			'name' => 'password',
 			'id'   => 'password',

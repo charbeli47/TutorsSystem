@@ -18,7 +18,7 @@
 				$CI->email->clear();	
 
 				$options = $CI->config->item('email_settings');
-
+                
 				$default = 'default php';
 				$smtp_host = $smtp_port = $smtp_user = $smtp_password = $mandrill_api_key = '';
 				foreach($options as $key => $val)
@@ -72,7 +72,7 @@
 
 					$CI->email->subject($sub);
 					$CI->email->message($msg);
-                    
+                    //var_dump($CI->email);exit;
 						if( $CI->email->send() )
                         { 
 						return true;

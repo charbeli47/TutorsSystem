@@ -5,44 +5,7 @@
 	$attributes = array('name' => 'profile_form', 'id' => 'profile_form', 'class' => 'comment-form dark-fields');
 	echo form_open_multipart('tutor/profile-information',$attributes);?>
 		<!--i added this to video-->
-		<div class="row">
-			<div class="col-sm-6 ">
-				<div class="input-group ">
-					<label>Profile Video</label>
-					<!--<p><?php echo $profile->video ?></p>-->					
-					
-					<?php			   
-					$val = '';
-					if( isset($profile->video) && $profile->video != '')
-					{
-						$val = $profile->video;
-					}
-					$element = array(
-						'type' => 'file',
-						'name'	=>	'video',
-						'accept'=>'video/*',
-						'id'	=>	'video',
-						'value'	=>	$val,
-						'class' => 'form-control',
-						'placeholder' => 'Video',
-						'onchange' => "readURL(this, 'site_logo2')",
-					);			
-					echo form_input($element);
-					?>
-					<?php 
-                     $src = "";
-                     $style="display:none;";
-                     if($val != '' && file_exists('assets/uploads/profiles/thumbs/'.$val)) {
-						$src = base_url().'/'."assets/uploads/profiles/thumbs/".$val;
-                     	$style="";
-                     }
-                     ?>
-                  <video id="site_logo2" src="<?php echo $src;?>"  height="200" style="<?php echo $style;?>" controls/>
-				  
-				<?php echo form_error('video');?>
-				</div>
-			</div> 
-		</div>
+		
 		
 		
 		<div class="row">

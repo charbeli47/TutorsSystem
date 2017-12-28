@@ -48,7 +48,7 @@ var x = setInterval(function() {
 				</div>
 			</div>
 			<?php echo form_hidden('booking_id', $bookingId);
-            <?php echo form_hidden('course_id', $courseId);
+             echo form_hidden('course_id', $courseId);
 			?>
 			<div class="col-sm-12 ">
 				<button class="btn-link-dark dash-btn" style="display:none" id="submitbutt" name="submitbutt" type="Submit"><?php echo get_languageword('End Session');?></button>

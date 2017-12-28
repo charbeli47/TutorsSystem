@@ -163,7 +163,29 @@ class Home extends MY_Controller
 		$this->_render_page('template/site/site-template', $this->data);
 	}
 
-
+    public function get_calendar_courses()
+    {
+    $user_id = $_REQUEST["tutor_id"];
+    $now = date('Y-m-d H:i:s');
+    $results = $this->db->where('start > NOW()')->get_where('tutor_courses',array('status' => '1','tutor_id'=>$user_id))->result();
+        //$results = $this->db->get("tutor_courses")->result();
+         $arr = array();
+         
+         $events = array();
+        foreach($results as $row):
+        $calevent = array();
+        $course = $this->db->get_where('categories',array('id' => $row->course_id))->result();
+				$calevent["description"] = $row->content;
+                $calevent["start"] = $row->start;
+                $calevent["title"] = $course[0]->name;
+                $calevent["id"] = $row->id;
+                $arr[] = $calevent;
+			endforeach;
+            
+        //var_dump($arr);exit;
+      $events["events"] = $arr; 
+        echo json_encode($events);
+    }
 	function contact_us()
 	{
 
@@ -350,7 +372,7 @@ class Home extends MY_Controller
 			redirect(URL_STUDENT_LIST_PACKAGES, 'refresh');
 		}
 
-		$course_details = $this->home_model->get_tutor_course_details($course_slug, $tutor_id);
+		$course_details = $this->home_model->get_tutor_course_details_byid($course_slug, $tutor_id);
 
 		//Check whether Tutor teaches the course or not
 		if(empty($course_details)) {
@@ -374,7 +396,7 @@ class Home extends MY_Controller
 		}
 
 		$start_date  			= date('Y-m-d', strtotime($this->input->post('start_date')));
-		$time_slot   			= $this->input->post('time_slot');
+		$time_slot   			= $this->input->post('time_slot_hidden');
 
 		/// khaline jarebbb ekheddoun men hon sah sah  100 bel 100////
 		
@@ -388,11 +410,11 @@ class Home extends MY_Controller
 		}
 
 		//Check If selected time-slot is available
-		if(empty($course_details->time_slots) || !$this->home_model->is_time_slot_avail($tutor_id, $course_id, $start_date, $time_slot)) {
+		/*if(empty($course_details->time_slots) || !$this->home_model->is_time_slot_avail($tutor_id, $course_id, $start_date, $time_slot)) {
 
 			$this->prepare_flashmessage(get_languageword('time_slot_not_available'), 2);
 			redirect(URL_HOME_TUTOR_PROFILE.'/'.$tutor_slug, 'refresh');
-		}
+		}*/
 
 
 		$content 				= $course_details->content;

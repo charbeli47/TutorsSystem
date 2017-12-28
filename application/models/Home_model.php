@@ -454,12 +454,12 @@ class Home_Model extends CI_Model
 	    			INNER JOIN ".TBL_USERS_GROUPS." ug ON ug.user_id=u.id 
 	    			".$course_tbl_join."  
 					WHERE u.active=1 AND u.visibility_in_search='1' 
-                    AND u.is_profile_update=1 AND (u.parent_id=0 OR u.parent_id='') AND ug.group_id=3 
+                    AND (u.parent_id=0 OR u.parent_id='') AND ug.group_id=3 
 					".$adm_approval_cond." 
 					".$course_cond." 
 					GROUP BY u.id ORDER BY u.net_credits DESC ".$limit_cond." ";
 
-
+        
         $result_set = $this->db->query($query);        
 
         return ($result_set->num_rows() > 0) ? $result_set->result() : array();
@@ -785,6 +785,23 @@ class Home_Model extends CI_Model
                                          )
                                     );
 
+        return ($rs->num_rows() > 0) ? $rs->row() : NULL;
+
+    }
+    function get_tutor_course_details_byid($course_id, $tutor_id = "")
+    {
+        if(empty($course_id) || empty($tutor_id))
+            return NULL;
+
+       
+
+        $rs = $this->db->select('course_id, duration_value, duration_type, fee, per_credit_value, content, time_slots, days_off')
+                       ->get_where(
+                                    'tutor_courses',array(
+                                            'id' => $course_id, 
+                                            'status' => 1
+                                         )
+                                    );
         return ($rs->num_rows() > 0) ? $rs->row() : NULL;
 
     }

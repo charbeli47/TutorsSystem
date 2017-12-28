@@ -31,8 +31,10 @@
 		<?php endforeach; ?>
 		<script src="<?php echo URL_FRONT_JS;?>jquery.js"></script>
 	<?php
-	}?>
-
+	}
+if(isset($hascalendar) && $hascalendar == TRUE){?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<?php }?>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +45,9 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo URL_FRONT_CSS;?>main.css">
 
-
+        
+<link rel="stylesheet" href="<?php echo base_url() ?>fullcalendar/fullcalendar.min.css" />
+               
 </head>
 
 <body>

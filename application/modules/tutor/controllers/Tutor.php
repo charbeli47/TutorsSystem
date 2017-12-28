@@ -629,7 +629,93 @@ class Tutor extends MY_Controller
 		$this->data['grocery'] = TRUE;
 		$this->grocery_output($this->data);
 	}
+    function calendar()
+    {
+        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth/login', 'refresh');
+		}
 
+		$this->data['message'] = $this->session->flashdata('message');
+    $user_id = $this->ion_auth->get_user_id();
+    $this->data['activemenu'] 	= 'manage';	
+		$this->data['activesubmenu'] 	= 'courses';
+$this->data['pagetitle'] = get_languageword('Manage_Calendar');	
+        $this->data['content'] 		= 'calendar';
+        $this->data['hascalendar'] = TRUE;
+        $this->data['tutor_id'] = $user_id;
+        $this->data['course_id'] = $this->calendar_course_dropdown("");
+        $this->data['edit_course_id'] = $this->calendar_editcourse_dropdown("");
+        $this->data['per_credit_value'] = get_system_settings('per_credit_value');
+		$this->_render_page('template/site/tutor-template', $this->data);
+    }
+    public function get_calendar_courses()
+    {
+    $user_id = $this->ion_auth->get_user_id();
+    $results = $this->db->get_where('tutor_courses',array('status' => '1','tutor_id'=>$user_id))->result();
+        //$results = $this->db->get("tutor_courses")->result();
+         $arr = array();
+         
+         $events = array();
+        foreach($results as $row):
+        $calevent = new calendarevent();
+        $course = $this->db->get_where('categories',array('id' => $row->course_id))->result();
+				$calevent->description = $row->content;
+                $calevent->start = $row->start;
+                $calevent->title = $course[0]->name;
+                $calevent->id = $row->id;
+                $arr[] = $calevent;
+			endforeach;
+            
+        //var_dump($arr);exit;
+      $events["events"] = $arr; 
+        echo json_encode($events);
+    }
+    public function add_course()
+    {
+        $tutor_id = $this->ion_auth->get_user_id();
+        $start_date = $this->input->post("start_date", TRUE);
+        $course_id = $this->input->post("course_id", TRUE);
+        $description = $this->input->post("description", TRUE);
+        $start_time = $this->input->post("start_time", TRUE);
+        $date = $start_date." ".$start_time;
+        if(!empty($date)) {
+       $sd = new DateTime($date);
+       
+       $date = date_format($sd, 'Y-m-d H:i:s');
+       $start_date_timestamp = $sd->getTimestamp();
+    } else {
+       $start_date = date("Y-m-d H:i:s", time());
+       $start_date_timestamp = time();
+    }
+        $data = array("duration_value"=>25,"course_id"=>$course_id,"start"=>$date,"content"=>$description,"tutor_id"=>$tutor_id);
+        
+        $this->db->insert("tutor_courses", $data);
+        redirect('tutor/calendar', 'refresh');
+    }
+    public function edit_course()
+    {
+        $tutor_id = $this->ion_auth->get_user_id();
+        $event_id = $this->input->post("eventid", TRUE);
+        $start_date = $this->input->post("editstart_date", TRUE);
+        $course_id = $this->input->post("edit_course_id", TRUE);
+        $description = $this->input->post("editdescription", TRUE);
+        //$start_time = $this->input->post("edit_start_time", TRUE);
+        $date = $start_date;
+        if(!empty($date)) {
+       $sd = new DateTime($date);
+       
+       $date = date_format($sd, 'Y-m-d H:i:s');
+       $start_date_timestamp = $sd->getTimestamp();
+    } else {
+       $start_date = date("Y-m-d H:i:s", time());
+       $start_date_timestamp = time();
+    }
+        $data = array("duration_value"=>25,"course_id"=>$course_id,"start"=>$date,"content"=>$description,"tutor_id"=>$tutor_id);
+        
+        $this->db->where("id", $event_id)->update("tutor_courses", $data);
+        redirect('tutor/calendar', 'refresh');
+    }
 	function _callback_course_duration($primary_key, $row)
 	{
 		return $row->duration_value.' '. $row->duration_type;
@@ -652,8 +738,38 @@ class Tutor extends MY_Controller
 
 		return form_dropdown('course_id', $course_opts, $val, 'id="course_id" class="chosen-select" ');
 	}
+    public function calendar_course_dropdown($val)
+	{
+		//Course Options
+		$this->load->model('home_model');
+		$courses = $this->home_model->get_courses();
+		$course_opts[''] = get_languageword('select_course');
+		if( ! empty( $courses ) ) {
+			foreach ($courses as $key => $value) {
+				$course_opts[$value->id] = $value->name;
+			}
+		}
 
+		$val = !empty($val) ? $val : '';
 
+		return form_dropdown('course_id', $course_opts, $val, 'id="course_id" class="chosen-select form-control" ');
+	}
+    public function calendar_editcourse_dropdown($val)
+	{
+		//Course Options
+		$this->load->model('home_model');
+		$courses = $this->home_model->get_courses();
+		$course_opts[''] = get_languageword('select_course');
+		if( ! empty( $courses ) ) {
+			foreach ($courses as $key => $value) {
+				$course_opts[$value->id] = $value->name;
+			}
+		}
+
+		$val = !empty($val) ? $val : '';
+
+		return form_dropdown('edit_course_id', $course_opts, $val, 'id="edit_course_id" class="chosen-select form-control" ');
+	}
 	function call_back_set_time_slots_field($value)
 	{
 		$value = !empty($value) ? $value : '';
@@ -3337,5 +3453,11 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 
 
 
+}
+class calendarevent
+{
+    public $title;
+    public $description;
+    public $start;
 }
 ?>

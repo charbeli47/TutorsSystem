@@ -71,7 +71,7 @@
 	<div id="collapseManage" class="panel-collapse <?php if(isset($activemenu) && $activemenu == 'manage') echo 'collapse in'; else echo 'collapse';?>">
 		<div class="panel-body">
 			<ul class="dashboard-links">
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'courses') echo 'class="active"';?>><a href="<?php echo URL_TUTOR_MANAGE_COURSES;?>"><?php echo get_languageword('courses');?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'courses') echo 'class="active"';?>><a href="tutor/calendar"><?php echo get_languageword('courses_calendar');?> </a></li>
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_locations') echo 'class="active"';?>><a href="<?php echo URL_TUTOR_MANAGE_LOCATIONS;?>"><?php echo get_languageword('Locations');?> </a></li>-->
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_teaching_types') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/manage-teaching-types"><?php echo get_languageword('Teaching Type');?></a></li>-->
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/certificates"><?php echo get_languageword('Certificates');?></a></li>-->

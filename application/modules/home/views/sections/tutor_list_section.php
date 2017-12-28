@@ -41,9 +41,8 @@
                 <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12 col-lg-pull-3 col-md-pull-4 col-sm-pull-4">
                     <div class="user-profile-content">
                         <ul class="user-badges">
-<video src="<?php echo get_tutor_img($row->video, $row->gender); ?>" style="width:250px;height:200px" controls>
 
-                            <?php
+                            <?php 
                                   if(strcasecmp(get_system_settings('need_admin_for_tutor'), 'yes') == 0) {
 
                                     $title = get_languageword('not_yet_verified');
@@ -58,7 +57,7 @@
                             </li>
                             <?php } ?>
                         </ul>
-
+                                                
                         <h4 class="title"><a href="<?php echo URL_HOME_TUTOR_PROFILE.'/'.$row->slug; ?>"> <?php echo $row->username; ?></a></h4>
                         <?php if(!empty($tutor_rating)) { ?>
                         <ul class="user-info">
@@ -78,7 +77,9 @@
                         <div><?php echo "<strong>".get_languageword('teaches')."</strong> ".character_limiter($tutoring_courses, 100); ?></div>
                         <?php } ?>
                         <p><?php echo character_limiter($row->profile, 400); ?> </p>
-
+                        <?php if(isset($row->video) && $row->video!=""){?>
+        <iframe width="250" height="200" style="position:absolute;top:100px;right:10px" src="https://www.youtube-nocookie.com/embed/<?php echo $row->video ?>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<?php }?>
                     </div>
                 </div>
 

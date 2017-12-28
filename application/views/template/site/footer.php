@@ -451,8 +451,10 @@ $(document).ready(function () {
 </script>
 
 <?php } ?>
-
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>fullcalendar/lib/moment.min.js"></script>
+               <script src="<?php echo base_url() ?>fullcalendar/fullcalendar.min.js"></script>
+               <script src="<?php echo base_url() ?>fullcalendar/gcal.js"></script>
 </body>
 
 </html>

@@ -1799,7 +1799,8 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 
 		$sql = $this->_update($this->qb_from[0], $this->qb_set);
 		$this->_reset_write();
-		return $this->query($sql);
+		
+        return $this->query($sql);
 	}
 
 	// --------------------------------------------------------------------

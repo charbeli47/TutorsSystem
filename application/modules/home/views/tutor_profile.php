@@ -2,6 +2,7 @@
     <?php  if(!empty($tutor_details)) {
             foreach ($tutor_details as $row) {
      ?>
+     
     <div class="container">
         <div class="row-margin ">
 
@@ -196,6 +197,75 @@
                     <div class="feeperhour" id="days_off"> </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                <div id="calendar">
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#calendar').fullCalendar({
+header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+eventSources: [
+            {
+                color: '#18b9e6',   
+                textColor: '#000000',
+                events: function(start, end, timezone, callback) {
+                 $.ajax({
+                 url: '<?php echo base_url() ?>home/get_calendar_courses',
+                 dataType: 'json',
+                 method:'post',
+                 data:{tutor_id:<?php echo $row->id;?>},
+                 success: function(msg) {
+                     var events = msg.events;
+                     callback(events);
+                 }
+                 });
+             }
+            }
+        ],
+        
+    eventClick: function(event, jsEvent, view) {
+     $("#course_title").html(event.title);
+     $("#course_slug").val(event.id);
+     var d = moment(event.start).format('YYYY/MM/DD hh:mm T')+"M";
+     $("#selected_date").html(d);
+     $("#start_date").val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+     $("#time_slot_hidden").val(moment(event.start).format('HH:mm'));
+    /*var el = document.getElementById("edit_course_id");
+for(var i=0; i<el.options.length; i++) {
+  if ( el.options[i].text == event.title ) {
+    el.selectedIndex = i;
+    break;
+  }
+}
+            $("#course_title").html(event.title);
+          //$('#edit_course_id').val($('#edit_course_id').find('option[text="'+event.title+'"]').val());
+          $('#editdescription').val(event.description);
+          $('#editstart_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+          $('#event_id').val(event.id);*/
+          $('#addModal').modal();
+       },
+    });
+});
+function formatDate(date) {
+  
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth()+1;
+  var year = date.getFullYear();
+
+  return year + '-' + monthIndex + '-' + day;
+}
+</script><div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Book Course</h4>
+      </div>
+      <div class="modal-body">
                     <?php 
                             $attributes = 'id="book_tutor_form" class="comment-form" ';
                             echo form_open('/confirm-payment', $attributes); 
@@ -205,12 +275,13 @@
 
                                   if(!empty($tutor_course_opts)) {
                             ?>
-                            <li id="course_li"><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('select_a_course'); ?>:
-                                <div class="dark-picker dark-picker-bright top20">
+                            <li id="course_li"><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('Course'); ?>:&nbsp;<span id="course_title"></span>
+                            <input type="hidden" name="course_slug" id="course_slug"/>
+                                <!--<div class="dark-picker dark-picker-bright top20" id="course_title">
                                 <?php 
-                                        echo form_dropdown('course_slug', $tutor_course_opts, set_value('course_slug'), 'id="course_slug" class="select-picker" onchange="get_tutor_course_details();" ');
+                                        //echo form_dropdown('course_slug', $tutor_course_opts, set_value('course_slug'), 'id="course_slug" class="select-picker" onchange="get_tutor_course_details();" ');
                                 ?>
-                                </div>
+                                </div>-->
                             </li>
                             <?php echo form_error('course_slug'); ?>
                             <?php }
@@ -240,10 +311,11 @@
                                 </ul>
                             </li>
                             <?php } ?>
-                            <li><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('select_date'); ?>:
+                            <li><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('selected_date'); ?>:&nbsp;<span id="selected_date"></span>
+                            <input type="hidden" name="start_date" id="start_date" />
                                 <div class="top20">
                                 <?php
-                                    $attributes = array(
+                                   /* $attributes = array(
                                         'name'  =>  'start_date',
                                         'id'    =>  'start_date',
                                         'value' =>  set_value('start_date'),
@@ -251,18 +323,13 @@
                                         'readonly' => 'readonly',
                                         'placeholder' => get_languageword('start_date')
                                     );
-                                    echo form_input($attributes).form_error('start_date');
+                                    echo form_input($attributes).form_error('start_date');*/
                                  ?>
                                 </div>
                             </li>
                             <?php echo form_hidden('tutor_id', $row->id); ?>
                             <?php echo form_hidden('tutor_slug', $row->slug); ?>
-                            <li><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('select_time-slot'); ?>:
-                                <ul class="select-location" id="time_slot_div" >
-                                    <?php echo get_languageword('please_select_course_and_date_first'); ?>
-                                </ul>
-                                <?php echo form_error('time_slot'); ?>
-                            </li>
+                            <input type="hidden" name="time_slot_hidden" id="time_slot_hidden"/>
 
                             <li><span class="step-num"><?php echo $sno++; ?></span> <?php echo get_languageword('write_your_message'); ?>:
                                 <div class="appointment-msg">
@@ -331,6 +398,10 @@
 			}
 			}
      ?>
+     </div>
+    </div>
+  </div>
+</div>
 			</div>
 
             <!-- My Reviews -->

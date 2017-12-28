@@ -1593,6 +1593,7 @@ class Ion_auth_model extends CI_Model
 
 		if (array_key_exists($this->identity_column, $data) && $this->identity_check($data[$this->identity_column]) && $user->{$this->identity_column} !== $data[$this->identity_column])
 		{
+        
 			$this->db->trans_rollback();
 			$this->set_error('account_creation_duplicate_identity');
 
@@ -1627,7 +1628,6 @@ class Ion_auth_model extends CI_Model
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
-
 			$this->trigger_events(array('post_update_user', 'post_update_user_unsuccessful'));
 			$this->set_error('update_unsuccessful');
 			return FALSE;
