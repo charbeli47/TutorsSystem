@@ -88,7 +88,7 @@ $(function(){
 						    if (dbminutes < 10) sMinutes = "0" + sMinutes;
 
 						    var dbtime = sHours + ":" + sMinutes + ":00";
-						    var dbdate = new Date(dbyear, dbmonth, dbday, dbhours, dbminutes, 0, 0);
+						    var dbdate = new Date(dbyear, dbmonth - 1, dbday, dbhours, dbminutes, 0, 0);
 						    var status = $('.text-left' + i + ':eq(6)').text();
 						    var currentdate = new Date();
 						    var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
@@ -111,7 +111,7 @@ $(function(){
 						    var now = new Date();
 						    var hours = now.getHours();
 						    var minutes = now.getMinutes();
-						    var allowed = diffMins >= -20 && diffMins <= 59;
+						    var allowed = diffMins >= -20 && diffMins <= 59 && diffHrs == 0;
 						    var sminutes = minutes;
 						    if (minutes < 10) {
 						        sminutes = "0" + minutes;
@@ -332,7 +332,7 @@ $(function(){
 		    if (dbminutes < 10) sMinutes = "0" + sMinutes;
 
 		    var dbtime = sHours + ":" + sMinutes + ":00";
-		    var dbdate = new Date(dbyear, dbmonth, dbday,dbhours,dbminutes,0,0);
+		    var dbdate = new Date(dbyear, dbmonth - 1, dbday,dbhours,dbminutes,0,0);
 		    var status = $('.text-left' + i + ':eq(6)').text();
 		    var currentdate = new Date();
 		    var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
@@ -355,7 +355,7 @@ $(function(){
 		    var now = new Date();
 		    var hours = now.getHours();
 		    var minutes = now.getMinutes();
-		    var allowed = diffMins >= -20 && diffMins <= 59;
+		    var allowed = diffMins >= -20 && diffMins <= 59 && diffHrs == 0;
 		    var sminutes = minutes;
 		    if (minutes < 10) {
 		        sminutes = "0" + minutes;
