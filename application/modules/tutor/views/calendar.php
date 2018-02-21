@@ -14,6 +14,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+var timez = Intl.DateTimeFormat().resolvedOptions().timeZone;
 $('#calendar').fullCalendar({
 header: {
         left: 'prev,next today',
@@ -29,7 +30,7 @@ eventSources: [
                  url: '<?php echo base_url() ?>tutor/get_calendar_courses',
                  dataType: 'json',
                  method:'post',
-                 
+                 data:{timezone:timez},
                  success: function(msg) {
                      var events = msg.events;
                      callback(events);
@@ -41,11 +42,13 @@ eventSources: [
         dayClick: function(date, jsEvent, view) {
         date_last_clicked = $(this);
         $(this).css('background-color', '#bed7f3');
+        $("#timezone").val(timez);
         $('#addModal').modal();
         var d = new Date(date);
         $("#start_date").val(formatDate(d));
     },
     eventClick: function(event, jsEvent, view) {
+    $("#edittimezone").val(timez);
     var el = document.getElementById("edit_course_id");
 for(var i=0; i<el.options.length; i++) {
   if ( el.options[i].text == event.title ) {
@@ -81,6 +84,7 @@ function formatDate(date) {
       </div>
       <div class="modal-body">
       <?php echo form_open(site_url("tutor/add_course"), array("class" => "form-horizontal")) ?>
+      <input type="hidden" id="timezone" name="timezone"/>
       <input type="hidden" id="start_date" name="start_date"/>
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Course Name</label>
@@ -119,6 +123,7 @@ function formatDate(date) {
       </div>
       <div class="modal-body">
       <?php echo form_open(site_url("tutor/edit_course"), array("class" => "form-horizontal")) ?>
+      <input type="hidden" id="edittimezone" name="edittimezone"/>
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Course Name</label>
                 <div class="col-md-8 ui-front">

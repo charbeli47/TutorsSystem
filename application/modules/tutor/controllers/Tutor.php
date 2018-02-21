@@ -561,8 +561,8 @@ class Tutor extends MY_Controller
 
 
 		//List Table Columns
-		$crud->columns('course_id','course_duration','content','time_slots', 'days_off');
-
+		//$crud->columns('course_id','course_duration','content','time_slots', 'days_off');
+        $crud->columns('course_id');
 		$crud->callback_column('course_duration',array($this,'_callback_course_duration'));
 
 		//Display Alias Names
@@ -576,17 +576,17 @@ class Tutor extends MY_Controller
 
 		//Form fields for Add Record
 		//$crud->add_fields('tutor_id', 'course_id','duration_type','duration_value', 'fee', 'per_credit_value', 'content', 'time_slots', 'days_off', 'sort_order', 'created_at', 'updated_at');
-		$crud->add_fields('tutor_id', 'course_id','duration_type','duration_value', 'per_credit_value', 'content', 'time_slots', 'days_off', 'sort_order', 'created_at', 'updated_at');
+		$crud->add_fields('tutor_id', 'course_id','duration_type','duration_value', 'per_credit_value', 'content', 'time_slots', 'sort_order', 'created_at', 'updated_at');
 
 		//Form fields for Edit Record
 		//$crud->edit_fields('tutor_id', 'course_id','duration_type','duration_value', 'fee', 'per_credit_value', 'content', 'time_slots', 'days_off', 'status', 'sort_order', 'updated_at');
-		$crud->edit_fields('tutor_id', 'course_id','duration_type','duration_value', 'per_credit_value', 'content', 'time_slots', 'days_off', 'status', 'sort_order', 'updated_at');
+		$crud->edit_fields('tutor_id', 'course_id','duration_type','duration_value', 'per_credit_value', 'content', 'time_slots', 'status', 'sort_order', 'updated_at');
 
 		//Unset Read Fields
 		$crud->unset_read_fields('tutor_id');
 
 		//Set Custom Filed Types
-		$crud->field_type('days_off', 'multiselect', array('SUN' => 'SUN', 'MON' => 'MON', 'TUE' => 'TUE', 'WED' => 'WED', 'THU' => 'THU', 'FRI' => 'FRI', 'SAT' => 'SAT'));
+		//$crud->field_type('days_off', 'multiselect', array('SUN' => 'SUN', 'MON' => 'MON', 'TUE' => 'TUE', 'WED' => 'WED', 'THU' => 'THU', 'FRI' => 'FRI', 'SAT' => 'SAT'));
 		$crud->field_type('tutor_id', 'hidden', $user_id);
 		$crud->field_type('per_credit_value', 'hidden', get_system_settings('per_credit_value'));
 		$crud->field_type('created_at', 'hidden', date('Y-m-d H:i:s'));
@@ -651,21 +651,30 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
     }
     public function get_calendar_courses()
     {
+    $timezone = $_REQUEST["timezone"];
+    $tz = new DateTimeZone($timezone);  
     $user_id = $this->ion_auth->get_user_id();
     $results = $this->db->get_where('tutor_courses',array('status' => '1','tutor_id'=>$user_id))->result();
         //$results = $this->db->get("tutor_courses")->result();
          $arr = array();
          
          $events = array();
-        foreach($results as $row):
-        $calevent = new calendarevent();
+        
+        foreach($results as $row){     
+$calevent = new calendarevent();
+$date = new DateTime($row->start);
+        $date->setTimezone($tz);
         $course = $this->db->get_where('categories',array('id' => $row->course_id))->result();
-				$calevent->description = $row->content;
-                $calevent->start = $row->start;
-                $calevent->title = $course[0]->name;
-                $calevent->id = $row->id;
-                $arr[] = $calevent;
-			endforeach;
+            if(count($course)>0)
+            {
+                $coursename = $course[0]->name;
+        		    $calevent->description = $row->content;
+                    $calevent->start = $date->format("m/d/y g:i A");
+                    $calevent->title = $coursename;
+                    $calevent->id = $row->id;
+                    $arr[] = $calevent;
+             }
+		}
             
         //var_dump($arr);exit;
       $events["events"] = $arr; 
@@ -673,6 +682,8 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
     }
     public function add_course()
     {
+        $timezone = $_REQUEST["timezone"];
+        $servertimezone = date_default_timezone_get();
         $tutor_id = $this->ion_auth->get_user_id();
         $start_date = $this->input->post("start_date", TRUE);
         $course_id = $this->input->post("course_id", TRUE);
@@ -680,8 +691,9 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
         $start_time = $this->input->post("start_time", TRUE);
         $date = $start_date." ".$start_time;
         if(!empty($date)) {
-       $sd = new DateTime($date);
-       
+       $sd = new DateTime($date, new DateTimeZone($timezone));
+       $tz = new DateTimeZone($servertimezone); 
+       $sd->setTimezone($tz);
        $date = date_format($sd, 'Y-m-d H:i:s');
        $start_date_timestamp = $sd->getTimestamp();
     } else {
@@ -690,11 +702,14 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
     }
         $data = array("duration_value"=>25,"course_id"=>$course_id,"start"=>$date,"content"=>$description,"tutor_id"=>$tutor_id);
         
-        $this->db->insert("tutor_courses", $data);
+        $ret = $this->db->insert("tutor_courses", $data);
+        
         redirect('tutor/calendar', 'refresh');
     }
     public function edit_course()
     {
+    $timezone = $_REQUEST["edittimezone"];
+    $servertimezone = date_default_timezone_get();
         $tutor_id = $this->ion_auth->get_user_id();
         $event_id = $this->input->post("eventid", TRUE);
         $start_date = $this->input->post("editstart_date", TRUE);
@@ -703,8 +718,9 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
         //$start_time = $this->input->post("edit_start_time", TRUE);
         $date = $start_date;
         if(!empty($date)) {
-       $sd = new DateTime($date);
-       
+       $sd = new DateTime($date, new DateTimeZone($timezone));
+       $tz = new DateTimeZone($servertimezone); 
+       $sd->setTimezone($tz);
        $date = date_format($sd, 'Y-m-d H:i:s');
        $start_date_timestamp = $sd->getTimestamp();
     } else {
@@ -768,7 +784,7 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 
 		$val = !empty($val) ? $val : '';
 
-		return form_dropdown('edit_course_id', $course_opts, $val, 'id="edit_course_id" class="chosen-select form-control" ');
+		return form_dropdown('edit_course_id', $course_opts, $val, 'id="edit_course_id" class="chosen-select form-control" required');
 	}
 	function call_back_set_time_slots_field($value)
 	{
@@ -1888,8 +1904,9 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 		$crud->set_table(TBL_BOOKINGS);
 		$crud->set_relation('student_id',TBL_USERS, 'username');
 		$crud->set_relation('updated_by',TBL_USERS, 'username');
-		$crud->where(TBL_BOOKINGS.'.tutor_id', $user_id);
 
+		$crud->where(TBL_BOOKINGS.'.tutor_id', $user_id);
+        $crud->order_by('booking_id','desc');
 		$status_arr = array('pending', 'approved', 'cancelled_before_course_started', 'cancelled_when_course_running', 'cancelled_after_course_completed', 'session_initiated', 'running', 'completed', 'called_for_admin_intervention', 'closed');
 		if(in_array($param, $status_arr)) {
 
@@ -1901,11 +1918,11 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 		//Unset Actions
 		$crud->unset_add();
 		$crud->unset_delete();
-
+        $crud->unset_edit();
 		//List Table Columns
 		// hayde li tahet ana cheltta///
 		//$crud->columns('student_id', 'course_id', 'course_duration', 'fee', 'admin_commission_val','content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status','roomsession');
- $crud->columns('student_id', 'course_id', 'course_duration', 'content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status', 'booking_id');
+ $crud->columns('student_id', 'course_id', 'content', 'start_date', 'time_slot', 'preferred_location', 'status', 'payment_status', 'booking_id');
 
 		//if($param == 'approved' || $param == 'session_initiated' || $param == 'running' ) {
 			$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', '', 'fa fa-mixcloud', array($this, 'join_link') );
@@ -1926,9 +1943,16 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage').' ('.get_languageword('with_credits').')');
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
-
-
-
+        $crud->unset_columns('admin_commission');
+        $crud->unset_columns('fee');
+        $crud->unset_columns('days_off');
+        $crud->unset_columns('preferred_location');
+        $crud->unset_columns('admin_commission_val');
+        $crud->unset_columns('status_desc');
+        if($param == "approved")
+        {
+            $crud->unset_edit();
+        }
 		if($param == "closed") {
 
 			$crud->callback_column('payment_status', array($this, 'callback_payment_status'));
@@ -1948,7 +1972,7 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 		$crud->field_type('updated_at', 'hidden', date('Y-m-d H:i:s'));
 
 		//Unset Fields
-		$crud->unset_fields('tutor_id', 'admin_commission_val');
+		$crud->unset_fields('tutor_id', 'admin_commission_val', 'admin_commission','fee','days_off', 'preferred_location', 'status_desc');
 
 
 		//Authenticate whether Tutor editing/viewing his records only
@@ -1970,7 +1994,6 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 					$this->prepare_flashmessage(get_languageword('not_authorized'), 1);
 	    			redirect(URL_TUTOR_STUDENT_ENQUIRIES);
 				}
-
 				if($crud_state == "edit") {
 
 					$booking_status = $booking_det->status;
@@ -2154,6 +2177,7 @@ if(isset($zoomUser["error"]))
             
       // var_dump($zoomUser);exit; 
 $meetingTime = $booking_det->start_date ." ".   explode("-",$booking_det->time_slot)[0]+":00:00";         
+
 $jsonformat=$zoomclass->createAMeeting($zoomUser['id'],'Course Video Chat', $meetingTime, $booking_det->duration_value);
 $json_a=json_decode($jsonformat,true);
   

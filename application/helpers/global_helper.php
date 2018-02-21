@@ -180,6 +180,7 @@
 	{
 		function getUserType($user_id='')
 		{
+        
 			$CI =& get_instance();
 			$user_type='';
 			if($user_id=='')
@@ -187,7 +188,13 @@
 				$user_id = getUserRec()->id;
 			}
 			$user_groups = $CI->ion_auth->get_users_groups($user_id)->result();
-			switch($user_groups[0]->id)
+            if(count($user_groups) == '0'){
+
+   
+}
+else{
+            $group = $user_groups[0];		
+            switch($group->id)
 			{
 				case 1: $user_type='admin';
 					break;
@@ -200,6 +207,7 @@
 				default:
 					break;
 			} 
+            	}
 			return $user_type;
 		}
 	}

@@ -62,6 +62,72 @@ $(function(){
 						this_form.closest('.flexigrid').find('.ajax_list').html(data);
 						call_fancybox();
 						add_edit_button_listener();
+						var table = document.getElementById("flex1");
+						for (var i = 1, row; row = table.rows[i]; i++) {
+						    //iterate through rows
+						    //rows would be accessed using the "row" variable assigned in the for loop
+						    //for (var j = 0, col; col = row.cells[j]; j++) {
+						    //iterate through columns
+						    //columns would be accessed using the "col" variable assigned in the for loop
+						    //}  
+						    var preffereddate = $('.text-left' + i + ':eq(3)').text();
+						    var splitdate = preffereddate.split('/');
+						    var dbyear = Number(splitdate[2]);
+						    var dbmonth = Number(splitdate[1]);
+						    var dbday = Number(splitdate[0]);
+						    var timeslot = $('.text-left' + i + ':eq(4)').text().trim();
+
+						    var dbhours = Number(timeslot.match(/^(\d+)/)[1]);
+						    var dbminutes = Number(timeslot.match(/:(\d+)/)[1]);
+						    var AMPM = timeslot.match(/\s(.*)$/)[1];
+						    if (AMPM == "PM" && dbhours < 12) dbhours = dbhours + 12;
+						    if (AMPM == "AM" && dbhours == 12) dbhours = dbhours - 12;
+						    var sHours = dbhours.toString();
+						    var sMinutes = dbminutes.toString();
+						    if (dbhours < 10) sHours = "0" + sHours;
+						    if (dbminutes < 10) sMinutes = "0" + sMinutes;
+
+						    var dbtime = sHours + ":" + sMinutes + ":00";
+						    var dbdate = new Date(dbyear, dbmonth, dbday, dbhours, dbminutes, 0, 0);
+						    var status = $('.text-left' + i + ':eq(6)').text();
+						    var currentdate = new Date();
+						    var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
+						    var diffDays = Math.floor(diffMs / 86400000); // days
+						    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+						    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+						    var dd = currentdate.getDate();
+						    var mm = currentdate.getMonth() + 1; //January is 0!
+						    var yyyy = currentdate.getFullYear();
+
+						    if (dd < 10) {
+						        dd = '0' + dd
+						    }
+
+						    if (mm < 10) {
+						        mm = '0' + mm
+						    }
+
+						    currentdate = dd + '/' + mm + '/' + yyyy;
+						    var now = new Date();
+						    var hours = now.getHours();
+						    var minutes = now.getMinutes();
+						    var allowed = diffMins >= -20 && diffMins <= 59;
+						    var sminutes = minutes;
+						    if (minutes < 10) {
+						        sminutes = "0" + minutes;
+						    }
+						    var seconds = now.getSeconds();
+						    if (seconds < 10) {
+						        seconds = "0" + seconds;
+						    }
+						    var currenttime = hours + ":" + sminutes + ":" + seconds;
+						    if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
+						        $("#joinbut" + i).css("display", "block");
+						        setTimeout(function () {
+						            $("#joinbut" + i).css("display", "none");
+						        }, (dbminutes + 59 - minutes) * 60 * 1000);
+						    }
+						}
 					 }
 				});
 			 }
@@ -73,7 +139,8 @@ $(function(){
 			createCookie('hidden_ordering_'+unique_hash,$('#hidden-ordering').val(),1);
 			createCookie('hidden_sorting_'+unique_hash,$('#hidden-sorting').val(),1);
 			createCookie('search_text_'+unique_hash,$(this).closest('.flexigrid').find('.search_text').val(),1);
-			createCookie('search_field_'+unique_hash,$('#search_field').val(),1);
+			createCookie('search_field_' + unique_hash, $('#search_field').val(), 1);
+			
 		}
 
 		return false;
@@ -238,6 +305,72 @@ $(function(){
 				$('#quickSearchButton').trigger('click');
 
 			$('#filtering_form').trigger('submit');
+		}
+		var table = document.getElementById("flex1");
+		for (var i = 1, row; row = table.rows[i]; i++) {
+		    //iterate through rows
+		    //rows would be accessed using the "row" variable assigned in the for loop
+		    //for (var j = 0, col; col = row.cells[j]; j++) {
+		    //iterate through columns
+		    //columns would be accessed using the "col" variable assigned in the for loop
+		    //}  
+		    var preffereddate = $('.text-left' + i + ':eq(3)').text();
+		    var splitdate = preffereddate.split('/');
+		    var dbyear = Number(splitdate[2]);
+		    var dbmonth = Number(splitdate[1]);
+		    var dbday = Number(splitdate[0]);
+		    var timeslot = $('.text-left' + i + ':eq(4)').text().trim();
+
+		    var dbhours = Number(timeslot.match(/^(\d+)/)[1]);
+		    var dbminutes = Number(timeslot.match(/:(\d+)/)[1]);
+		    var AMPM = timeslot.match(/\s(.*)$/)[1];
+		    if (AMPM == "PM" && dbhours < 12) dbhours = dbhours + 12;
+		    if (AMPM == "AM" && dbhours == 12) dbhours = dbhours - 12;
+		    var sHours = dbhours.toString();
+		    var sMinutes = dbminutes.toString();
+		    if (dbhours < 10) sHours = "0" + sHours;
+		    if (dbminutes < 10) sMinutes = "0" + sMinutes;
+
+		    var dbtime = sHours + ":" + sMinutes + ":00";
+		    var dbdate = new Date(dbyear, dbmonth, dbday,dbhours,dbminutes,0,0);
+		    var status = $('.text-left' + i + ':eq(6)').text();
+		    var currentdate = new Date();
+		    var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
+		    var diffDays = Math.floor(diffMs / 86400000); // days
+		    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+		    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+		    var dd = currentdate.getDate();
+		    var mm = currentdate.getMonth() + 1; //January is 0!
+		    var yyyy = currentdate.getFullYear();
+
+		    if (dd < 10) {
+		        dd = '0' + dd
+		    }
+
+		    if (mm < 10) {
+		        mm = '0' + mm
+		    }
+
+		    currentdate = dd + '/' + mm + '/' + yyyy;
+		    var now = new Date();
+		    var hours = now.getHours();
+		    var minutes = now.getMinutes();
+		    var allowed = diffMins >= -20 && diffMins <= 59;
+		    var sminutes = minutes;
+		    if (minutes < 10) {
+		        sminutes = "0" + minutes;
+		    }
+		    var seconds = now.getSeconds();
+		    if (seconds < 10) {
+		        seconds = "0" + seconds;
+		    }
+		    var currenttime = hours + ":" + sminutes + ":" + seconds;
+		    if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
+		        $("#joinbut" + i).css("display", "block");
+		        setTimeout(function () {
+		            $("#joinbut" + i).css("display", "none");
+		        }, (dbminutes + 59 - minutes) * 60 * 1000);
+		    }
 		}
 	}
 

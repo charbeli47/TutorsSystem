@@ -21,14 +21,7 @@
 
     } ?>
 
-    <div class="input-group">
-        <input type="text" class="form-control" name="email" id="email" placeholder="<?php echo get_languageword('Email');?>*" value="<?php echo set_value('email', ($this->session->userdata('email')) ? $this->session->userdata('email') : ''); ?>" />
-        <?php echo form_error('email'); ?>
-    </div>
-    <div class="input-group">
-        <input type="text" class="form-control" name="phone" id="phone" placeholder="<?php echo get_languageword('Phone');?>*" value="<?php echo set_value('phone', ($this->session->userdata('phone')) ? $this->session->userdata('phone') : ''); ?>" />
-        <?php echo form_error('phone'); ?>
-    </div>
+    
     <div class="input-group ">
         <textarea rows="3" name="msg" placeholder="<?php echo get_languageword('My message is').'....';?>*"><?php echo set_value('msg'); ?></textarea>
         <?php echo form_error('msg'); ?>
@@ -67,13 +60,6 @@
                         "course_slug1": {
                             required: true
                         },
-                        "email": {
-                            required: true,
-                            email: true
-                        },
-                        "phone": {
-                            required: true
-                        },
                         "msg": {
                             required: true
                         }
@@ -85,12 +71,6 @@
                         },
                         "course_slug1": {
                             required: "<?php echo get_languageword('please_select_course'); ?>"
-                        },
-                        "email": {
-                            required: "<?php echo get_languageword('please_enter_email_id'); ?>"
-                        },
-                        "phone": {
-                            required: "<?php echo get_languageword('please_enter_phone'); ?>"
                         },
                         "msg": {
                             required: "<?php echo get_languageword('please_enter_your_message'); ?>"

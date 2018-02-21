@@ -61,7 +61,7 @@ background:#534051;
 
 
 
-<form action="https://testsecureacceptance.cybersource.com/pay" method="post" id="sbmFrm"/>
+<form action="https://secureacceptance.cybersource.com/pay" method="post" id="sbmFrm"/>
     <?php
         foreach($params as $name => $value) {
             echo "<input type=\"hidden\" id=\"" . $name . "\" name=\"" . $name . "\" value=\"" . $value . "\"/>\n";

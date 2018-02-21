@@ -4,7 +4,7 @@
 ?>
  <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="lession-card">
-        <a href="<?php echo URL_HOME_SEARCH_TUTOR.'/'.$row->slug;?>">
+        <a href="<?php echo '/course/'.$row->slug;?>">
             <figure class="imghvr-zoom-in">
                 <div class="card">
                     <div class="card-img all-c">

@@ -6,12 +6,12 @@
 
 		<div class="margin-btm">
 			<div class="row">
-				<?php if(!empty($course_opts) || !empty($location_opts) || !empty($teaching_type_opts)) { 
+				<?php if(!empty($course_opts) || !empty($country_opts) || !empty($teaching_language_opts)) { 
 
 						echo form_open(URL_HOME_SEARCH_TUTOR, 'id="filter_form"');
 				?>
 				<?php if(!empty($course_opts)) { ?>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<label><?php echo get_languageword('course'); ?></label>
 					<?php
 
@@ -21,28 +21,46 @@
 					?>
 				</div>
 				<?php } ?>
-				<?php if(!empty($location_opts)) { ?>
-				<div class="col-md-4">
-					<label><?php echo get_languageword('location'); ?></label>
+				<?php if(!empty($country_opts)) { ?>
+				<div class="col-md-3">
+					<label><?php echo get_languageword('Nationality'); ?></label>
 					<?php
 
-							$sel = set_value('location_slug', (!empty($location_slug)) ? $location_slug : '');
-							echo form_multiselect('location_slug[]', $location_opts, $sel, 'class="select-picker" onchange="get_filter_result();" ');
+							$sel = set_value('country_slug', (!empty($country_slug)) ? $country_slug : '');
+							echo form_dropdown('country_slug[]', $country_opts, $sel, 'class="select-picker" onchange="get_filter_result();" ');
 
 					?>
 				</div>
 				<?php } ?>
-				<?php if(!empty($teaching_type_opts)) { ?>
-				<div class="col-md-4">
-					<label><?php echo get_languageword('teaching_type'); ?></label>
+				<?php if(!empty($lng_opts)) { ?>
+				<div class="col-md-3">
+					<label><?php echo get_languageword('teaching_language'); ?></label>
 					<?php
 
-							$sel = set_value('teaching_type_slug', (!empty($teaching_type_slug)) ? $teaching_type_slug : '');
-							echo form_multiselect('teaching_type_slug[]', $teaching_type_opts, $sel, 'class="select-picker" onchange="get_filter_result();" ');
+							$sel = set_value('teaching_language_slug', (!empty($teaching_language_slug)) ? $teaching_language_slug : '');
+							echo form_dropdown('teaching_language_slug[]', $lng_opts, $sel, 'class="select-picker" onchange="get_filter_result();" ');
 
 					?>
 				</div>
 				<?php } ?>
+                <div class="col-md-3">
+					<label><?php echo get_languageword('teacher_name'); ?></label>
+					<?php
+
+							$sel = set_value('teacher_name', (!empty($teacher_name)) ? $teacher_name : '');
+                            $attributes = array(
+							'name'	=> 'teacher_name',
+							'id'	=> 'teacher_name',
+							'value'	=>$sel,
+							'placeholder'=> get_languageword('teacher_name'),
+							'class' => 'form-control',
+							'type' => 'text',
+                            'onchange'=> "get_filter_result();"
+							);
+							echo form_input($attributes);
+
+					?>
+				</div>
 				<?php 
 						echo form_close(); 
 					} 
@@ -70,8 +88,9 @@
                     <input type="hidden" name="limit" id="limit" value="<?php echo LIMIT_PROFILES_LIST;?>" />
                     <input type="hidden" name="offset" id="offset" value="<?php echo LIMIT_PROFILES_LIST;?>" />
                     <input type="hidden" name="course_slug" id="course_slug" value="<?php if(!empty($course_slug)) echo implode(',', $course_slug);?>" />
-                    <input type="hidden" name="location_slug" id="location_slug" value="<?php if(!empty($location_slug)) echo implode(',', $location_slug);?>" />
-                    <input type="hidden" name="teaching_type_slug" id="teaching_type_slug" value="<?php if(!empty($teaching_type_slug)) echo implode(',', $teaching_type_slug);?>" />
+                    <input type="hidden" name="country_slug" id="country_slug" value="<?php if(!empty($country_slug)) echo implode(',', $country_slug);?>" />
+                    <input type="hidden" name="teaching_language_slug" id="teaching_language_slug" value="<?php if(!empty($teaching_language_slug)) echo implode(',', $teaching_language_slug);?>" />
+                    <input type="hidden" name="teacher_name" id="teacher_name" value="<?php if(!empty($teacher_name)) echo teacehr_name;?>" />
                     <a class="btn-link" id="btn_load_more"> <?php echo get_languageword("load_more");?></a>
                 </div>
             </div>
@@ -107,7 +126,7 @@
 	          limit         : $('#limit').val(), 
 	          course_slug   : $('#course_slug').val(), 
 	          location_slug : $('#location_slug').val(), 
-	          teaching_type_slug : $('#teaching_type_slug').val()
+	          teaching_language_slug : $('#teaching_language_slug').val()
 	        },
 	        type:"post", 
 	        beforeSend: function() {

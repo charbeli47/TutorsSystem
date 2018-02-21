@@ -2266,7 +2266,7 @@ INSERT INTO `pre_languagewords` (`lang_id`, `lang_key`, `english`, `spanish`, `b
 (1005, 'Institue Enrolled Courses', 'Institue Enrolled Courses', NULL, NULL, NULL, NULL, 'अभी बुक करें', 'Институт зачислен Курсы'),
 (1006, 'Booking Completd', 'Booking Completd', NULL, NULL, NULL, NULL, 'एक शिक्षक के रूप में', 'Бронирование полная'),
 (1007, 'Booking Running', 'Booking Running', NULL, NULL, NULL, NULL, 'एक शिक्षक के रूप में', 'Бронирование работает'),
-(1008, 'Total Tutoring Courses', 'Total Tutoring Courses', NULL, NULL, NULL, NULL, 'अभी बुक करें', ' Всего курсы Репетиторство'),
+(1008, 'Choose your courses', 'Choose your courses', NULL, NULL, NULL, NULL, 'अभी बुक करें', ' Всего курсы Репетиторство'),
 (1009, 'admin_commission_percentage_in_credits', 'Admin commission percentage in credits', NULL, NULL, NULL, NULL, 'व्यवस्थापक आयोग प्रतिशत (क्रेडिट्स में)', 'Администратор комиссии процент по кредитам'),
 (1018, 'Account', 'Account', NULL, NULL, NULL, NULL, 'एकेडमिक', 'Счет'),
 (1024, 'Total_Payments', 'Total Payments', NULL, NULL, NULL, NULL, 'भाषा जोड़े', 'Общая сумма выплат'),

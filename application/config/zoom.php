@@ -8,7 +8,7 @@ class ZoomAPI{
 private $api_key = '2XUaAFKER-il3MkOCDwEuw';
 private $api_secret = 'Ld0IJEkZsixnSFGhqXLf5yz1JbbfGfu0Cu6E';
 private $access_token = 'jgQWCAjUiXFlKHX5IEVye960KfEpRGJsn0P5';
-private $api_url = 'https://api.zoom.us/v2/';
+private $api_url = 'https://api.zoom.us/v1/';
 
 /*Function to send HTTP POST Requests*/
 /*Used by every function below to make HTTP POST call*/
@@ -57,14 +57,14 @@ function sendRequest($calledFunction, $data){
 function createAUser($email){		
 		$createAUserArray = array();
 		$createAUserArray['email'] = $email;
-		$createAUserArray['type'] = '1';
+		$createAUserArray['type'] = '2';
         $createAMeetingArray["access_token"] = $this->getToken();
 		return $this->sendRequest('user/create', $createAUserArray);
 	}   
 	function autoCreateAUser($email, $password){
 	  $autoCreateAUserArray = array();
 	  $autoCreateAUserArray['email'] = $email;
-	  $autoCreateAUserArray['type'] = '1';
+	  $autoCreateAUserArray['type'] = '2';
 	  $autoCreateAUserArray['password'] = $password;
       $createAMeetingArray["access_token"] = $this->getToken();
 	  return $this->sendRequest('user/autocreate', $autoCreateAUserArray);
@@ -93,10 +93,12 @@ public function deleteUser($email)
     return $this->sendRequest('user/delete',$deleteUserArray);
 }
 public function getUserInfoByEmail($email){
+    $token = $this->getToken();
+    
   $getUserInfoByEmailArray = array();
   $getUserInfoByEmailArray['email'] = $email;
   $getUserInfoByEmailArray['login_type'] = '100';
-  $createAMeetingArray["access_token"] = $this->getToken();
+  $createAMeetingArray["access_token"] = $token;
   return $this->sendRequest('user/getbyemail',$getUserInfoByEmailArray);
 }
     public function getToken()
@@ -108,6 +110,7 @@ public function getUserInfoByEmail($email){
     $key = "123";
     $jsonPayload = JWT::encode($payload,$key);
     $token = JWT::sign($jsonPayload,$key);
+    return $token;
     }
 }
 ?>

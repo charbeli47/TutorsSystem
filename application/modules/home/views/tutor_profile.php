@@ -1,5 +1,7 @@
     <!-- User Profile Details -->
-    <?php  if(!empty($tutor_details)) {
+<?php $unim = uniqid(1); ?>
+<?php $r=rand(0,10000000); ?>   
+ <?php  if(!empty($tutor_details)) {
             foreach ($tutor_details as $row) {
      ?>
      
@@ -15,7 +17,7 @@
                         <div class="user-profile-pic">
                             <img src="<?php echo get_tutor_img($row->photo, $row->gender); ?>" alt="<?php echo $row->username; ?>" class="img-responsive img-circle">
                         </div>
-                        <?php echo get_user_online_status($row->is_online); ?>
+                        
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12">
                         <div class="user-profile-content">
@@ -192,15 +194,16 @@
                     <h2 class="heading-line"><?php echo get_languageword('reserve_your_spot'); ?></h2>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                    <h4 class="fee" id="fee"><?php  echo $row->fee?></h2>
+                    <h4 class="fee" id="fee"><?php  echo $row->fee?>$</h2>
                     <div class="feeperhour" id="duration"> </div>
-                    <div class="feeperhour" id="days_off"> </div>
+                    
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                 <div id="calendar">
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+var timez = Intl.DateTimeFormat().resolvedOptions().timeZone;
 $('#calendar').fullCalendar({
 header: {
         left: 'prev,next today',
@@ -216,7 +219,7 @@ eventSources: [
                  url: '<?php echo base_url() ?>home/get_calendar_courses',
                  dataType: 'json',
                  method:'post',
-                 data:{tutor_id:<?php echo $row->id;?>},
+                 data:{tutor_id:<?php echo $row->id;?>,timezone:timez},
                  success: function(msg) {
                      var events = msg.events;
                      callback(events);
@@ -225,28 +228,21 @@ eventSources: [
              }
             }
         ],
-        
+        <?php if ($this->ion_auth->logged_in()) { ?>
     eventClick: function(event, jsEvent, view) {
      $("#course_title").html(event.title);
      $("#course_slug").val(event.id);
      var d = moment(event.start).format('YYYY/MM/DD hh:mm T')+"M";
      $("#selected_date").html(d);
      $("#start_date").val(moment(event.start).format('YYYY/MM/DD HH:mm'));
-     $("#time_slot_hidden").val(moment(event.start).format('HH:mm'));
-    /*var el = document.getElementById("edit_course_id");
-for(var i=0; i<el.options.length; i++) {
-  if ( el.options[i].text == event.title ) {
-    el.selectedIndex = i;
-    break;
-  }
-}
-            $("#course_title").html(event.title);
-          //$('#edit_course_id').val($('#edit_course_id').find('option[text="'+event.title+'"]').val());
-          $('#editdescription').val(event.description);
-          $('#editstart_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
-          $('#event_id').val(event.id);*/
-          $('#addModal').modal();
+     $("#time_slot_hidden").val(moment(event.start).format('hh:mm T')+"M");
+     $('#addModal').modal();
        },
+       <?php }else{?>
+       eventClick: function(event, jsEvent, view) {
+     $('#loginModal').modal();
+       },
+        <?php }?>
     });
 });
 function formatDate(date) {
@@ -258,7 +254,90 @@ function formatDate(date) {
 
   return year + '-' + monthIndex + '-' + day;
 }
-</script><div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</script>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span><?php echo get_languageword('Sign In');?></span> <?php echo get_languageword('With Your Account');?></h4>
+      </div>
+      <?php echo form_open(site_url("auth/calendarlogin"), array("class" => "form-horizontal", "id"=>"submitForm")) ?>
+      <div class="modal-body">
+      
+      <div class="input-group ">
+							<label><?php echo get_languageword('email');?><?php echo required_symbol();?></label>
+							<?php 
+							$attributes = array(
+							'name'	=> 'identity',
+							'id'	=> 'identity',
+							'value'	=> $this->form_validation->set_value('identity'),
+							'placeholder'=> get_languageword('email'),
+							'class' => 'form-control',
+							'type' => 'email',
+							);
+							echo form_input($attributes);?>							
+						</div>
+						<div class="input-group ">
+							<label><?php echo get_languageword('Password');?><?php echo required_symbol();?></label>
+							<?php 
+							$attributes = array(
+							'name'	=> 'password',
+							'id'	=> 'password',
+							'value'	=> $this->form_validation->set_value('password'),
+							'placeholder'=> get_languageword('password'),
+							'class' => 'form-control',
+							);
+							echo form_password($attributes);?>
+						</div>
+                        <div class="check">
+							<a href="<?php echo URL_AUTH_FORGOT_PASSWORD;?>" class="forgot-pass"> <?php echo get_languageword('Forgot your password?');?></a>
+						</div>
+                        <div id="msg"></div>
+                        </div>
+                        <div class="modal-footer">
+						<button class="btn-link-dark signin-btn center-block" type="submit" name="btnLogin"><?php echo get_languageword('Sign In');?></button>
+                        </div>
+      
+      
+      </div>
+      <?php echo form_close() ?>
+      <script>
+      $('#submitForm').on('submit', (function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if(data == "success")
+                        {
+                            location.reload();
+                            $(".modal-backdrop").hide();
+                        }
+                        else
+                        {
+                                $("#msg").html("<div class='alert alert-danger'>"+data+"</div>");
+                        }
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    }
+                });
+
+            }));
+      </script>
+    </div>
+  </div>
+</div>
+<!--end login-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -344,8 +423,7 @@ function formatDate(date) {
                         </ul>
 						<!--hon bel asses hiee mssakara hon sah sah--->
                     <!--<?php echo form_close(); ?>-->
-					<?php $unim = uniqid(1); ?>
-					<?php $r=rand(0,000000); ?>
+					
 <!--hawde ana zeyeddounnnnn -->
 <input type="hidden" name="tutor_id" value="<?php echo $row->id ?>">
 <input type="hidden" name="student_id" value="<?php echo $this->session->userdata('id') ?>">   
@@ -364,8 +442,8 @@ function formatDate(date) {
 <input type="hidden" name="updated_by" value="None">
 <input type="hidden" id="roomid" name="roomsession" value="None"> 
 <!-- hawde zeyedooun addimin bass 3am bessta3meloun also-->
-<input type="hidden" name="access_key" value="24f6e06277213c87b95243543f386954">   
-<input type="hidden" name="profile_id" value="C5FDFC38-D38B-4598-8C40-DA46A3EA23EE">
+<input type="hidden" name="access_key" value="54dc71b4e9c9301bb1b190c6ccfe0600">   
+<input type="hidden" name="profile_id" value="B8D19ACD-481B-408A-AF0D-F12E38B0EAE3">
 <input type="hidden" name="transaction_uuid" value="<?php echo uniqid() ;?>">
 <input type="hidden" name="signed_date_time" value="<?php echo gmdate("Y-m-d\TH:i:s\Z"); ?>">    
 <input type="hidden" name="locale" value="en">
@@ -420,14 +498,14 @@ function formatDate(date) {
                                         $image = URL_PUBLIC_UPLOADS2.'profiles/default-student-male.png';
                                     if($review->photo != '' && file_exists('assets/uploads/profiles/thumbs/'.$review->photo))
                                     $image = URL_PUBLIC_UPLOADS2.'profiles/thumbs/'.$review->photo;
-									if($review->video != '' && file_exists('assets/uploads/profiles/vids/'.$review->video))
-                                    $video = URL_PUBLIC_UPLOADS2.'profiles/vids/'.$review->video;
+									//if($review->video != '' && file_exists('assets/uploads/profiles/vids/'.$review->video))
+                                    //$video = URL_PUBLIC_UPLOADS2.'profiles/vids/'.$review->video;
                             ?>
                                 <div class="media-left">
                                     <img src="<?php echo $image;?>" alt="" class="comment-profile img-circle">
                                 </div>
 								<!--<div class="media-right">
-                                    <video src="<?php echo $video;?>" controls width="120" alt="">
+                                    <video src="<?php //echo $video;?>" controls width="120" alt="">
                                 </div>-->
                                 <div class="media-body">
                                     <h4><strong><?php echo $review->student_name;?></strong> On <?php echo date("jS F, Y", strtotime($review->posted_on));?>
@@ -458,7 +536,7 @@ function formatDate(date) {
             if(!course_slug || !selected_date) {
                // $('#fee').text('');
                 $('#duration').text('');
-                $('#days_off').text('');
+                
                 $('#content_li').remove();
                 $('#time_slot_div').text('<?php echo get_languageword("please_select_course_and_date_first"); ?>');
                 return;
@@ -477,7 +555,7 @@ function formatDate(date) {
                         if(response == "") {
                            ///$('#fee').text('');
                             $('#duration').text('');
-                            $('#days_off').text('');
+                            
                             $('#content_li').remove();
                             $('#time_slot_div').html('<?php echo get_languageword("no_slots_available."); ?> <a href="#"><?php echo get_languageword("click_here_to_send_me_your_message"); ?></a>');
                             
@@ -488,14 +566,12 @@ function formatDate(date) {
                             var duration     = fee_duration[1];
                             var content      = fee_duration[2];
                             var time_slots   = fee_duration[3];
-                            var days_off     = fee_duration[4];
+                            
 						//document.getElementById("proceedpay").style.display = "block";
                            // $('#fee').text('15');
                             //$('#duration').text('credits/'+duration);
 							$('#duration').text(duration);
-                            if(days_off)
-                                $('#days_off').text('Days off: '+days_off);
-								
+                            	
 
 
                             if(content) {

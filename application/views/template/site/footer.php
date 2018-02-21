@@ -69,7 +69,7 @@
                         <h4 class="footer-head"><?php echo get_languageword('tutors by course');?></h4>
                         <ul class="footer-links">
                             <?php foreach ($courses as $row) { ?>
-                            <li title="<?php echo $row->name; ?>"><a href="<?php echo URL_HOME_SEARCH_TUTOR.'/'.$row->slug;?>"> <?php echo $row->name; ?> </a></li>
+                            <li title="<?php echo $row->name; ?>"><a href="<?php echo '/course/'.$row->slug;?>"> <?php echo $row->name; ?> </a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -446,7 +446,7 @@ $(document).ready(function () {
         })
     }
     var a;
-    a = new google.maps.LatLng("17.451603", "78.380930"), google.maps.event.addDomListener(window, "load", e), a = new google.maps.LatLng("17.451603", "78.380930")
+    a = new google.maps.LatLng(33.860233, 35.541271), google.maps.event.addDomListener(window, "load", e), a = new google.maps.LatLng(33.860233, 35.541271)
 });
 </script>
 

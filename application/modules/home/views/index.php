@@ -94,11 +94,11 @@
 
 
     <!-- Featured-On #homepage -->
-    <?php if(strip_tags($this->config->item('site_settings')->featured_on_section) == "On") {
+    <?php /*if(strip_tags($this->config->item('site_settings')->featured_on_section) == "On") {
 
             echo $this->config->item('sections')->Featured_On_Section;
 
-         } ?>
+         } */?>
     <!-- Ends Featured-On #homepage -->
 
     <!-- Lession-cards #homepage -->
@@ -112,7 +112,7 @@
                 <?php foreach($recent_courses as $row) { ?>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="lession-card">
-                        <a href="<?php echo URL_HOME_SEARCH_TUTOR.'/'.$row->slug;?>">
+                        <a href="<?php echo '/course/'.$row->slug;?>">
                             <figure class="imghvr-zoom-in">
                                 <div class="card">
                                     <div class="card-img">
@@ -184,7 +184,7 @@
     <!-- Ends Testimonial slider -->
 
     <!-- Counter #Homepage -->
-    <?php $this->load->view('lesson_count.php'); ?>
+    <?php //$this->load->view('lesson_count.php'); ?>
     <!-- Counter #Homepage -->
 
     <?php if(!empty($home_tutor_ratings)) {?>

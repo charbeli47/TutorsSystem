@@ -35,8 +35,8 @@ $i++;
 			<td width='<?php echo $column_width?>%' class='<?php if(isset($order_by[0]) &&  $column->field_name == $order_by[0]){?>sorted<?php }?>'>
             <?php if($column->field_name!="roomsession"){?> 
 				<div class='text-left<?php echo $i?>'><?php echo $row->{$column->field_name} != '' ? $row->{$column->field_name} : '&nbsp;' ; ?></div>
-                <?php }else if(($row->status =='Session Initiated' || $row->status == 'Running') && isset($row->roomsession) && $row->roomsession !=""){?>
-                <a href="<?php echo $row->{$column->field_name}?>" target="_blank" style="display:block;background-color:#950d11;color:white;display:block;padding:5px;border-radius:5px;text-align:center">Join</a>
+                <?php }else if(($row->status =='Session Initiated' || $row->status =='Running' ) && isset($row->roomsession) && $row->roomsession !=""){?>
+                <a href="<?php echo $row->{$column->field_name}?>" target="_blank" style="display:block;background-color:#950d11;color:white;display:block;padding:5px;border-radius:5px;text-align:center" onclick="changeSessionToRunning(<?php echo $row->booking_id?>,this)">Join</a>
                 <?php }?>
 			</td>
 			<?php }?>
@@ -54,12 +54,6 @@ $i++;
 					<?php if(!$unset_read){?>
 						<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button"><span class='read-icon'></span></a>
 					<?php }?>
-					<!--hawde ana zedtoun sah sah w zedet ossass fo2 ba3reffoun ghayaret el class sah sah 100 bel 100 gd g d-->
-					
-					
-					
-					
-					<!--end of ana li zeyeddoun sahih sahih-->
 					<?php 
 					if(!empty($row->action_urls)){
 						foreach($row->action_urls as $action_unique_id => $action_url){ 
@@ -95,7 +89,7 @@ $i++;
 			</td>
 			<?php }?>
 		</tr>
-
+        
 <?php } ?>        
 		</tbody>
 		</table>
@@ -109,56 +103,11 @@ $i++;
     
 <?php }?>
 <script>
-					var preffereddate=$('.text-left<?php echo $i?>:eq(4)').text();
-					var timeslot=$('.text-left<?php echo $i?>:eq(5)').text().trim();
-                    
-                    var dbhours = Number(timeslot.match(/^(\d+)/)[1]);
-                    var dbminutes = Number(timeslot.match(/:(\d+)/)[1]);
-                    var AMPM = timeslot.match(/\s(.*)$/)[1];
-                    if(AMPM == "PM" && dbhours<12) dbhours = dbhours+12;
-                    if(AMPM == "AM" && dbhours==12) hours = dbhours-12;
-                    var sHours = dbhours.toString();
-                    var sMinutes = dbminutes.toString();
-                    if(dbhours<10) sHours = "0" + sHours;
-                    if(dbminutes<10) sMinutes = "0" + sMinutes;
-
-                    var dbtime = sHours+":"+sMinutes+":00";
 					
-					var status=$('.text-left<?php echo $i?>:eq(7)').text();
-					var currentdate = new Date();
-
-					var dd = currentdate.getDate();
-					var mm = currentdate.getMonth()+1; //January is 0!
-					var yyyy = currentdate.getFullYear();
-                    
-					if(dd<10) {
-					 dd = '0'+dd
-					} 
-
-					if(mm<10) {
-					mm = '0'+mm
-					} 
-
-					currentdate = dd + '/' + mm + '/' + yyyy;
-					var now= new Date();
-					var hours=now.getHours();
-					var minutes=now.getMinutes();
-                    var allowed = minutes - dbminutes>=-10 && minutes - dbminutes<=59;
-                    var sminutes = minutes;
-					if(minutes<10){
-					    sminutes="0"+minutes;
-					}
-					var seconds=now.getSeconds();
-					if(seconds<10){
-					seconds="0"+seconds;
-					}
-					var currenttime =  hours+ ":" +sminutes+ ":" +seconds ;					
-		            if((currentdate==preffereddate && allowed==true && currenttime>=dbtime && status=="Approved") || status == "Session Initiated"){			
-	                    $("#joinbut<?php echo $i?>").css("display","block");
-	                    setTimeout( function(){ 
-                                        $("#joinbut<?php echo $i?>").css("display","none");
-                                    }  , (dbminutes+59-minutes)*60*1000);
-                     }
+                     function changeSessionToRunning(bookingId, f)
+                     {
+                        $.post("/home/ChangeStatus",{bookingId:bookingId}, function(data){if(data=="success"){f.style.display = "none";}});
+                     } 
 					</script>
 <?php
 /*Zoom Support*/

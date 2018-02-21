@@ -37,8 +37,8 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('approved')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/approved"><?php echo get_languageword('approved'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('session_initiated')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/session_initiated"><?php echo get_languageword('session_initiated'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('running')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/running"><?php echo get_languageword('running'); ?> </a></li>
-				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
-				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
+				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('closed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/closed"><?php echo get_languageword('closed'); ?> </a></li>
 			</ul>
 		</div>
@@ -100,7 +100,7 @@
 
 
 
-<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'user_credit_transactions') echo 'class="active"';?> href="<?php echo URL_STUDENT_CREDITS_TRANSACTION_HISTORY;?>"><i class="fa fa-calendar"></i><?php echo get_languageword('credits_Transactions');?><span class="hidden-xs"> <?php echo get_languageword('History')?> </span></a></div>
+<!--<div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'user_credit_transactions') echo 'class="active"';?> href="<?php echo URL_STUDENT_CREDITS_TRANSACTION_HISTORY;?>"><i class="fa fa-calendar"></i><?php echo get_languageword('credits_Transactions');?><span class="hidden-xs"> <?php echo get_languageword('History')?> </span></a></div>-->
 
 
 <div class="panel panel-default">
@@ -136,8 +136,8 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_courses') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_COURSES;?>"><?php echo get_languageword('courses');?> </a></li>
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_locations') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_LOCATIONS ?>"><?php echo get_languageword('Locations');?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_teaching_types') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_PREFFERED_TEACHING_TYPES ?>"><?php echo get_languageword('Preffered Teaching Type');?></a></li>
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_CERTIFICATES ?>"><?php echo get_languageword('Certificates');?></a></li>-->
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_privacy') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_PRIVACY ?>"><?php echo get_languageword('Privacy');?></a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_CERTIFICATES ?>"><?php echo get_languageword('Certificates');?></a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_privacy') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_PRIVACY ?>"><?php echo get_languageword('Privacy');?></a></li>-->
 			</ul>
 		</div>
 		<!--/.panel-body -->

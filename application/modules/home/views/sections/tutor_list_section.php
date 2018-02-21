@@ -13,7 +13,7 @@
 
 					</div>
 
-                    <?php echo get_user_online_status($row->is_online); ?>
+                    <?php //echo get_user_online_status($row->is_online); ?>
 					
 					<form method="post">
 					<!--<input type="submit" name="testvideocall" id="test" value="Begin video meeting with tutor" />-->
@@ -28,8 +28,8 @@
                     <div class="send-quote-block text-center">
                         <p class="teaching-experience"><b><?php echo get_languageword('experience'); ?>:</b> <?php echo $row->teaching_experience." ".$row->duration_of_experience; ?></p>
                         <p class="qualification"><b><?php echo get_languageword('qualification'); ?>:</b> <?php echo $row->qualification; ?></p>
-                        <p class="qualification"><b><?php echo get_languageword('Free_Demo'); ?>:</b> <?php echo $row->free_demo; ?></p>
-						 <p class="qualification"><b>Course fee:</b> <?php echo $row->fee; ?></p>
+                        <!--<p class="qualification"><b><?php echo get_languageword('Free_Demo'); ?>:</b> <?php echo $row->free_demo; ?></p>-->
+						 <p class="qualification"><b>Course fee:</b> <?php echo $row->fee; ?>$</p>
                         <?php if($row->availability_status==0){?>
                         <p class="tutor-not-avilble"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><b><strong> <?php echo get_languageword('This Tutor Is Not Available Now')?></strong></b></p>
                         <?php } else{?>
@@ -71,14 +71,14 @@
                                 <?php } ?>
                         </ul>
                         <?php } ?>
-                        <?php $tutoring_courses = $this->home_model->get_tutor_courses($row->slug, 'grouped'); 
+                        <?php $tutoring_courses = $this->home_model->get_tutor_courses_byid($row->id, 'grouped'); 
                              if(!empty($tutoring_courses)) {
                         ?>
                         <div><?php echo "<strong>".get_languageword('teaches')."</strong> ".character_limiter($tutoring_courses, 100); ?></div>
                         <?php } ?>
                         <p><?php echo character_limiter($row->profile, 400); ?> </p>
                         <?php if(isset($row->video) && $row->video!=""){?>
-        <iframe width="250" height="200" style="position:absolute;top:100px;right:10px" src="https://www.youtube-nocookie.com/embed/<?php echo $row->video ?>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+        <iframe width="250" height="200" style="margin:auto" src="https://www.youtube-nocookie.com/embed/<?php echo $row->video ?>?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 <?php }?>
                     </div>
                 </div>

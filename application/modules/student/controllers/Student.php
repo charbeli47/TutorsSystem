@@ -34,6 +34,9 @@ class Student extends MY_Controller
 		$this->data['pagetitle'] 	= get_languageword('dashboard');
 		$this->data['activemenu'] 	= "dashboard";
 		$this->data['content'] 		= 'index';
+        $studentId = $this->ion_auth->get_user_id();
+        $bookings = $this->db->query("select booking_id, start_date, time_slot from ".TBL_BOOKINGS." where student_id=".$studentId." and date(start_date)=CURDATE() and status='session_initiated'")->result();
+        $this->data["bookings"] = $bookings;
 		$this->_render_page('template/site/student-template', $this->data);
 	}
 	
@@ -1109,7 +1112,7 @@ class Student extends MY_Controller
 		$duration_value 		= $course_details->duration_value;
 		$duration_type 			= $course_details->duration_type;
 		$per_credit_value 		= $course_details->per_credit_value;
-		$days_off 				= $course_details->days_off;
+		//$days_off 				= $course_details->days_off;
 
 		$preferred_location 	= ($this->input->post('teaching_type') == "willing-to-travel") ? $this->input->post('location_slug') : $this->input->post('teaching_type');
 		$message   				= $this->input->post('message');
@@ -1163,7 +1166,7 @@ class Student extends MY_Controller
 								'start_date'			=> $start_date,
 								'end_date'				=> $end_date,
 								'time_slot'				=> $time_slot,
-								'days_off'				=> $days_off,
+								//'days_off'				=> $days_off,
 								'preferred_location'	=> $preferred_location,
 								'message'				=> $message,
 								'admin_commission'		=> $admin_commission,
@@ -1469,8 +1472,9 @@ class Student extends MY_Controller
 		$crud->set_table(TBL_BOOKINGS);
 		$crud->set_relation('tutor_id',TBL_USERS, 'username');
 		$crud->set_relation('updated_by',TBL_USERS, 'username');
-		$crud->where(TBL_BOOKINGS.'.student_id', $user_id);
 
+		$crud->where(TBL_BOOKINGS.'.student_id', $user_id);
+        $crud->order_by('booking_id','desc');
 
 		$status_arr = array('pending', 'approved', 'cancelled_before_course_started', 'cancelled_when_course_running', 'cancelled_after_course_completed', 'session_initiated', 'running', 'completed', 'called_for_admin_intervention', 'closed');
 		if(in_array($param, $status_arr)) {
@@ -1487,7 +1491,7 @@ class Student extends MY_Controller
 		$crud->unset_delete();
 
 		//List Table Columns
-		$crud->columns('course_id', 'tutor_id', 'course_duration', 'fee','content', 'start_date', 'time_slot', 'preferred_location', 'status', 'roomsession');
+		$crud->columns('course_id', 'tutor_id', 'course_duration', 'start_date', 'time_slot','fee','status','content',   'roomsession');
 		
 		//if( $param == 'session_initiated' || $param == 'running' ) {
 			//$crud->add_action(get_languageword('join'), URL_FRONT_IMAGES.'/initiate-session.png', 'http://localhost/tutorsproj/web/tokbox.php?&user=student', 'fa fa-mixcloud', array($this, 'join_link') );
@@ -1500,7 +1504,7 @@ class Student extends MY_Controller
 		$crud->display_as('course_id',get_languageword('course_booked'));
 		$crud->display_as('tutor_id',get_languageword('tutor_name'));
 		$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
-		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage_in_credits'));
+		//$crud->display_as('admin_commission',get_languageword('admin_commission_percentage_in_credits'));
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
 		$crud->display_as('roomsession',get_languageword('join_session'));
@@ -1518,7 +1522,7 @@ class Student extends MY_Controller
 		$crud->field_type('updated_at', 'hidden', date('Y-m-d H:i:s'));
 
 		//Unset Fields
-		$crud->unset_fields('student_id', 'admin_commission_val');
+		$crud->unset_fields('student_id', 'admin_commission_val','admin_commission');
 
 
 		//Authenticate whether Tutor editing/viewing his records only

@@ -794,7 +794,7 @@ class Auth extends MY_Controller {
 						if(!is_inst_tutor($user_id) && $is_profile_updated != 1) {
 
 							$this->prepare_flashmessage(get_languageword('please_update_your_profile_by_adding_tutoring_courses_and_preferred_teaching_types_to_avail_for_students'), 2);
-							redirect(URL_TUTOR_MANAGE_COURSES, 'refresh');
+							redirect(URL_TUTOR_INDEX, 'refresh');
 						}
 
 						redirect(URL_TUTOR_INDEX, 'refresh');
@@ -803,8 +803,8 @@ class Auth extends MY_Controller {
 
 						if($is_profile_updated != 1) {
 
-							$this->prepare_flashmessage(get_languageword('please_update_your_profile_by_adding_preferred_courses_and_preferred_teaching_types_to_get_tutors'), 2);
-							redirect(URL_STUDENT_MANAGE_COURSES, 'refresh');
+							//$this->prepare_flashmessage(get_languageword('please_update_your_profile_by_adding_preferred_courses_and_preferred_teaching_types_to_get_tutors'), 2);
+							redirect(URL_STUDENT_INDEX, 'refresh');
 						}
 
 						redirect(URL_STUDENT_INDEX, 'refresh');
@@ -947,7 +947,51 @@ class Auth extends MY_Controller {
 		$this->data['content'] = 'auth/login';
 		$this->_render_page('template/site/site-template', $this->data);
 	}
-	
+	function calendarlogin()
+	{	
+        
+			//validate form input
+			$this->form_validation->set_rules('identity', get_languageword('email'), 'required');
+			$this->form_validation->set_rules('password', get_languageword('Password'), 'required');
+
+			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+			if ($this->form_validation->run() == true)
+			{
+				if($this->ion_auth->logged_in())
+				    echo "success";
+				// check to see if the user is logging in
+				// check for "remember me"
+				$remember = (bool) $this->input->post('remember');
+
+				if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+				{
+
+					$is_profile_updated = "";
+					$user_id = $this->ion_auth->get_user_id();
+					$this->base_model->update_operation(array('is_online' => 'yes'), 'users', array('id' => $user_id));
+
+
+					if(isset($this->config->item('site_settings')->default_language) && $this->config->item('site_settings')->default_language != '')
+						$this->session->set_userdata('current_language' , strtolower($this->config->item('site_settings')->default_language));
+
+					
+
+
+					echo "success";
+				}
+				else
+				{
+					echo $this->ion_auth->errors();
+				}
+			}
+			else
+			{
+				echo (validation_errors()) ? $this->prepare_message(validation_errors(), 1) : $this->session->flashdata('message');
+			}
+		
+		
+	}
 	/**
 	 * Changes the status of the record
 	 *

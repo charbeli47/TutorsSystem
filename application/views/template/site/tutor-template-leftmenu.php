@@ -48,8 +48,8 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('approved')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/approved"><?php echo get_languageword('approved'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('session_initiated')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/session_initiated"><?php echo get_languageword('session_initiated'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('running')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/running"><?php echo get_languageword('running'); ?> </a></li>
-				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
-				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
+				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('closed')) echo 'class="active"';?>><a href="<?php echo URL_TUTOR_STUDENT_ENQUIRIES;?>/closed"><?php echo get_languageword('closed'); ?> </a></li>
 			</ul>
 		</div>
@@ -71,11 +71,11 @@
 	<div id="collapseManage" class="panel-collapse <?php if(isset($activemenu) && $activemenu == 'manage') echo 'collapse in'; else echo 'collapse';?>">
 		<div class="panel-body">
 			<ul class="dashboard-links">
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'courses') echo 'class="active"';?>><a href="tutor/calendar"><?php echo get_languageword('courses_calendar');?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'courses') echo 'class="active"';?>><a href="/tutor/calendar"><?php echo get_languageword('courses_calendar');?> </a></li>
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_locations') echo 'class="active"';?>><a href="<?php echo URL_TUTOR_MANAGE_LOCATIONS;?>"><?php echo get_languageword('Locations');?> </a></li>-->
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_teaching_types') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/manage-teaching-types"><?php echo get_languageword('Teaching Type');?></a></li>-->
-				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/certificates"><?php echo get_languageword('Certificates');?></a></li>-->
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_privacy') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/manage-privacy"><?php echo get_languageword('Privacy');?></a></li>
+				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/certificates"><?php echo get_languageword('Certificates');?></a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_privacy') echo 'class="active"';?>><a href="<?php echo base_url();?>tutor/manage-privacy"><?php echo get_languageword('Privacy');?></a></li>-->
 			</ul>
 		</div>
 		<!--/.panel-body -->

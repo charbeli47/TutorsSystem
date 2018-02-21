@@ -8,6 +8,27 @@
                 <p><?php echo get_languageword('Net Credits');?></p>
 			</div>
 		</div>-->	
+        <div class="col-md-12">
+        
+        <?php
+        foreach($bookings as $row):
+            $now = strtotime(date("H:i:s"));
+            $then = strtotime($row->time_slot);
+          
+            $minutes = ($then- $now)/60;  
+        ?>
+        <?php if($minutes>0){?>
+         <div id="counter<?php echo $row->booking_id?>" class="alert alert-info" style="font-size:20px"></div>
+         <script>
+         
+         showTimer(<?php echo $minutes?>,'counter<?php echo $row->booking_id?>');
+         
+         </script>
+         <?php }
+         endforeach;
+        ?>
+        
+        </div>
 		<div class="col-md-4 pad10">
 			<div class="dash-block d-block2">
 				<h2><?php echo $student_dashboard_data['total_bookings'];?><a class="pull-right" href="<?php echo base_url();?>enquiries"><?php echo get_languageword('View');?></a></h2>

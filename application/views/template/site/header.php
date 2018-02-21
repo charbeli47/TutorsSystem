@@ -47,7 +47,37 @@ if(isset($hascalendar) && $hascalendar == TRUE){?>
 
         
 <link rel="stylesheet" href="<?php echo base_url() ?>fullcalendar/fullcalendar.min.css" />
-               
+    <script>
+        function showTimer(duration, container)
+        {
+            
+// Set the date we're counting down to
+var countDownDate = new Date().getTime() + 1000 * duration * 60;
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById(container).innerHTML = minutes + "m " + seconds + "s for your next session";
+    if (distance <= 0) {
+        clearInterval(x);
+        document.getElementById(container).innerHTML ="Your session started please clist on Session Initiated Box below to start";
+    }
+}, 1000);
+        }
+</script>  
+<!--Start of Zendesk Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){
+z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='https://v2.zopim.com/?dQF9inZqajsH6ZcEUDNlVW6RTfsyJfWv';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zendesk Chat Script-->         
 </head>
 
 <body>
@@ -212,4 +242,25 @@ if(isset($hascalendar) && $hascalendar == TRUE){?>
             <!-- /.navbar-collapse -->
         </div>
     </nav>
+    <?php
+    if ($this->ion_auth->logged_in()) {
+    $user_id = $this->ion_auth->get_user_id();
+    if($this->ion_auth->is_student())
+						{
+                        $student_id = $this->ion_auth->get_user_id();
+     $query = "select count(*) initiated_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$user_id." And status='session_initiated'";
+		$student_dashboard_data['initiated_bookings'] = $this->db->query($query)->row()->initiated_bookings;
+    $studentNotification = $student_dashboard_data['initiated_bookings'];
+    if(isset($studentNotification) && $studentNotification!="" && $studentNotification!="0"){
+ ?>
+    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">Your tutor initiated a session. Please click <a href="<?php echo base_url();?>enquiries/session_initiated">here</a> to start learning.</div>
+    <?php }}else{
+    $dateTimeVariable = date("Y-m-d H:i:s");
+    $query = "select count(*) approved_bookings from (SELECT STR_TO_DATE(CONCAT(start_date, ' ', time_slot), '%Y-%c-%e %h:%i %p') as course_date FROM ".$this->db->dbprefix('bookings')." where tutor_id=$user_id and status='approved') as table1 where course_date> DATE_SUB('$dateTimeVariable', INTERVAL 60 MINUTE) and course_date< DATE_ADD('$dateTimeVariable', INTERVAL 20 MINUTE)";
+    $student_dashboard_data['approved_bookings'] = $this->db->query($query)->row()->approved_bookings;
+    $studentNotification = $student_dashboard_data['approved_bookings'];
+    if(isset($studentNotification) && $studentNotification!="" && $studentNotification!="0"){
+?>
+    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">You have sessions that need to be initiated soon. Please click <a href="<?php echo base_url();?>student-enquiries/approved">here</a> to start session.</div>
+    <?php }}}?>
        <!-- Ends Navigation -->

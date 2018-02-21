@@ -106,17 +106,17 @@ class Categories extends MY_Controller
 		$crud->where('is_parent',0);
 		$crud->set_subject(get_languageword('course'));
 		$crud->columns('name','code', 'slug', 'is_popular', 'status');
-		$crud->add_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent'));
-		$crud->edit_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent'));
+		$crud->add_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent', 'pdf_file'));
+		$crud->edit_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent', 'pdf_file'));
 		
 		$crud->required_fields(array('name', 'slug', 'code', 'sort_order', 'status'));
 		$crud->unique_fields('name', 'code');
 		$crud->set_field_upload('image','assets/uploads/courses');
-		
+		$crud->set_field_upload('pdf_file','assets/uploads/courses');
 		//Field Types
 		/* This is not working as expected. We need to work on it*/
 		$crud->field_type('is_parent', 'hidden', '0'); //1-category, 0-course
-		
+		$crud->field_type('description', 'text'); 
 		$crud->field_type('is_popular', 'dropdown', array('1' => get_languageword('yes'), '0' => get_languageword('no')));
 		
 		$categories = $this->base_model->fetch_records_from('categories', array('is_parent' => 1, 'status' => 1));
@@ -170,6 +170,7 @@ class Categories extends MY_Controller
 			'description' => $post_array['description'],
 			'code'	=> $post_array['code'],
 			'image' => $post_array['image'],
+            'pdf_file' => $post_array['pdf_file'],
 			'is_popular' => $post_array['is_popular'],
 			'slug' => prepare_slug($post_array['slug'], 'slug', 'categories'),
 			'status' => $post_array['status'],
@@ -205,6 +206,7 @@ class Categories extends MY_Controller
 			'description' => $post_array['description'],
 			'code'	=> $post_array['code'],
 			'image' => $post_array['image'],
+            'pdf_file' => $post_array['pdf_file'],
 			'is_popular' => $post_array['is_popular'],
 			'status' => $post_array['status'],
 			'sort_order' => $post_array['sort_order'],

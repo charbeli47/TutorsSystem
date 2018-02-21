@@ -79,7 +79,7 @@ $route['checkout']			 		= 'home/checkout';
 $route['checkout/(:any)']	 		= 'home/checkout/$1';
 $route['checkout/(:any)/(:any)']	= 'home/checkout/$1/$2';
 
-
+$route["course/(:any)"] = "home/course/$1";
 
 
 $route['search-tutor']		 			= 'home/search_tutor';

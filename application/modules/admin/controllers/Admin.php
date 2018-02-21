@@ -389,14 +389,14 @@ class Admin extends MY_Controller
 		$crud->set_relation('course_id','categories','name');
 		$crud->set_relation('updated_by',TBL_USERS, 'username');
 		$crud->set_subject( get_languageword('student_Bookings') );
-
+        $crud->order_by('booking_id','desc');
 		$crud->unset_add();
 		$crud->unset_delete();
 
 
 		//display columns
-		$crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','end_date','days_off','preferred_location','admin_commission','admin_commission_val','status');
-
+		//$crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','end_date','days_off','preferred_location','admin_commission','admin_commission_val','status');
+        $crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','time_slot','preferred_location','admin_commission','admin_commission_val','status');
 
 		$status = array('pending' => get_languageword('pending'), 'approved' => get_languageword('approved'), 'cancelled_before_course_started' => get_languageword('cancelled_before_course_started'), 'cancelled_when_course_running' => get_languageword('cancelled_when_course_running'), 'cancelled_after_course_completed' => get_languageword('cancelled_after_course_completed'), 'session_initiated' => get_languageword('session_initiated'), 'running' => get_languageword('running'), 'completed' => get_languageword('completed'), 'called_for_admin_intervention' => get_languageword('claim_for_admin_intervention'), 'closed' => get_languageword('closed'));
 
@@ -416,11 +416,11 @@ class Admin extends MY_Controller
 		$crud->display_as('tutor_id', get_languageword('tutor_name').' - '.get_languageword('Phone_Num'));
 		$crud->display_as('course_id', get_languageword('course_Booked'));
 		$crud->display_as('start_date', get_languageword('batch_start_date'));
-		$crud->display_as('end_date', get_languageword('batch_end_date'));
+		//$crud->display_as('end_date', get_languageword('batch_end_date'));
 		$crud->display_as('content', get_languageword('course_content'));
 		$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
 		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage'));
-		
+		$crud->unset_columns(array('end_date'));
 
 
 		if($crud_state == "edit") {
@@ -590,7 +590,8 @@ class Admin extends MY_Controller
 
 
 		//display columns
-		$crud->columns('batch_id','batch_code','batch_name','inst_id','course_id','tutor_id','total_enrolled_students','batch_max_strength','course_content','fee','course_duration','batch_start_date','batch_end_date','time_slot','days_off','course_offering_location');
+		//$crud->columns('batch_id','batch_code','batch_name','inst_id','course_id','tutor_id','total_enrolled_students','batch_max_strength','course_content','fee','course_duration','batch_start_date','batch_end_date','time_slot','days_off','course_offering_location');
+        $crud->columns('batch_id','batch_code','batch_name','inst_id','course_id','tutor_id','total_enrolled_students','batch_max_strength','course_content','fee','course_duration','batch_start_date','batch_end_date','time_slot','course_offering_location');
 
 		$crud->display_as('inst_id', get_languageword('institute_Name'));
 		$crud->display_as('tutor_id', get_languageword('assigned_Tutor'));

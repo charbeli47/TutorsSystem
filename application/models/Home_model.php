@@ -89,7 +89,6 @@ class Home_Model extends CI_Model
 	}
 
 
-
 	function get_teachingtypeid_by_slug($teaching_type_slug)
 	{
 		if(empty($teaching_type_slug))
@@ -264,7 +263,18 @@ class Home_Model extends CI_Model
 
         return ($result_set->num_rows() > 0) ? $result_set->result() : FALSE;
     }
+    function get_course($slug)
+    {
 
+        $query      = "";
+        $limit_cond = "";
+        $query = "SELECT courses.* FROM ".TBL_CATEGORIES." courses WHERE courses.slug='$slug'";
+
+
+        $result_set = $this->db->query($query);        
+
+        return ($result_set->num_rows() > 0) ? $result_set->row() : FALSE;
+    }
 
 
     /* GET SELLING COURSES */
@@ -380,8 +390,10 @@ class Home_Model extends CI_Model
         $course_tbl_join		= "";
        // $location_tbl_join 		= "";
        // $teaching_type_tbl_join = "";
-
+       $country_cond = "";
+       $language_cond = "";
         $course_cond 			= "";
+        $course_order = "";
         //$location_cond 			= "";
         //$teaching_type_cond 	= "";
 
@@ -402,7 +414,21 @@ class Home_Model extends CI_Model
         }
 
 
-
+        if(!empty($params['teaching_language_slug']) && $params['teaching_language_slug'][0]!=" ")
+        {
+            $language_cond = " and u.language_of_teaching like '%".$params['teaching_language_slug'][0]."%'";
+        
+        }
+        if(!empty($params['teacher_name']) && $params['teacher_name']!=" ")
+        {
+            $language_cond = " and (u.username like '%".$params['teacher_name']."%' or u.email like '%".$params['teacher_name']."%' or u.first_name like '%".$params['teacher_name']."%' or u.last_name like '%".$params['teacher_name']."%')";
+        
+        }
+        if(!empty($params['country_slug']) && $params['country_slug'][0] != " ")
+        {
+            $country_cond = " and u.country = '".$params['country_slug'][0]."'";
+        
+        }
         if(!empty($params['course_slug'])) {
 
         	$course_id 	 = $this->get_categoryid_by_slug($params['course_slug']);
@@ -411,8 +437,11 @@ class Home_Model extends CI_Model
         		return FALSE;
 
         	$course_tbl_join = " INNER JOIN ".TBL_TUTOR_COURSES." tc ON tc.tutor_id=u.id ";
-        	$course_cond = " AND tc.course_id IN (".$course_id.") AND tc.status=1 ";
+        	$course_cond = " AND tc.course_id IN (".$course_id.") AND tc.status=1";
+            $course_order = " GROUP BY u.id , tc.start ORDER BY tc.start DESC ";
         }
+        else
+            $course_order = " GROUP BY u.id  ";
 
         /*if(!empty($params['location_slug'])) {
 
@@ -455,10 +484,11 @@ class Home_Model extends CI_Model
 	    			".$course_tbl_join."  
 					WHERE u.active=1 AND u.visibility_in_search='1' 
                     AND (u.parent_id=0 OR u.parent_id='') AND ug.group_id=3 
+                    ".$country_cond."
+                    ".$language_cond."  
 					".$adm_approval_cond." 
 					".$course_cond." 
-					GROUP BY u.id ORDER BY u.net_credits DESC ".$limit_cond." ";
-
+					".$course_order.$limit_cond." ";
         
         $result_set = $this->db->query($query);        
 
@@ -668,7 +698,7 @@ class Home_Model extends CI_Model
         $tutor_id = $this->get_uid_by_slug($tutor_slug);
 
 
-        $tutor_info_query = "SELECT u.* FROM ".$this->db->dbprefix('users')." u WHERE u.active=1 AND u.visibility_in_search='1' AND u.availability_status='1' AND u.is_profile_update=1 AND (u.parent_id=0 OR u.parent_id='') AND u.slug='".$tutor_slug."' ".$adm_approval_cond." ";
+        $tutor_info_query = "SELECT u.* FROM ".$this->db->dbprefix('users')." u WHERE u.active=1 AND u.visibility_in_search='1' AND u.availability_status='1' AND (u.parent_id=0 OR u.parent_id='') AND u.slug='".$tutor_slug."' ".$adm_approval_cond." ";
 
     	$tutor_details = $this->db->query($tutor_info_query)->result();
 
@@ -718,7 +748,6 @@ class Home_Model extends CI_Model
             return NULL;
 
         $tutor_id = $this->get_uid_by_slug($tutor_slug);
-
         $query = "SELECT courses.slug, courses.name FROM ".$this->db->dbprefix('categories')." courses INNER JOIN ".$this->db->dbprefix('tutor_courses')." tc ON tc.course_id=courses.id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1 ORDER BY tc.sort_order ASC ";
 
         if($result_type == "grouped") {
@@ -734,7 +763,27 @@ class Home_Model extends CI_Model
 
         return ($rs->num_rows() > 0) ? $rs->result() : NULL;
     }
+    function get_tutor_courses_byid($tutor_id = "", $result_type = "")
+    {
+        if(empty($tutor_id))
+            return NULL;
 
+        //$tutor_id = $this->get_uid_by_slug($tutor_slug);
+        $query = "SELECT courses.slug, courses.name FROM ".$this->db->dbprefix('categories')." courses INNER JOIN ".$this->db->dbprefix('tutor_courses')." tc ON tc.course_id=courses.id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1 ORDER BY tc.sort_order ASC ";
+
+        if($result_type == "grouped") {
+
+            $query = "SELECT GROUP_CONCAT(' ', courses.name) AS tutoring_courses FROM ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1 ORDER BY tc.sort_order ASC";
+
+            $rs = $this->db->query($query);
+
+            return ($rs->num_rows() > 0) ? $rs->row()->tutoring_courses : NULL;
+        }
+
+        $rs = $this->db->query($query);
+
+        return ($rs->num_rows() > 0) ? $rs->result() : NULL;
+    }
 
     /* GET TUTOR LOCATIONS BY TUTOR SLUG */
     function get_tutor_locations($tutor_slug = "")
