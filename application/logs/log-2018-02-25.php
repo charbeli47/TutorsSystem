@@ -959,3 +959,48 @@ DEBUG - 2018-02-25 12:46:14 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\Tut
 DEBUG - 2018-02-25 12:46:14 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template.php
 INFO - 2018-02-25 12:46:14 --> Final output sent to browser
 DEBUG - 2018-02-25 12:46:14 --> Total execution time: 1.2312
+INFO - 2018-02-25 15:04:39 --> Config Class Initialized
+INFO - 2018-02-25 15:04:39 --> Hooks Class Initialized
+DEBUG - 2018-02-25 15:04:39 --> UTF-8 Support Enabled
+INFO - 2018-02-25 15:04:39 --> Utf8 Class Initialized
+INFO - 2018-02-25 15:04:39 --> URI Class Initialized
+INFO - 2018-02-25 15:04:39 --> Router Class Initialized
+INFO - 2018-02-25 15:04:39 --> Output Class Initialized
+INFO - 2018-02-25 15:04:39 --> Security Class Initialized
+DEBUG - 2018-02-25 15:04:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-02-25 15:04:39 --> Input Class Initialized
+INFO - 2018-02-25 15:04:39 --> Language Class Initialized
+INFO - 2018-02-25 15:04:39 --> Language Class Initialized
+INFO - 2018-02-25 15:04:39 --> Config Class Initialized
+INFO - 2018-02-25 15:04:39 --> Loader Class Initialized
+INFO - 2018-02-25 15:04:39 --> Helper loaded: security_helper
+INFO - 2018-02-25 15:04:39 --> Helper loaded: form_helper
+INFO - 2018-02-25 15:04:39 --> Helper loaded: url_helper
+INFO - 2018-02-25 15:04:39 --> Helper loaded: global_helper
+INFO - 2018-02-25 15:04:39 --> Helper loaded: inflector_helper
+INFO - 2018-02-25 15:04:39 --> Helper loaded: text_helper
+INFO - 2018-02-25 15:04:39 --> Database Driver Class Initialized
+INFO - 2018-02-25 15:04:40 --> Model Class Initialized
+INFO - 2018-02-25 15:04:40 --> Controller Class Initialized
+DEBUG - 2018-02-25 15:04:40 --> Config file loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\config/ion_auth.php
+INFO - 2018-02-25 15:04:40 --> Email Class Initialized
+INFO - 2018-02-25 15:04:40 --> Language file loaded: language/english/ion_auth_lang.php
+INFO - 2018-02-25 15:04:40 --> Helper loaded: cookie_helper
+INFO - 2018-02-25 15:04:40 --> Helper loaded: language_helper
+INFO - 2018-02-25 15:04:40 --> Session: Class initialized using 'database' driver.
+INFO - 2018-02-25 15:04:40 --> Model Class Initialized
+INFO - 2018-02-25 15:04:40 --> Helper loaded: date_helper
+INFO - 2018-02-25 13:04:40 --> Form Validation Class Initialized
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/models/Tutor_model.php
+INFO - 2018-02-25 13:04:40 --> Model Class Initialized
+INFO - 2018-02-25 13:04:40 --> Model Class Initialized
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/header.php
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/scroller.php
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/settings/models/Settings_model.php
+INFO - 2018-02-25 13:04:40 --> Model Class Initialized
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template-leftmenu.php
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\modules/tutor/views/session_started.php
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/footer.php
+DEBUG - 2018-02-25 13:04:40 --> File loaded: D:\WorkTools\work\MaiZonPub\Web\TutorsSystem\Web\application\views\template/site/tutor-template.php
+INFO - 2018-02-25 13:04:40 --> Final output sent to browser
+DEBUG - 2018-02-25 13:04:40 --> Total execution time: 1.2914
