@@ -10,9 +10,17 @@
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date().getTime() + 1000 * <?php echo $duration?> * 60;
+//var timez = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-// Update the count down every 1 second
+var date = new Date(<?php echo $started_at;?>*1000);
+
+var year = date.getFullYear();
+var month = date.getMonth() + 1;
+var day = date.getDate();
+var hours = date.getHours();
+var minutes = date.getMinutes();
+var seconds = date.getSeconds();
+var countDownDate = new Date(year, month - 1, day,hours,minutes,seconds,0).getTime() + 1000 * <?php echo $duration?> * 60;
 var x = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDownDate - now;
@@ -25,6 +33,10 @@ var x = setInterval(function() {
         $("#submitbutt").show();
     }
 }, 1000);
+
+
+
+
 </script>
         </div>
 

@@ -2246,6 +2246,17 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
         }
         }
     }
+    function getstartdate()
+    {
+        $timezone = $_REQUEST["timezone"];
+        $startdate = $_REQUEST["startdate"];
+        $tz = new DateTimeZone($timezone); 
+        
+
+        $newformat = new DateTime($startdate);
+        $newformat->setTimezone($tz);
+        var_dump($newformat->format(""));
+    }
     function session_started($bookingId)
     {
     if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
@@ -2257,6 +2268,13 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
             $booking_det = $booking_det[0];
             $booking_det->status = 'session_initiated';
             $inputdata['status'] = 'session_initiated'; 
+            $startedat = new DateTime();//"Y-m-d H:i:s");
+            if(!isset($booking_det->started_at))
+            {
+                $inputdata["started_at"] = $startedat->format("Y-m-d H:i:s");
+            }
+            else
+                $startedat = $booking_det->started_at;
             $this->base_model->update_operation($inputdata, 'bookings', array('booking_id' => $bookingId));
         }
         $this->data['bookingId'] = $bookingId;
@@ -2266,6 +2284,13 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 		$this->data['activesubmenu'] 	= "publish";
 		$this->data['pagetitle'] 		= get_languageword('Course_Online');
 		$this->data['content'] 			= 'session_started';
+        if(!isset($booking_det->started_at))
+            $this->data['started_at'] =         $startedat->getTimestamp();
+        else
+        {
+            $newformat = new DateTime($startedat);
+            $this->data['started_at'] =    $newformat->getTimestamp();     
+        }
 		$this->data['texteditor'] 		= TRUE;
         $this->_render_page('template/site/tutor-template', $this->data);
     }
