@@ -78,7 +78,16 @@ $.src='https://v2.zopim.com/?dQF9inZqajsH6ZcEUDNlVW6RTfsyJfWv';z.t=+new Date;$.
 type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 </script>
 <!--End of Zendesk Chat Script-->   
-      
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120538370-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120538370-1');
+</script>
+  
 </head>
 
 <body>
