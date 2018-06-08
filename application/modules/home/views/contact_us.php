@@ -8,7 +8,8 @@
                 </div>
                 <?php 
 $contact_settings = $this->config->item('contact_settings');
-if( $contact_settings != '') { ?>
+$site_settings = $this->config->item('site_settings');
+if( $contact_settings != '' || $system_settings!='') { ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 ">
                     <h3 class="contact-head"><?php echo get_languageword('Contact Us');?></h3>
                     <ul class="contact-details">
@@ -30,42 +31,37 @@ if( $contact_settings != '') { ?>
                             <p><?php echo $contact_settings->offline_support; ?></p>
                         </li>
                         <?php } ?>
+                        <?php if(!empty($site_settings->phone)) { ?>
+                        <li>
+                            <h4><?php echo get_languageword('Phone');?>:</h4>
+                            <p><?php echo $site_settings->phone; ?></p>
+                        </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <?php } ?>
                 <?php 
 $social_settings = $this->config->item('social_settings');
+
 if( $social_settings != '' ) { ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 no-padleft">
                     <h3 class="contact-head"><?php echo get_languageword('follow us');?></h3>
-                    <ul class="contact-details">
-
+                    <br/>
                         <?php if(!empty($social_settings->facebook)) { ?>
-                        <li>
-                            <h4><?php echo get_languageword('Facebook')?>:</h4>
-                            <p><?php echo $social_settings->facebook; ?></p>
-                        </li>
-                        <?php } ?>
+                        
+                            <a href="<?php echo $social_settings->facebook; ?>" target="_blank" class="fa fa-facebook-square" style="font-size:30px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                       <?php } ?>
 
                         <?php if(!empty($social_settings->twitter)) { ?>
-                        <li>
-                            <h4><?php echo get_languageword('Twitter');?>:</h4>
-                            <p><?php echo $social_settings->twitter; ?></p>
-                        </li>
-                        <?php } ?>
+                            <a href="<?php echo $social_settings->twitter; ?>" target="_blank" class="fa fa-twitter-square" style="font-size:30px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                       <?php } ?>
 
-                        <?php if(!empty($social_settings->google)) { ?>
-                        <li>
-                            <h4><?php echo get_languageword('Google Plus')?>:</h4>
-                            <p><?php echo $social_settings->google; ?></p>
-                        </li>
+                        <?php if(!empty($social_settings->instagram)) { ?>
+                        <a href="<?php echo $social_settings->instagram; ?>" target="_blank" class="fa fa-instagram" style="font-size:30px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php } ?>
 
                         <?php if(!empty($social_settings->youtube)) { ?>
-                        <li>
-                            <h4><?php echo get_languageword('YouTube')?>:</h4>
-                            <p><?php echo $social_settings->youtube; ?></p>
-                        </li>
+                            <a href="<?php echo $social_settings->youtube; ?>" target="_blank" class="fa fa-youtube-square" style="font-size:30px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php } ?>
                     </ul>
                 </div>

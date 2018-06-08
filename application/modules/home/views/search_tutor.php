@@ -34,7 +34,7 @@
 				<?php } ?>
 				<?php if(!empty($lng_opts)) { ?>
 				<div class="col-md-3">
-					<label><?php echo get_languageword('teaching_language'); ?></label>
+					<label><?php echo get_languageword('spoken_language'); ?></label>
 					<?php
 
 							$sel = set_value('teaching_language_slug', (!empty($teaching_language_slug)) ? $teaching_language_slug : '');
@@ -90,7 +90,7 @@
                     <input type="hidden" name="course_slug" id="course_slug" value="<?php if(!empty($course_slug)) echo implode(',', $course_slug);?>" />
                     <input type="hidden" name="country_slug" id="country_slug" value="<?php if(!empty($country_slug)) echo implode(',', $country_slug);?>" />
                     <input type="hidden" name="teaching_language_slug" id="teaching_language_slug" value="<?php if(!empty($teaching_language_slug)) echo implode(',', $teaching_language_slug);?>" />
-                    <input type="hidden" name="teacher_name" id="teacher_name" value="<?php if(!empty($teacher_name)) echo teacehr_name;?>" />
+                    <input type="hidden" name="teacher_name" id="teacher_name" value="<?php if(!empty($teacher_name)) echo $teacher_name;?>" />
                     <a class="btn-link" id="btn_load_more"> <?php echo get_languageword("load_more");?></a>
                 </div>
             </div>
@@ -125,7 +125,7 @@
 	          offset        : $('#offset').val(),
 	          limit         : $('#limit').val(), 
 	          course_slug   : $('#course_slug').val(), 
-	          location_slug : $('#location_slug').val(), 
+	          country_slug : $('#country_slug').val(), 
 	          teaching_language_slug : $('#teaching_language_slug').val()
 	        },
 	        type:"post", 

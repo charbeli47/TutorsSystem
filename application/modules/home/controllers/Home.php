@@ -31,7 +31,8 @@ class Home extends MY_Controller
 
 		$show_records_count_in_search_filters = strip_tags($this->config->item('site_settings')->show_records_count_in_search_filters);
 		$avail_records_cnt = "";
-
+        $this->load->model('home_model');
+		$this->data['package_data'] = $this->home_model->list_student_packages();
 		//Location Options
 		$locations = $this->home_model->get_locations(array('child' => true));
 		$location_opts[''] = get_languageword('select_location');
@@ -45,8 +46,8 @@ class Home extends MY_Controller
 			}
 		}
 		$this->data['location_opts'] = $location_opts;
-
-
+        $homeslider = $this->home_model->get_homeslider();
+        $this->data['homeslider'] = $homeslider;
 		//Course Options
 		$courses = $this->home_model->get_courses();
 		$course_opts[''] = get_languageword('type_of_course');
@@ -337,10 +338,314 @@ class Home extends MY_Controller
 			redirect('auth/login', 'refresh');
 		}
 		$this->load->model('base_model');
-		$bookingId = $this->book_tutor();
-		$this->data['activemenu'] 	= "search_tutor";		
-		$this->data['content'] 		= 'confirm_payment';
+        $student_id 		= $this->ion_auth->get_user_id();
+        $user_info = $this->base_model->get_user_details( $student_id );
+			$user_info = $user_info[0];
+        $count = $this->home_model->count_records("bookings","student_id=".$student_id." and status in('approved', 'session_initiated', 'running', 'completed', 'closed')");
+        if($user_info->free_courses>0)
+		{
+            $this->book_free_tutor();
+        }
+        else
+        {
+            $bookingId = $this->book_tutor();
+		    $this->data['activemenu'] 	= "search_tutor";		
+		    $this->data['content'] 		= 'confirm_payment';
+            $this->data['is_free'] = false;
+        }
 		$this->_render_page('template/site/site-template', $this->data);
+	}
+    function book_free_tutor()
+	{
+		if (!$this->ion_auth->logged_in()) {
+			$this->prepare_flashmessage(get_languageword('please_login_to_book_tutor'), 2);
+			redirect('auth/login', 'refresh');
+		}
+
+		if(!$this->ion_auth->is_student()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth', 'refresh');
+		}
+
+
+		if(!$this->input->post()) {
+
+			$this->prepare_flashmessage(get_languageword('invalid_request'), 1);
+			redirect(URL_HOME_SEARCH_TUTOR, 'refresh');
+		}
+
+        
+		$student_id 		= $this->ion_auth->get_user_id();
+		$tutor_id   		= $this->input->post('tutor_id');
+		$tutor_slug   		= $this->input->post('tutor_slug');
+		$course_slug		= $this->input->post('course_slug');
+        
+        $reference_number   = $this->input->post('reference_number');
+	
+
+
+		//Check Whether student is premium user or not
+		if(!is_premium($student_id)) {
+
+			$this->prepare_flashmessage(get_languageword('please_become_premium_member_to_book_tutor'), 2);
+			redirect(URL_STUDENT_LIST_PACKAGES, 'refresh');
+		}
+
+		$course_details = $this->home_model->get_tutor_course_details_byid($course_slug, $tutor_id);
+
+		//Check whether Tutor teaches the course or not
+		if(empty($course_details)) {
+
+			$this->prepare_flashmessage(get_languageword('no_course_details_found'), 2);
+			redirect(URL_HOME_TUTOR_PROFILE.'/'.$tutor_slug, 'refresh');
+		}
+
+		$course_id 				= $course_details->course_id;
+		//$fee 					= $course_details->fee;
+		$tutor_rec 	 = getUserRec($tutor_id);
+		$fee 					= $tutor_rec ->fee;
+
+		//Check If student has sufficient credits to book tutor
+		if ( $fee > 0 ) { // If the course is paid only we need to check for credits!!
+			if(!is_eligible_to_make_booking($student_id, $fee)) {
+
+				$this->prepare_flashmessage(get_languageword("you_do_not_have_enough_credits_to_book_the_tutor_Please_get_required_credits_here"), 2);
+				redirect(URL_STUDENT_LIST_PACKAGES, 'refresh');
+			}
+		}
+
+		$start_date  			= date('Y-m-d', strtotime($this->input->post('start_date')));
+		$time_slot   			= $this->input->post('time_slot_hidden');
+
+		/// khaline jarebbb ekheddoun men hon sah sah  100 bel 100////
+		
+	
+		
+	//Check If student already booked the tutor on the same slot and it is not yet approved by tutor
+		if($this->home_model->is_already_booked_the_tutor($student_id, $tutor_id, $course_id, $start_date, $time_slot)) {
+
+			$this->prepare_flashmessage(get_languageword('you_already_booked_this_tutor_and_your_course_not_yet_completed'), 2);
+			redirect(URL_HOME_TUTOR_PROFILE.'/'.$tutor_slug, 'refresh');
+		}
+
+		//Check If selected time-slot is available
+		/*if(empty($course_details->time_slots) || !$this->home_model->is_time_slot_avail($tutor_id, $course_id, $start_date, $time_slot)) {
+
+			$this->prepare_flashmessage(get_languageword('time_slot_not_available'), 2);
+			redirect(URL_HOME_TUTOR_PROFILE.'/'.$tutor_slug, 'refresh');
+		}*/
+
+
+		$content 				= $course_details->content;
+		$duration_value 		= $course_details->duration_value;
+		$duration_type 			= $course_details->duration_type;
+		$per_credit_value 		= $course_details->per_credit_value;
+		//$days_off 				= $course_details->days_off;
+
+		$preferred_location 	= ($this->input->post('teaching_type') == "willing-to-travel") ? $this->input->post('location_slug') : $this->input->post('teaching_type');
+		$message   				= $this->input->post('message');
+
+		if($duration_type == "hours") {
+
+			$formatted  = str_replace(':', '.', $time_slot);
+			$time 	    = explode('-', str_replace(' ', '', $formatted));
+
+			$start_time = number_format($time[0],2);
+			$end_time   = number_format($time[1],2);
+
+			$total_time = $end_time - $start_time;
+
+			if($total_time >= 1) {
+
+				$days = round($duration_value / $total_time);
+
+			} else {
+
+				$total_time = (int)(explode('.', number_format($total_time,2))[1]);
+				$days = round($duration_value / ($total_time/60));
+			}
+
+			$end_date = date("Y-m-d", strtotime($start_date.'+'.$days.' days'));
+
+		} else {
+
+			$end_date = date("Y-m-d", strtotime($start_date.'+'.$duration_value.' '.$duration_type));
+		}
+
+		$end_date = date("Y-m-d", strtotime($end_date.'-1 days'));
+
+		$admin_commission   	= get_system_settings('admin_commission_for_a_booking');
+		$admin_commission_val   = round($fee * ($admin_commission / 100));
+
+		$created_at   		= date('Y-m-d H:i:s');
+		$updated_at   		= $created_at;
+		$updated_by   		= $student_id;
+
+
+		$inputdata	=	array(
+								'student_id'			=> $student_id,
+                                'reference_number'      => $reference_number,
+								'tutor_id'				=> $tutor_id,
+                                'status'                =>'approved',
+								'course_id'				=> $course_id,
+								'content'				=> $content,
+								'duration_value'		=> $duration_value,
+								'duration_type'			=> $duration_type,
+								'fee'					=> $fee,
+								'per_credit_value'		=> $per_credit_value,
+								'start_date'			=> $start_date,
+								'end_date'				=> $end_date,
+								'time_slot'				=> $time_slot,
+								//'days_off'				=> $days_off,
+								'preferred_location'	=> $preferred_location,
+								'message'				=> $message,
+								'admin_commission'		=> $admin_commission,
+								'admin_commission_val'	=> $admin_commission_val,
+								'created_at'			=> $created_at,
+								'updated_at'			=> $updated_at,
+								'updated_by'			=> $updated_by,
+                                'tutor_course_id'       => $course_slug
+							);
+
+		$ref = $this->base_model->insert_operation($inputdata, 'bookings');
+        if($ref > 0) {
+
+			//Log Credits transaction data & update user net credits - Start
+			$log_data = array(
+							'user_id' => $student_id,
+							'credits' => $fee,
+							'per_credit_value' => $per_credit_value,
+							'action'  => 'debited',
+							'purpose' => 'Slot booked with the Tutor "'.$tutor_slug.'" and Booking Id is '.$ref,
+							'date_of_action	' => date('Y-m-d H:i:s'),
+							'reference_table' => 'bookings',
+							'reference_id' => $ref,
+						);
+            
+			log_user_credits_transaction($log_data);
+
+			update_user_credits($student_id, $fee, 'debit');
+            
+			$booking_det = $this->base_model->fetch_records_from('bookings', array('reference_number' => $reference_number));
+            if(!empty($booking_det)) {
+                $booking_det = $booking_det[0];
+                $booking_det->status = 'approved';
+                $inputdata = array();	
+                $inputdata['status'] = $booking_det->status;
+                $student_id 		= $this->ion_auth->get_user_id();
+                
+                $tutor_id = $booking_det->tutor_id; 
+                $this->base_model->update_operation($inputdata, 'bookings', array('reference_number' => $reference_number));
+                $email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '5'));
+                if(!empty($email_tpl)) {
+
+					$email_tpl = $email_tpl[0];
+
+					$student_rec = getUserRec($student_id);
+					$tutor_rec 	 = getUserRec($tutor_id);
+                    $coursesadded = $student_rec->free_courses -1;
+                        
+                        $user_data['free_courses'] = $coursesadded;
+						$this->base_model->update_operation($user_data, 'users', array('id' => $student_id));
+
+					if(!empty($email_tpl->from_email)) {
+
+						$from = $email_tpl->from_email;
+
+					} else {
+
+						$from 	= get_system_settings('Portal_Email');
+					}
+
+					$to 	= $tutor_rec->email;
+
+					if(!empty($email_tpl->template_subject)) {
+
+						$sub = $email_tpl->template_subject;
+
+					} else {
+
+						$sub = get_languageword("Booking Request From Student");
+					}
+
+					if(!empty($email_tpl->template_content)) {
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
+                    $course = $this->db->get_where('categories',array('id' => $booking_det->course_id))->row();
+                    
+                    $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
+						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+
+					} else {
+
+						$msg = get_languageword('please')." <a href='".URL_AUTH_LOGIN."'> ".get_languageword('Login Here')."</a> ".get_languageword('to view the booking details');
+						$msg .= "<p>".get_languageword('Thank you')."</p>";
+					}
+
+					sendEmail($from, $to, $sub, $msg);
+                    
+				}
+                //send to student
+                $email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '19'));
+                if(!empty($email_tpl)) {
+
+					$email_tpl = $email_tpl[0];
+
+					$student_rec = getUserRec($student_id);
+					$tutor_rec 	 = getUserRec($tutor_id);
+
+
+					if(!empty($email_tpl->from_email)) {
+
+						$from = $email_tpl->from_email;
+
+					} else {
+
+						$from 	= get_system_settings('Portal_Email');
+					}
+
+					$to 	= $student_rec->email;
+
+					if(!empty($email_tpl->template_subject)) {
+
+						$sub = $email_tpl->template_subject;
+
+					} else {
+
+						$sub = get_languageword("Thank you for your booking with us.");
+					}
+
+					if(!empty($email_tpl->template_content)) {
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
+                    $course = $this->db->get_where('categories',array('id' => $booking_det->course_id))->row();
+                    
+                    $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
+						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+
+					} else {
+
+						$msg = get_languageword('please')." <a href='".URL_AUTH_LOGIN."'> ".get_languageword('Login Here')."</a> ".get_languageword('to view the booking details');
+						$msg .= "<p>".get_languageword('Thank you')."</p>";
+					}
+
+					sendEmail($from, $to, $sub, $msg);
+                    
+				}
+                $this->prepare_flashmessage(get_languageword('your_slot_with_the_tutor_booked_successfully_and_have_been_approved. You_can_start_the_course_on_the_booked_date'), 0);
+			
+			redirect(URL_STUDENT_ENQUIRIES);
+            }
+			
+				return $ref;
+
+		} else {
+
+			$this->prepare_flashmessage(get_languageword('your_slot_with_the_tutor_not_booked_you_can_send_message_to_the_tutor'), 2);
+			redirect(URL_HOME_TUTOR_PROFILE.'/'.$tutor_slug);
+		}
 	}
     function book_tutor()
 	{
@@ -524,8 +829,9 @@ class Home extends MY_Controller
 					}
 
 					if(!empty($email_tpl->template_content)) {
-                    $course_category = $this->db->get_where('course_categories',array('id' => $course_id))->row();
-                    $course = $this->db->get_where('categories',array('id' => $course_category->category_id))->row();
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $course_id))->row();
+                    //var_dump($course_id);exit;
+                    $course = $this->db->get_where('categories',array('id' => $course_id))->row();
                     
                     $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
 						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $start_date." & ".$time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
@@ -692,11 +998,11 @@ class Home extends MY_Controller
 					}
 
 					if(!empty($email_tpl->template_content)) {
-                    $course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
-                    $course = $this->db->get_where('categories',array('id' => $course_category->category_id))->row();
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
+                    $course = $this->db->get_where('categories',array('id' => $booking_det->course_id))->row();
                     
                     $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
-						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
 						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
 						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -740,11 +1046,11 @@ class Home extends MY_Controller
 					}
 
 					if(!empty($email_tpl->template_content)) {
-                    $course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
-                    $course = $this->db->get_where('categories',array('id' => $course_category->category_id))->row();
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
+                    $course = $this->db->get_where('categories',array('id' => $booking_det->course_id))->row();
                     
                     $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
-						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
 						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
 						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -805,11 +1111,11 @@ class Home extends MY_Controller
 					}
 
 					if(!empty($email_tpl->template_content)) {
-                    $course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
-                    $course = $this->db->get_where('categories',array('id' => $course_category->category_id))->row();
+                    //$course_category = $this->db->get_where('course_categories',array('id' => $booking_det->course_id))->row();
+                    $course = $this->db->get_where('categories',array('id' => $booking_det->course_id))->row();
                     
                     $course_name = $course->name;//$this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
-						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+						$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
 						$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOGINLINK___');
 						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -820,7 +1126,7 @@ class Home extends MY_Controller
 					}
 
 					sendEmail($from, $to, $sub, $msg);
-                    sendEmail($from, "info@maizonpub.com", "Odemy.net Payment should be setteled with Subject:" + $sub, $msg);
+                    sendEmail($from, "info@odemy.net", "Odemy.net Payment should be setteled with Subject:" + $sub, $msg);
 				}
                 $this->prepare_flashmessage(get_languageword('your_slot_with_the_tutor_booked_successfully_and_have_been_approved. You_can_start_the_course_on_the_booked_date'), 0);
 			
@@ -1067,13 +1373,15 @@ class Home extends MY_Controller
 						);
 
 		$tutor_list = $this->home_model->get_tutors($params);
-		$this->data['tutor_list'] = $tutor_list;
+        $tutor_list = $this->my_array_unique($tutor_list);
+        //$tutor_list = array_unique($tutor_list);
+		
+        $this->data['tutor_list'] = $tutor_list;
 		
 			
 		//total rows count
 		unset($params['limit']);
         $total_records = count($this->home_model->get_tutors($params));
-
 
 		$this->data['total_records'] = $total_records;
 		$this->data['course_slug'] 	 = $course_slug;
@@ -1098,7 +1406,8 @@ class Home extends MY_Controller
 			}
 		}
 		$this->data['course_opts'] = $course_opts;
-        $countries = $this->base_model->fetch_records_from('country');
+        //$countries = $this->base_model->fetch_records_from('country');
+        $countries = $this->home_model->get_tutors_countries();
 		$country_opts[''] = get_languageword('select_Nationality');
         $country_opts[' '] = get_languageword('all_nationalities');
 		if(!empty($countries)) {
@@ -1107,7 +1416,7 @@ class Home extends MY_Controller
 			}
 		}
         $this->data['country_opts'] = $country_opts;
-        $lng_opts = $this->db->get_where('languages',array('status' => 'Active'))->result();
+        $lng_opts = $this->home_model->get_tutors_languages();//$this->db->get_where('languages',array('status' => 'Active'))->result();
 		$options = array();
         $options[' '] = get_languageword('all_languages');
 		if(!empty($lng_opts))
@@ -1170,7 +1479,26 @@ class Home extends MY_Controller
 		$this->_render_page('template/site/site-template', $this->data);
 	}
 
+    function my_array_unique($array, $keep_key_assoc = false){
+    $duplicate_keys = array();
+    $tmp = array();       
 
+    foreach ($array as $key => $val){
+        // convert objects to arrays, in_array() does not support objects
+        if (is_object($val))
+            $val = (array)$val;
+
+        if (!in_array($val, $tmp))
+            $tmp[] = $val;
+        else
+            $duplicate_keys[] = $key;
+    }
+
+    foreach ($duplicate_keys as $key)
+        unset($array[$key]);
+
+    return $keep_key_assoc ? $array : array_values($array);
+}
 
 	function load_more_tutors()
 	{
@@ -1197,6 +1525,7 @@ class Home extends MY_Controller
 						);
 
 		$tutor_list  	= $this->home_model->get_tutors($params);
+        $tutor_list = $this->my_array_unique($tutor_list);
 		$result 		= $this->load->view('sections/tutor_list_section', array('tutor_list' => $tutor_list), true);
 
 		$data['result'] = $result;

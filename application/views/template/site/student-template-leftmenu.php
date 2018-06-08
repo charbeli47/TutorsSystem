@@ -39,7 +39,7 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('running')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/running"><?php echo get_languageword('running'); ?> </a></li>
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('completed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/completed"><?php echo get_languageword('completed'); ?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('called_for_admin_intervention')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/called_for_admin_intervention"><?php echo get_languageword('claim_for_admin_intervention'); ?> </a></li>-->
-				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('closed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/closed"><?php echo get_languageword('closed'); ?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == get_languageword('closed')) echo 'class="active"';?>><a href="<?php echo URL_STUDENT_ENQUIRIES;?>/closed"><?php echo get_languageword('closed_and_rating'); ?> </a></li>
 			</ul>
 		</div>
 		<!--/.panel-body -->
@@ -70,7 +70,7 @@
 		
 	</div>
 	
-</div>
+</div>-->
 
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -93,7 +93,7 @@
 	
 </div>
 
-
+<!--
 
 <div class="dashboard-link"><a <?php if(isset($activemenu) && $activemenu == 'my_course_purchases') echo 'class="active"';?> href="<?php echo URL_STUDENT_COURSE_PURCHASES; ?>"><i class="fa fa-book"></i><?php echo get_languageword('My_Course_Purchases');?></a></div>
 -->
@@ -133,7 +133,7 @@
 	<div id="collapseManage" class="panel-collapse <?php if(isset($activemenu) && $activemenu == 'manage') echo 'collapse in'; else echo 'collapse';?>">
 		<div class="panel-body">
 			<ul class="dashboard-links">
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_courses') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_COURSES;?>"><?php echo get_languageword('courses');?> </a></li>
+				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_courses') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_COURSES;?>"><?php echo get_languageword('check_completed_courses');?> </a></li>
 				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_locations') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MANAGE_LOCATIONS ?>"><?php echo get_languageword('Locations');?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'manage_teaching_types') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_PREFFERED_TEACHING_TYPES ?>"><?php echo get_languageword('Preffered Teaching Type');?></a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'certificates') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_CERTIFICATES ?>"><?php echo get_languageword('Certificates');?></a></li>
@@ -161,7 +161,7 @@
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'personal_info') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_PERSONAL_INFO ?>"><?php echo get_languageword('Personnel Information')?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'profile_information') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_PROFILE_INFO ?>"><?php echo get_languageword('Profile Information');?> </a></li>
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'update_contact_info') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_CONTACT_INFO ?>"><?php echo get_languageword('My Address');?></a></li>
-				<li <?php if(isset($activesubmenu) && $activesubmenu == 'gallery') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MY_GALLARY ?>"><?php echo get_languageword('Gallery');?></a></li>
+				<!--<li <?php if(isset($activesubmenu) && $activesubmenu == 'gallery') echo 'class="active"';?>><a href="<?php echo URL_STUDENT_MY_GALLARY ?>"><?php echo get_languageword('Gallery');?></a></li>-->
 				<li <?php if(isset($activesubmenu) && $activesubmenu == 'change_password') echo 'class="active"';?>><a href="<?php echo URL_AUTH_CHANGE_PASSWORD ?>"><?php echo get_languageword('Change Password');?></a></li>
 			</ul>
 		</div>

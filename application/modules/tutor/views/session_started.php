@@ -64,6 +64,7 @@ var x = setInterval(function() {
 			?>
 			<div class="col-sm-12 ">
 				<button class="btn-link-dark dash-btn" style="display:none" id="submitbutt" name="submitbutt" type="Submit"><?php echo get_languageword('End Session');?></button>
+                <a class="btn-link-dark dash-btn" href="<?php echo $roomsession; ?>" target="_blank"><?php echo get_languageword('Open Zoom');?></a>
 			</div>
 
 		</form>

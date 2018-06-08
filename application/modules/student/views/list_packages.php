@@ -5,20 +5,20 @@
 <?php
 if(count($package_data) > 0) { 
 
-	echo '<div class="alert alert-info"><a href="#" class="close" data-dismiss="alert">×</a><strong>Info!</strong> '.get_languageword('please_become_premium_member_to_avail_additional_features_like').' "'.get_languageword('booking_tutors').'" '.get_languageword('and').' "'.get_languageword('sending_messages').'". '.get_languageword('credits_required_to_become_premium_member ').'<strong>'.get_system_settings('min_credits_for_premium_student').'</strong></div>';
+	//echo '<div class="alert alert-info"><a href="#" class="close" data-dismiss="alert">×</a><strong>Info!</strong> '.get_languageword('please_become_premium_member_to_avail_additional_features_like').' "'.get_languageword('booking_tutors').'" '.get_languageword('and').' "'.get_languageword('sending_messages').'". '.get_languageword('credits_required_to_become_premium_member ').'<strong>'.get_system_settings('min_credits_for_premium_student').'</strong></div>';
 
 	?>
 <?php echo form_open('payment/index', 'id="tutor_subject_mngt" class="form-multi-select"');?>
 	<div class="custom_accordion1">
 		
 		<div class="row">
-			<div class="pricing-box-height">
+			<div>
 				<?php 
 				  foreach($package_data as $l) { ?>
 			   	<div class="col-lg-6 col-md-6 col-sm-12">
 				  <div class="pricing_div">
 					  <div class="site_pac_hed green-hed">
-						
+						<img src="/assets/uploads/package_logos/<?php echo $l->image?>" style="width:100%"/>
 						<?php 
 						$currency_symbol = '';
 						if(isset($site_settings->currency_symbol))
@@ -36,28 +36,27 @@ if(count($package_data) > 0) {
 								$final_cost = $l->package_cost - $discount;
 							?>
 						<?php } else { ?>
-						&nbsp &nbsp 
 						<?php 
-						   if($currency_symbol != '')
-							echo $currency_symbol.' ';
-							echo $final_cost;
+						   //if($currency_symbol != '')
+							//echo $currency_symbol.' ';
+							//echo $final_cost;
 						}
 							?> 
 					 </div>
 					<div class="pack-list">
 						<p><?php echo get_languageword('Package Name');?> <strong><?php echo $l->package_name?></strong></p>
-						<p><?php echo get_languageword('Credits'); ?> <strong><?php echo $l->credits?></strong></p>
+						<p><?php echo get_languageword('Classes to be obtained: '); ?> <strong><?php echo $l->credits?></strong></p>
 
 						<?php if(isset($l->discount) && ($l->discount_type == 'Value')){?>
-						<p><strong> <?php echo get_languageword('Discount:');?><?php echo get_system_settings('currency_symbol').' '. $l->discount;?></strong></p>
+						<p><strong> <?php echo get_languageword('Discount: ');?><?php echo get_system_settings('currency_symbol').' '. $l->discount;?></strong></p>
 						<?php }
 						else
 						{?>
-							<p> <?php echo get_languageword('Discount');?><strong><?php echo  $l->discount;?> %</strong></p>
+							<p> <?php echo get_languageword('Discount: ');?><strong><?php echo  $l->discount;?> %</strong></p>
 						<?php }
 						?>
 
-						<p><?php echo get_languageword('Package Cost');?> <strike><?php echo get_system_settings('currency_symbol').' '.$l->package_cost?></strike><strong> <b>
+						<p><?php echo get_languageword('Package Cost: ');?> <strike><?php echo get_system_settings('currency_symbol').' '.$l->package_cost?></strike><strong> <b>
 						<?php echo  get_system_settings('currency_symbol').' '. $final_cost;?></b></strong></p>
 						
 					 </div>
@@ -79,6 +78,7 @@ if(count($package_data) > 0) {
 		   	</div>
 		</div>
 		</br>
+        <?php if(count($payment_gateways)>1){?>
 		<p class="top20"><b><?php echo get_languageword('select_Payment_Gateway'); ?></b></p>
 		<?php
 		$system_currency = get_system_settings('Currency_Code');
@@ -96,6 +96,7 @@ if(count($package_data) > 0) {
 					}
 				}
 				?>
+                
 				<div class="col-lg-4 col-md-4 ">
 				<div class=" radio">
 				<label>
@@ -114,6 +115,9 @@ if(count($package_data) > 0) {
 			}
 			echo '</div>';
 	   }
+       }else{?>
+       <input type="hidden" name="gateway_id" value="<?php echo $payment_gateways[0]->type_id;?>">
+<?php }
 	   ?>
 	   <script>
 	   function assign_price( package_id, final_cost, name ) {

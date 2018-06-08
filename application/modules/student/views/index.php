@@ -53,6 +53,12 @@
 				<p><?php echo get_languageword('Bookings Approved');?></p>
 			</div>
 		</div>	
+        <div class="col-md-4 pad10">
+			<div class="dash-block d-block6">
+				<h2><?php echo $student_dashboard_data['free_courses'];?></h2>
+				<p><?php echo get_languageword('Remaining free classes');?></p>
+			</div>
+		</div>	
 		<!--<div class="col-md-4 pad10">
 			<div class="dash-block d-block6">
 				<h2><?php echo $student_dashboard_data['open_leads'];?><a class="pull-right" href="<?php echo base_url();?>student/student_leads"><?php echo get_languageword('View');?></a></h2>

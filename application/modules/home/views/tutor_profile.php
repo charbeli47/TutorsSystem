@@ -194,7 +194,7 @@
                     <h2 class="heading-line"><?php echo get_languageword('reserve_your_spot'); ?></h2>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                    <h4 class="fee" id="fee"><?php  echo $row->fee?>$</h2>
+                    <h4 class="fee" id="fee"><?php  echo $row->fee?>$ / 25 min</h2>
                     <div class="feeperhour" id="duration"> </div>
                     
                 </div>
@@ -208,8 +208,10 @@ $('#calendar').fullCalendar({
 header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
+        right: 'listWeek,month,agendaWeek,agendaDay'
       },
+      noEventsMessage: 'no slots are opened for this teacher please choose another one ',
+      defaultView:'listWeek',
 eventSources: [
             {
                 color: '#18b9e6',   
@@ -486,7 +488,7 @@ function formatDate(date) {
          <?php if(!empty($tutor_reviews)){?>
             <div class="row mtop7">
                 <div class="col-sm-12">
-                    <h2 class="heading-line"><?php echo get_languageword('My Reviews');?></h2>
+                    <h2 class="heading-line"><?php echo get_languageword('Student Reviews');?></h2>
                     <ul class="tree">
                         <li>
                         <?php foreach($tutor_reviews as $review) { ?>
@@ -624,7 +626,6 @@ function formatDate(date) {
 
 var sd= $('#start_date').val();
 var timeslotselected=$("input[name='time_slot']:checked").val();
-debugger
  var d=$('#duration').text();
 $('#hiddenstartdate').val(sd);
 $('#hiddenduration').val(d);

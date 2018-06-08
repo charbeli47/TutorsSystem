@@ -106,8 +106,8 @@ class Categories extends MY_Controller
 		$crud->where('is_parent',0);
 		$crud->set_subject(get_languageword('course'));
 		$crud->columns('name','code', 'slug', 'is_popular', 'status');
-		$crud->add_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent', 'pdf_file'));
-		$crud->edit_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image', 'is_popular', 'status', 'is_parent', 'pdf_file'));
+		$crud->add_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image','video', 'is_popular', 'status', 'is_parent', 'pdf_file'));
+		$crud->edit_fields(array('categories','name', 'slug', 'description', 'code', 'sort_order', 'image','video', 'is_popular', 'status', 'is_parent', 'pdf_file'));
 		
 		$crud->required_fields(array('name', 'slug', 'code', 'sort_order', 'status'));
 		$crud->unique_fields('name', 'code');
@@ -176,6 +176,7 @@ class Categories extends MY_Controller
 			'status' => $post_array['status'],
 			'sort_order' => $post_array['sort_order'],
 			'created_at' => date('Y-m-d H:i:s'),
+            'video' =>$post_array['video'],
 			'categories' => implode(',', $post_array['categories']),
 		);
 		$this->db->insert('categories', $data);
@@ -211,6 +212,7 @@ class Categories extends MY_Controller
 			'status' => $post_array['status'],
 			'sort_order' => $post_array['sort_order'],
 			'updated_at' => date('Y-m-d H:i:s'),
+            'video' =>$post_array['video'],
 			'categories' => implode(',', $post_array['categories']),
 		);
 

@@ -29,7 +29,7 @@
 
 
     <li>
-        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i><?php echo get_languageword('Search Your Teacher');?></button>
+        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i><?php echo get_languageword('Search For a Teacher');?></button>
     </li>
 
 

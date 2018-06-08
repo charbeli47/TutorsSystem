@@ -29,7 +29,7 @@
                         <p class="teaching-experience"><b><?php echo get_languageword('experience'); ?>:</b> <?php echo $row->teaching_experience." ".$row->duration_of_experience; ?></p>
                         <p class="qualification"><b><?php echo get_languageword('qualification'); ?>:</b> <?php echo $row->qualification; ?></p>
                         <!--<p class="qualification"><b><?php echo get_languageword('Free_Demo'); ?>:</b> <?php echo $row->free_demo; ?></p>-->
-						 <p class="qualification"><b>Course fee:</b> <?php echo $row->fee; ?>$</p>
+						 <p class="qualification"><b>Course fee:</b> <?php echo $row->fee; ?>$ / 25 min</p>
                         <?php if($row->availability_status==0){?>
                         <p class="tutor-not-avilble"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><b><strong> <?php echo get_languageword('This Tutor Is Not Available Now')?></strong></b></p>
                         <?php } else{?>

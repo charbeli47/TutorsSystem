@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <title> OpenTok Getting Started </title>
     <link href="css/app.css" rel="stylesheet" type="text/css">
@@ -203,7 +203,6 @@ function gup( name, url ) {
     var results = regex.exec( url );
     return results == null ? null : results[1];
 }
-debugger
 var user=gup('user', '')
 
 if(user=="student"){
@@ -216,7 +215,6 @@ document.getElementById("studentrate").style.display = "none";
 document.getElementById("tutorrate").style.display = "block";
 }
 function showratingarea(){
-debugger
 document.getElementById("but").style.display = "none";
 $('#ratingarea').fadeIn('30000','','');
 }

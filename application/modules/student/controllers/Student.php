@@ -346,7 +346,7 @@ class Student extends MY_Controller
 			$this->form_validation->set_rules('seo_keywords',get_languageword('seo_keywords'), 'trim|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('meta_desc',get_languageword('meta_description'),'trim|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('profile_page_title', get_languageword('profile_page_title'), 'trim|required|xss_clean');
-			$this->form_validation->set_rules('willing_to_travel', get_languageword('How far are you willing to travel'), 'trim|required|xss_clean');
+			//$this->form_validation->set_rules('willing_to_travel', get_languageword('How far are you willing to travel'), 'trim|required|xss_clean');
 			if($_FILES['photo']['name'] != '')
 			{
 				$this->form_validation->set_rules('photo', get_languageword('Profile Image'), 'trim|callback__image_check');
@@ -361,9 +361,9 @@ class Student extends MY_Controller
 				$inputdata['profile_page_title'] = $this->input->post('profile_page_title');
 				$inputdata['seo_keywords'] = $this->input->post('seo_keywords');
 				$inputdata['meta_desc'] = $this->input->post('meta_desc');
-				$inputdata['willing_to_travel'] = $this->input->post('willing_to_travel');
+				//$inputdata['willing_to_travel'] = $this->input->post('willing_to_travel');
 				$inputdata['qualification'] = $this->input->post('qualification');
-				$inputdata['own_vehicle'] = $this->input->post('own_vehicle');
+				//$inputdata['own_vehicle'] = $this->input->post('own_vehicle');
 				
 				$image 	= $_FILES['photo']['name'];
 				//Upload User Photo
@@ -956,7 +956,7 @@ class Student extends MY_Controller
 	{
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_student()) {
 			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
-			redirect('auth/login', 'refresh');
+			redirect('auth/login?red=/student/list-packages', 'refresh');
 		}
 		
 		$this->data['message'] = $this->session->flashdata('message');
@@ -997,6 +997,7 @@ class Student extends MY_Controller
 		$crud->columns('subscribe_date','package_name','transaction_no', 'payment_type','credits','amount_paid');
 		$crud->callback_column('subscribe_date',array($this,'callback_subscribe_date'));
 		$crud->callback_column('amount_paid',array($this,'callback_amount_paid'));
+        $crud->display_as('credits',get_languageword('classes'));
 		$output = $crud->render();
 		
 		$this->data['pagetitle'] = get_languageword('My Subscriptions');
@@ -1503,12 +1504,12 @@ class Student extends MY_Controller
 		//Display Alias Names
 		$crud->display_as('course_id',get_languageword('course_booked'));
 		$crud->display_as('tutor_id',get_languageword('tutor_name'));
-		$crud->display_as('fee',get_languageword('fee').' ('.get_languageword('in_credits').')');
+		$crud->display_as('fee',get_languageword('fee').' ($)');
 		//$crud->display_as('admin_commission',get_languageword('admin_commission_percentage_in_credits'));
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
 		$crud->display_as('roomsession',get_languageword('join_session'));
-
+        $crud->unset_columns('per_credit_value');
 
 		if($param == "closed") {
 
@@ -1637,6 +1638,7 @@ class Student extends MY_Controller
 		if($crud_state == "read") {
 
 			$crud->field_type('updated_at', 'visibile');
+            $crud->unset_fields('per_credit_value','preferred_location');
 			$crud->set_relation('course_id', 'categories', 'name');
 		}
 
@@ -1788,7 +1790,7 @@ class Student extends MY_Controller
 
 						if(!empty($email_tpl->template_content)) {
 
-							$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, $booking_det->preferred_location, $student_addr);
+							$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, $booking_det->preferred_location, $student_addr);
 							$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOCATION___', '___STUDENT_ADDRESS___');
 							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -1799,7 +1801,7 @@ class Student extends MY_Controller
 									<p>
 										".get_languageword('Student ')." &quot;".$student_rec->username."&quot; ".get_languageword('started the course')."  &quot;".$course_name."&quot;</p>
 									<p>
-										".get_languageword('for the timeslot')." &quot;".$booking_det->start_date." & ".$booking_det->time_slot."&quot; and &quot; ".$booking_det->preferred_location."&quot; ".get_languageword('as preferred location for sessions')."</p>
+										".get_languageword('for the timeslot')." &quot;".$booking_det->start_date." at ".$booking_det->time_slot."&quot; and &quot; ".$booking_det->preferred_location."&quot; ".get_languageword('as preferred location for sessions')."</p>
 									<p>
 										".get_languageword('Below is the Skype id of the Student')."</p>
 									<p>
@@ -1917,7 +1919,10 @@ class Student extends MY_Controller
 			$inputdata['student_id']	= $user_id;
 			$inputdata['tutor_id']		= $booking_det->tutor_id;
 			$inputdata['course_id']		= $booking_det->course_id;
-			$inputdata['rating']		= $this->input->post('score');
+            $score = $this->input->post('score');
+            if(!isset($score) || $score=="")
+            $score = "0";
+			$inputdata['rating']		= $score;
 			$inputdata['comments']		= $this->input->post('comments');
 
 

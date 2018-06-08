@@ -35,7 +35,7 @@ $i++;
 			<td width='<?php echo $column_width?>%' class='<?php if(isset($order_by[0]) &&  $column->field_name == $order_by[0]){?>sorted<?php }?>'>
             <?php if($column->field_name!="roomsession"){?> 
 				<div class='text-left<?php echo $i?>'><?php echo $row->{$column->field_name} != '' ? $row->{$column->field_name} : '&nbsp;' ; ?></div>
-                <?php }else if(($row->status =='Session Initiated' || $row->status =='Running' ) && isset($row->roomsession) && $row->roomsession !=""){?>
+                <?php }else if(($row->status =='Session Initiated' || $row->status =='Running' ) && isset($row->status) && $row->status !=""){?>
                 <a href="<?php echo $row->{$column->field_name}?>" target="_blank" style="display:block;background-color:#950d11;color:white;display:block;padding:5px;border-radius:5px;text-align:center" onclick="changeSessionToRunning(<?php echo $row->booking_id?>,this)">Join</a>
                 <?php }?>
 			</td>

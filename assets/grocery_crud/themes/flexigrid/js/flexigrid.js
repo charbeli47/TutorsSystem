@@ -320,56 +320,57 @@ $(function(){
 		    var dbmonth = Number(splitdate[1]);
 		    var dbday = Number(splitdate[0]);
 		    var timeslot = $('.text-left' + i + ':eq(4)').text().trim();
+		    if (timeslot != null && timeslot != "" && timeslot.match(/:(\d+)/) != null && timeslot.match(/:(\d+)/) != "") {
+		        var dbhours = Number(timeslot.match(/^(\d+)/)[1]);
+		        var dbminutes = Number(timeslot.match(/:(\d+)/)[1]);
+		        var AMPM = timeslot.match(/\s(.*)$/)[1];
+		        if (AMPM == "PM" && dbhours < 12) dbhours = dbhours + 12;
+		        if (AMPM == "AM" && dbhours == 12) dbhours = dbhours - 12;
+		        var sHours = dbhours.toString();
+		        var sMinutes = dbminutes.toString();
+		        if (dbhours < 10) sHours = "0" + sHours;
+		        if (dbminutes < 10) sMinutes = "0" + sMinutes;
 
-		    var dbhours = Number(timeslot.match(/^(\d+)/)[1]);
-		    var dbminutes = Number(timeslot.match(/:(\d+)/)[1]);
-		    var AMPM = timeslot.match(/\s(.*)$/)[1];
-		    if (AMPM == "PM" && dbhours < 12) dbhours = dbhours + 12;
-		    if (AMPM == "AM" && dbhours == 12) dbhours = dbhours - 12;
-		    var sHours = dbhours.toString();
-		    var sMinutes = dbminutes.toString();
-		    if (dbhours < 10) sHours = "0" + sHours;
-		    if (dbminutes < 10) sMinutes = "0" + sMinutes;
+		        var dbtime = sHours + ":" + sMinutes + ":00";
+		        var dbdate = new Date(dbyear, dbmonth - 1, dbday, dbhours, dbminutes, 0, 0);
+		        var status = $('.text-left' + i + ':eq(6)').text();
+		        var currentdate = new Date();
+		        var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
+		        var diffDays = Math.floor(diffMs / 86400000); // days
+		        var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+		        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+		        var dd = currentdate.getDate();
+		        var mm = currentdate.getMonth() + 1; //January is 0!
+		        var yyyy = currentdate.getFullYear();
 
-		    var dbtime = sHours + ":" + sMinutes + ":00";
-		    var dbdate = new Date(dbyear, dbmonth - 1, dbday,dbhours,dbminutes,0,0);
-		    var status = $('.text-left' + i + ':eq(6)').text();
-		    var currentdate = new Date();
-		    var diffMs = (currentdate - dbdate); // milliseconds between now & Christmas
-		    var diffDays = Math.floor(diffMs / 86400000); // days
-		    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
-		    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-		    var dd = currentdate.getDate();
-		    var mm = currentdate.getMonth() + 1; //January is 0!
-		    var yyyy = currentdate.getFullYear();
+		        if (dd < 10) {
+		            dd = '0' + dd
+		        }
 
-		    if (dd < 10) {
-		        dd = '0' + dd
-		    }
+		        if (mm < 10) {
+		            mm = '0' + mm
+		        }
 
-		    if (mm < 10) {
-		        mm = '0' + mm
-		    }
-
-		    currentdate = dd + '/' + mm + '/' + yyyy;
-		    var now = new Date();
-		    var hours = now.getHours();
-		    var minutes = now.getMinutes();
-		    var allowed = diffMins >= -20 && diffMins <= 59 && diffHrs == 0;
-		    var sminutes = minutes;
-		    if (minutes < 10) {
-		        sminutes = "0" + minutes;
-		    }
-		    var seconds = now.getSeconds();
-		    if (seconds < 10) {
-		        seconds = "0" + seconds;
-		    }
-		    var currenttime = hours + ":" + sminutes + ":" + seconds;
-		    if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
-		        $("#joinbut" + i).css("display", "block");
-		        setTimeout(function () {
-		            $("#joinbut" + i).css("display", "none");
-		        }, (dbminutes + 59 - minutes) * 60 * 1000);
+		        currentdate = dd + '/' + mm + '/' + yyyy;
+		        var now = new Date();
+		        var hours = now.getHours();
+		        var minutes = now.getMinutes();
+		        var allowed = diffMins >= -20 && diffMins <= 59 && diffHrs == 0;
+		        var sminutes = minutes;
+		        if (minutes < 10) {
+		            sminutes = "0" + minutes;
+		        }
+		        var seconds = now.getSeconds();
+		        if (seconds < 10) {
+		            seconds = "0" + seconds;
+		        }
+		        var currenttime = hours + ":" + sminutes + ":" + seconds;
+		        if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
+		            $("#joinbut" + i).css("display", "block");
+		            setTimeout(function () {
+		                $("#joinbut" + i).css("display", "none");
+		            }, (dbminutes + 59 - minutes) * 60 * 1000);
+		        }
 		    }
 		}
 	}

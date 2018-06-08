@@ -139,6 +139,8 @@ define('URL_PUBLIC_UPLOADS_SETTINGS', URL_RESOURCES . 'uploads' . DS . 'settings
 define('URL_PUBLIC_UPLOADS_PROFILES_THUMBS', URL_RESOURCES . 'uploads' . DS . 'profiles' . DS . 'thumbs' . DS);
 define('URL_PUBLIC_UPLOADS_PACKAGES', URL_RESOURCES . 'uploads' . DS . 'packages' . DS);
 define('URL_PUBLIC_UPLOADS_PACKAGES_THUMBS', URL_RESOURCES . 'uploads' . DS . 'packages' . DS . 'thumbs' . DS);
+define('URL_PUBLIC_UPLOADS_HOME_SLIDER', URL_RESOURCES . 'uploads' . DS . 'homeslider' . DS);
+define('URL_PUBLIC_UPLOADS_HOME_SLIDER_THUMBS', URL_RESOURCES . 'uploads' . DS . 'homeslider' . DS . 'thumbs' . DS);
 define('URL_PUBLIC_UPLOADS_QUOTES', URL_RESOURCES . 'uploads' . DS . 'quotes' . DS);
 define('URL_PUBLIC_UPLOADS_QUOTES_THUMBS', URL_RESOURCES . 'uploads' . DS . 'quotes' . DS . 'thumbs' . DS);
 define('URL_PUBLIC_UPLOADS_AUTHOR_CATEGORY', URL_RESOURCES . 'uploads' . DS . 'authors_categories' . DS );
@@ -257,6 +259,15 @@ define('URL_PACKAGE_ADDEDIT', SITEURL2."/packages/addedit");
 define('URL_PACKAGE_DELETE_RECORD', SITEURL2."/packages/delete_record");
 define('URL_PACKAGE_STATUSTOGGLE', SITEURL2."/packages/statustoggle");
 define('URL_PACKAGE_AJAX_GET_DATA', SITEURL2."/packages/ajax_get_data");
+
+/*HomeSlider*/
+define('URL_HOME_SLIDER_INDEX', SITEURL2."/homeslider/index");
+define('URL_HOME_SLIDER_VIEWSLIDES', SITEURL2."/homeslider/viewslides");
+define('URL_HOME_SLIDER_ADDEDIT', SITEURL2."/homeslider/addedit");
+define('URL_HOME_SLIDER_DELETE_RECORD', SITEURL2."/homeslider/delete_record");
+define('URL_HOME_SLIDER_STATUSTOGGLE', SITEURL2."/homeslider/statustoggle");
+define('URL_HOME_SLIDER_AJAX_GET_DATA', SITEURL2."/homeslider/ajax_get_data");
+
 //Messages
 define('MSG_PACKAGE_ACTIVATED', 	'Package Activated Successfully.');
 define('MSG_PACKAGE_DEACTIVATED', 	'Package De-Activated Successfully.');
@@ -269,6 +280,7 @@ define('TBL_SETTINGS_VALUES', 'system_settings_values');
 define('TBL_PAGES', 'pages');
 define('TBL_QUOTE_SETTINGS', 'quote_settings');
 define('TBL_PACKAGES', 'packages');
+define('TBL_HOME_SLIDER', 'homeslider');
 define('TBL_SUBSCRIPTIONS', 'subscriptions');
 define('TBL_PAYMENTS', 'payments');
 define('TBL_SUBMIT_QUOTES', 'submit_quotes');
@@ -428,7 +440,7 @@ define('MANUAL_TRANSFER', 47);
 define('TWOCHECKOUT_PAYMENT_GATEWAY', 48);
 define('RAZORPAY_PAYMENT_GATEWAY', 49);
 define('BIGBLUEBUTTON', 50);
-
+define('CYBERSOURCE_PAYMENT_GATEWAY', 53);
 //Cybersource Payment Constants
 
 define ('HMAC_SHA256', 'sha256');

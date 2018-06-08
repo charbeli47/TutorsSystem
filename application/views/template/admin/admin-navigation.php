@@ -193,7 +193,21 @@
 		</ul>
 	</li>
 	<!--Packages End-->
-	
+	<!--HomeSliders Start-->
+	<li class='treeview <?php if(isset($activemenu) && $activemenu == 'homeslider') echo 'active';?>'>
+		<a href='#'>
+            <i class='fa fa-archive'></i> <?php echo get_languageword('home_slider');?> <i class='fa fa-angle-left pull-right'></i>
+		</a>
+		<ul class='treeview-menu'>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'list_slides') echo ' class="active"';?>>
+				<a href='<?php echo URL_HOME_SLIDER_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('list_slides');?></a>
+			</li>					
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'add_slide') echo ' class="active"';?>>
+				<a href='<?php echo URL_HOME_SLIDER_INDEX;?>/add'><i class='fa fa-circle-o'></i> <?php echo get_languageword('add_slide');?></a>
+			</li>
+		</ul>
+	</li>
+	<!--HomeSliders End-->
 	
 	<!--Certificates Start-->
 	<li class='treeview <?php if(isset($activemenu) && $activemenu == 'certificates') echo 'active';?>'>

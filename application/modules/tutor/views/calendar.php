@@ -19,7 +19,7 @@ $('#calendar').fullCalendar({
 header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
+        right: 'month,agendaWeek,listDay,listWeek'
       },
 eventSources: [
             {
@@ -101,7 +101,7 @@ function formatDate(date) {
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Course Time</label>
                 <div class="col-md-8">
-                    <input type="time" class="form-control" name="start_time" id="start_time">
+                    <input type="time" required class="form-control" name="start_time" id="start_time">
                 </div>
         </div>
       </div>

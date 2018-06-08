@@ -141,6 +141,9 @@ $(function(){
 				$.ajax({
 					url: delete_url+"/"+file_name,
 					cache: false,
+					error: function (jqXHR, tS, eT) {
+					    alert(JSON.stringify(jqXHR));
+					},
 					success:function(){
 						show_upload_button(unique_id, uploader_element);
 					},

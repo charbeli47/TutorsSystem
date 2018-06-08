@@ -77,7 +77,8 @@ _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
 $.src='https://v2.zopim.com/?dQF9inZqajsH6ZcEUDNlVW6RTfsyJfWv';z.t=+new Date;$.
 type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 </script>
-<!--End of Zendesk Chat Script-->         
+<!--End of Zendesk Chat Script-->   
+      
 </head>
 
 <body>
@@ -95,11 +96,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 <li><a href="<?php echo URL_HOME_ABOUT_US;?>"><?php echo get_languageword('About Us');?> </a></li>
                 <li><a href="<?php echo URL_HOME_ALL_COURSES;?>"><?php echo get_languageword('Curriculum');?> </a></li>
             </ul>
-            <?php if(isset($this->config->item('site_settings')->land_line) && $this->config->item('site_settings')->land_line != '') { ?>
 			<ul class="nav navbar-nav pull-right">
-                  <!--<li><a href="tel:<?php echo $this->config->item('site_settings')->land_line; ?>"><i class="fa fa-phone top-bar-icn"></i><?php echo get_languageword('Feel_free_to_call_us_anytime_on');?>  <?php echo $this->config->item('site_settings')->land_line;?></a></li>-->
+            
+                  
             </ul>
-			<?php } ?>
         </div>
     </div>
     <?php } ?>
@@ -131,7 +131,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     <li><a class="<?php if(isset($activemenu) && $activemenu == "home") echo 'active'; ?>" href="<?php echo SITEURL;?>"> <?php echo get_languageword('Home');?> </a></li>
 
                     <?php if(!$this->ion_auth->logged_in()) { ?>
-                        <li><a class="<?php if(isset($activemenu) && $activemenu == "search_tutor") echo 'active'; ?>" href="<?php echo URL_HOME_SEARCH_TUTOR;?>"> <?php echo get_languageword('Find Tutor');?> </a></li>
+                        <li><a class="<?php if(isset($activemenu) && $activemenu == "search_tutor") echo 'active'; ?>" href="<?php echo URL_HOME_SEARCH_TUTOR;?>"> <?php echo get_languageword('Find Tutors');?> </a></li>
 
                         <!--<li><a class="<?php if(isset($activemenu) && $activemenu == "search_institute") echo 'active'; ?>" href="<?php echo URL_HOME_SEARCH_INSTITUTE;?>"> <?php echo get_languageword('Find Institute');?> </a></li>
 
@@ -194,7 +194,15 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         <a href="<?php echo URL_AUTH_LOGIN;?>"> <span class="nav-btn"> <i class="fa  fa-sign-in"></i> &nbsp; <?php echo get_languageword('Login');?> <span class="hidden-navbtn"><?php echo get_languageword('Or');?> <?php echo get_languageword('Register');?></span></span>
                         </a>
                     </li>
+                    <li><a style="cursor:pointer" onclick="$('#bookmeModal').modal();" ><span class="nav-btn" style="background-color:#97d089;border:2px solid #97d089"><?php echo get_languageword('Request_your_free_trial_now');?>  </span></a></li>
 					<?php } else {
+                    $user_id=$this->ion_auth->get_user_id();
+                    $approved = 1;
+                    if($this->ion_auth->is_student())
+						{
+                    $q = "SELECT count(*) as approved_bookings FROM odemy.pre_bookings where student_id=$user_id and status in('approved', 'session_initiated', 'running', 'completed', 'closed');";
+                    $approved = $this->db->query($q)->row()->approved_bookings;
+                    }
 						$url = base_url().'tutor/index';
 						$ctrl = 'tutor';
 						if($this->ion_auth->is_student())
@@ -212,9 +220,8 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                             $url = base_url().'admin/index';
                             $ctrl = 'admin';
                         }
-
-						?>
-                        <?php if(!$this->ion_auth->is_student()) { ?>
+                        
+                        if(!$this->ion_auth->is_student()) { ?>
                         <li><a class="<?php if(isset($activemenu) && $activemenu == "contact_us") echo 'active'; ?>" href="<?php echo URL_HOME_CONTACT_US;?>"> <?php echo get_languageword('Contact Us');?> </a></li>
                         <?php } else { ?>
                         <style>
@@ -231,7 +238,12 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         <a href="<?php echo URL_AUTH_LOGOUT;?>"> <span class="nav-btn"> <i class="fa fa-sign-out"></i> &nbsp; <?php echo get_languageword('Logout');?></span>
                         </a>
 						</li>
+                        <?php if($approved==0)
+                        {
+						?>
+                        <li><a style="cursor:pointer" onclick="$('#bookmeModal').modal();" ><span class="nav-btn" style="background-color:#97d089;border:2px solid #97d089"><?php echo get_languageword('Request_your_free_trial_now');?>  </span></a></li>
 						<?php
+                        }
 					} ?>
 
 					<?php if(isset($this->config->item('site_settings')->land_line) && $this->config->item('site_settings')->land_line != '') { ?>
@@ -248,19 +260,32 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
     if($this->ion_auth->is_student())
 						{
                         $student_id = $this->ion_auth->get_user_id();
-     $query = "select count(*) initiated_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$user_id." And status='session_initiated'";
+     $query = "select count(*) initiated_bookings from ".$this->db->dbprefix('bookings')." where student_id = ".$user_id." and (status='session_initiated' or status='running')";
 		$student_dashboard_data['initiated_bookings'] = $this->db->query($query)->row()->initiated_bookings;
     $studentNotification = $student_dashboard_data['initiated_bookings'];
     if(isset($studentNotification) && $studentNotification!="" && $studentNotification!="0"){
  ?>
-    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">Your tutor initiated a session. Please click <a href="<?php echo base_url();?>enquiries/session_initiated">here</a> to start learning.</div>
+    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">Your tutor initiated a session. Please click <a href="<?php echo base_url();?>enquiries">here</a> to start learning.</div>
     <?php }}else{
     $dateTimeVariable = date("Y-m-d H:i:s");
-    $query = "select count(*) approved_bookings from (SELECT STR_TO_DATE(CONCAT(start_date, ' ', time_slot), '%Y-%c-%e %h:%i %p') as course_date FROM ".$this->db->dbprefix('bookings')." where tutor_id=$user_id and status='approved') as table1 where course_date> DATE_SUB('$dateTimeVariable', INTERVAL 60 MINUTE) and course_date< DATE_ADD('$dateTimeVariable', INTERVAL 20 MINUTE)";
+    $query = "select count(*) approved_bookings from (SELECT STR_TO_DATE(CONCAT(start_date, ' ', time_slot), '%Y-%c-%e %h:%i %p') as course_date FROM ".$this->db->dbprefix('bookings')." where tutor_id=$user_id and (status='approved' or status='session_initiated' or status='running')) as table1 where course_date> DATE_SUB('$dateTimeVariable', INTERVAL 60 MINUTE) and course_date< DATE_ADD('$dateTimeVariable', INTERVAL 20 MINUTE)";
     $student_dashboard_data['approved_bookings'] = $this->db->query($query)->row()->approved_bookings;
     $studentNotification = $student_dashboard_data['approved_bookings'];
     if(isset($studentNotification) && $studentNotification!="" && $studentNotification!="0"){
 ?>
-    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">You have sessions that need to be initiated soon. Please click <a href="<?php echo base_url();?>student-enquiries/approved">here</a> to start session.</div>
+    <div style="width:100%;height:50px;line-height:50px;background-color:#fdf8e4;border-bottom:1px solid #f8f3df;color:red;font-weight:bold;text-align:center">You have sessions that need to be initiated. Please click <a href="<?php echo base_url();?>student-enquiries">here</a> to start session.</div>
     <?php }}}?>
        <!-- Ends Navigation -->
+       <div class="modal fade" id="bookmeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document"  style="width:70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Request Free Trial</h4>
+      </div>
+      <div class="modal-body">
+      <iframe src="https://odemy.youcanbook.me/" style="width:100%;height:800px" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

@@ -283,7 +283,8 @@ class Student_model extends CI_Model
 
 		$query = "select count(*) inst_enrolled from ".$this->db->dbprefix('inst_enrolled_students')." where student_id = ".$student_id;
 		$student_dashboard_data['inst_enrolled'] = $this->db->query($query)->row()->inst_enrolled;
-
+        $query = "select free_courses from ".$this->db->dbprefix("users")." where id=".$student_id;
+        $student_dashboard_data['free_courses'] = $this->db->query($query)->row()->free_courses;
 		return $student_dashboard_data;
 	}
 

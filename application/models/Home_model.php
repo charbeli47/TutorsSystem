@@ -50,7 +50,13 @@ class Home_Model extends CI_Model
 		return $result->result();
 	}
 
-
+    function list_student_packages()
+	{		
+		$query = "select * from " . $this->db->dbprefix('packages') . " 
+		where status = 'Active' AND (package_for='All' OR package_for='student')";
+		$packages = $this->db->query($query)->result();
+		return $packages;	
+	}
 
 	function get_categoryid_by_slug($category_slug)
 	{
@@ -276,7 +282,20 @@ class Home_Model extends CI_Model
         return ($result_set->num_rows() > 0) ? $result_set->row() : FALSE;
     }
 
+    function get_homeslider()
+    {
 
+        
+
+            $query = "SELECT * FROM pre_homeslider where status='Active'";
+
+        
+
+
+        $result_set = $this->db->query($query);        
+
+        return ($result_set->num_rows() > 0) ? $result_set->result() : FALSE;
+    }
     /* GET SELLING COURSES */
 	function get_selling_courses($params = array())
     {
@@ -436,12 +455,12 @@ class Home_Model extends CI_Model
         	if(empty($course_id))
         		return FALSE;
 
-        	$course_tbl_join = " INNER JOIN ".TBL_TUTOR_COURSES." tc ON tc.tutor_id=u.id ";
+        	
         	$course_cond = " AND tc.course_id IN (".$course_id.") AND tc.status=1";
-            $course_order = " GROUP BY u.id , tc.start ORDER BY tc.start DESC ";
+            
         }
-        else
-            $course_order = " GROUP BY u.id  ";
+        $course_tbl_join = " INNER JOIN ".TBL_TUTOR_COURSES." tc ON tc.tutor_id=u.id ";
+        $course_order = " GROUP BY u.id , tc.start ORDER BY tc.start DESC ";
 
         /*if(!empty($params['location_slug'])) {
 
@@ -479,7 +498,77 @@ class Home_Model extends CI_Model
 					".$teaching_type_cond." 
 					GROUP BY u.id ORDER BY u.net_credits DESC ".$limit_cond." ";
 					*/
-        $query = "SELECT u.* FROM ".TBL_USERS." u 
+        $query = "SELECT distinct id,
+    ip_address,
+    username,
+    slug,
+    password,
+    salt,
+    email,
+    activation_code,
+    forgotten_password_code,
+    forgotten_password_time,
+    remember_code,
+    created_on,
+    last_login,
+    active,
+    first_name,
+    last_name,
+    dob,
+    gender,
+    company,
+    phone_code,
+    phone,
+    seo_keywords,
+    meta_desc,
+    photo,
+    location_id,
+    language_of_teaching,
+    teaching_experience,
+    duration_of_experience,
+    experience_desc,
+    video_profile_url,
+    show_contact,
+    visibility_in_search,
+    availability_status,
+    profile,
+    no_of_profile_views,
+    qualification,
+    tutor_rating,
+    is_profile_update,
+    facebook,
+    twitter,
+    linkedin,
+    skype,
+    isTestimonyGiven,
+    is_social_login,
+    website,
+    profile_page_title,
+    willing_to_travel,
+    own_vehicle,
+    land_mark,
+    country,
+    pin_code,
+    paypal_email,
+    bank_ac_details,
+    swift,
+    academic_class,
+    non_academic_class,
+    share_phone_number,
+    is_online,
+    city,
+    user_belongs_group,
+    subscription_id,
+    free_demo,
+    admin_approved,
+    admin_approved_date,
+    i_love_tutoring_because,
+    other_interests,
+    net_credits,
+    parent_id,
+    last_updated,
+    video,
+    fee from(SELECT u.* FROM ".TBL_USERS." u 
 	    			INNER JOIN ".TBL_USERS_GROUPS." ug ON ug.user_id=u.id 
 	    			".$course_tbl_join."  
 					WHERE u.active=1 AND u.visibility_in_search='1' 
@@ -488,7 +577,7 @@ class Home_Model extends CI_Model
                     ".$language_cond."  
 					".$adm_approval_cond." 
 					".$course_cond." 
-					".$course_order.$limit_cond." ";
+					".$course_order." ) as tbl".$limit_cond;
         
         $result_set = $this->db->query($query);        
 
@@ -681,8 +770,24 @@ class Home_Model extends CI_Model
 
     	return $this->db->select('id')->get_where($this->db->dbprefix('categories'), array('slug' => $cslug))->row()->id;
     }
-
-
+    function get_tutors_countries()
+    {
+        $query = "select distinct c.* from pre_country c inner join pre_users u on c.nicename = u.country";
+        $c = $this->db->query($query)->result();
+        if(empty($c)) {
+            return array();
+        }
+        return $c;
+    }
+    function get_tutors_languages()
+    {
+        $query = "select distinct c.* from pre_languages c inner join pre_users u on c.name in (u.language_of_teaching) and c.status='Active'";
+        $c = $this->db->query($query)->result();
+        if(empty($c)) {
+            return array();
+        }
+        return $c;
+    }
     function get_tutor_profile($tutor_slug = "")
     {
     	if(empty($tutor_slug))
@@ -707,7 +812,8 @@ class Home_Model extends CI_Model
         }
 
     	//Tutoring Courses
-    	$tutor_courses_query = "SELECT GROUP_CONCAT(' ', courses.name) AS tutoring_courses FROM ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1 ORDER BY tc.sort_order ASC";
+        //$tutor_courses_query = "SELECT GROUP_CONCAT(' ', coursename) AS tutoring_courses FROM (select distinct courses.name as coursename from ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1) as tbl1";
+    	$tutor_courses_query = "SELECT GROUP_CONCAT(' ', coursesname) AS tutoring_courses FROM (select distinct courses.name as coursesname from ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1) as tbl1";
     	$tutor_details[0]->tutoring_courses = $this->db->query($tutor_courses_query)->row()->tutoring_courses;
 
     	//Tutoring Locations
@@ -773,13 +879,12 @@ class Home_Model extends CI_Model
 
         if($result_type == "grouped") {
 
-            $query = "SELECT GROUP_CONCAT(' ', courses.name) AS tutoring_courses FROM ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1 ORDER BY tc.sort_order ASC";
+            $query = "SELECT GROUP_CONCAT(' ', coursename) AS tutoring_courses FROM (select distinct courses.name as coursename from ".$this->db->dbprefix('tutor_courses')." tc INNER JOIN ".$this->db->dbprefix('categories')." courses ON courses.id=tc.course_id WHERE tc.tutor_id=".$tutor_id." AND tc.status=1 AND courses.status=1) as tbl1";
 
             $rs = $this->db->query($query);
 
             return ($rs->num_rows() > 0) ? $rs->row()->tutoring_courses : NULL;
         }
-
         $rs = $this->db->query($query);
 
         return ($rs->num_rows() > 0) ? $rs->result() : NULL;

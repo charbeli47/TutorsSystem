@@ -100,14 +100,15 @@ class Auth extends MY_Controller {
 			
 			//i will change this gd gd sah sah 
 			//$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group');
-            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
+            
 			if($param=='3'){
+            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
 			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'fee','video', 'user_belongs_group');
 			}
 			else
             {
-            
-			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group');
+            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group','free_courses');
+			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group','free_courses');
             }
 
 			$crud->callback_field('phone_code', array($this, 'callback_field_phone_code'));
@@ -310,6 +311,9 @@ class Auth extends MY_Controller {
 		$slug = prepare_slug($username, 'username', 'users');
 
 		$code_country = explode('_', $post_array['phone_code']);
+        $free = $post_array['free_courses'];
+        if(!isset($free) || $free=="")
+        $free = "0";
 		$additional_data = array(
 								'username' 				=> $username,
 								'slug' 					=> $slug,
@@ -320,6 +324,7 @@ class Auth extends MY_Controller {
 								'phone' 				=> $post_array['phone'],
 								'gender' 				=> $post_array['gender'],
 								'user_belongs_group'	=> $post_array['user_belongs_group'],
+                                'free_courses'          => $free,
 								'last_updated' 			=> date('Y-m-d H:i:s')
 								
 							);
@@ -337,13 +342,15 @@ class Auth extends MY_Controller {
 	
 	function encrypt_password_and_update_callback( $post_array, $primary_key )
 	{
-
 		$first_name = ucfirst(strtolower($post_array['first_name']));
 		$last_name = ucfirst(strtolower($post_array['last_name']));
 		$username =  $first_name.' '.$last_name;
 
 		$code_country = explode('_', $post_array['phone_code']);
         $f = isset($post_array['fee'])?$post_array['fee']:0;
+        $free = $post_array['free_courses'];
+        if(!isset($free) || $free=="")
+            $free = "0";
         $video = isset($post_array['video'])?$post_array['video']:'';
 		$additional_data = array(
 								'username' 				=> $username,
@@ -357,6 +364,7 @@ class Auth extends MY_Controller {
 								'user_belongs_group' 	=> $post_array['user_belongs_group'],
 								'last_updated' 			=> date('Y-m-d H:i:s'),
 								'fee'	=> $f,
+                                'free_courses'          => $free,
                                 'video'=> $video
 							);
 
@@ -739,7 +747,21 @@ class Auth extends MY_Controller {
 	function login()
 	{		
 		if($this->ion_auth->logged_in())
-			redirect(URL_AUTH_INDEX);
+        {
+        
+            if($this->ion_auth->is_student())
+                    {
+                        if(!isset($_GET["red"]))
+				            redirect(URL_AUTH_INDEX);
+                        else
+                            redirect($_GET["red"],'refresh');
+                     }
+                     else
+                     {
+                        redirect(URL_AUTH_INDEX);
+                     }
+        }
+			
 		
 		
 		$this->data['message'] = $this->session->flashdata('message');
@@ -754,7 +776,8 @@ class Auth extends MY_Controller {
 			if ($this->form_validation->run() == true)
 			{
 				if($this->ion_auth->logged_in())
-				redirect(SITEURL2,'refresh');
+                       redirect(SITEURL2,'refresh');
+                
 				// check to see if the user is logging in
 				// check for "remember me"
 				$remember = (bool) $this->input->post('remember');
@@ -804,10 +827,16 @@ class Auth extends MY_Controller {
 						if($is_profile_updated != 1) {
 
 							//$this->prepare_flashmessage(get_languageword('please_update_your_profile_by_adding_preferred_courses_and_preferred_teaching_types_to_get_tutors'), 2);
-							redirect(URL_STUDENT_INDEX, 'refresh');
+							if(!isset($_GET["red"]))
+				                redirect(URL_STUDENT_INDEX,'refresh');
+                            else
+                                redirect($_GET["red"],'refresh');
 						}
 
-						redirect(URL_STUDENT_INDEX, 'refresh');
+						if(!isset($_GET["red"]))
+				                redirect(URL_STUDENT_INDEX,'refresh');
+                            else
+                                redirect($_GET["red"],'refresh');
 					}
 					else if($this->ion_auth->is_institute()) {	
 
@@ -907,7 +936,12 @@ class Auth extends MY_Controller {
 				{
                  										
 					$this->prepare_flashmessage(get_languageword($this->ion_auth->messages()), 0);	
-					redirect(URL_AUTH_LOGIN);
+                    
+                        if(!isset($_GET["red"]))
+				            redirect(URL_AUTH_LOGIN);
+                        else
+                            redirect(URL_AUTH_LOGIN."?red=".$_GET["red"],'refresh');
+                     
 				}
 				else
 				{
@@ -1036,10 +1070,18 @@ class Auth extends MY_Controller {
 
 		// log the user out
 		$logout = $this->ion_auth->logout();
-
+        if($logout)
+        {
 		// redirect them to the login page
 		$this->prepare_flashmessage($this->ion_auth->messages(), 0);
 		redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            $logout = $this->ion_auth->logout();
+            $this->prepare_flashmessage($this->ion_auth->messages(), 0);
+		redirect('auth/login', 'refresh');
+        }
 	}
 	// change password
 	function change_password()

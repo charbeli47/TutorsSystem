@@ -313,67 +313,7 @@
 		<div class="education add-more"><a href="javascript:void(0);"><i class="fa  fa-plus"></i> &nbsp;Add More</a></div>
 		-->
 		<div class="row">
-		<div class="col-sm-6 ">
-			<div class="input-group ">
-				<label><?php echo get_languageword('How far are you willing to travel').'?('.get_languageword('in Km').')';?><sup>*</sup></label>
-				<?php			   
-					$val = '';
-					if( isset($_POST['submitbutt']) )
-					{
-						$val = $this->input->post( 'willing_to_travel' );
-					}
-					elseif( isset($profile->willing_to_travel) && !isset($_POST['submitbutt']))
-					{
-						$val = $profile->willing_to_travel;
-					}
-					$element = array(
-						'name'	=>	'willing_to_travel',
-						'id'	=>	'willing_to_travel',
-						'value'	=>	$val,
-						'type'	=>	'number',
-						'step'  =>	"0.01",
-						'class' => 'form-control',
-						'placeholder' => get_languageword('willing_to_travel'),
-					);			
-					echo form_input($element);
-					?>
-			</div>
-		</div>
-			<div class="col-sm-6">
-				<div class="input-group ">
-					<label><?php echo get_languageword('Do you have your own vehicle to travel');?></label>
-					<?php			   
-					$val = 'yes';
-					if( isset($_POST['submitbutt']) )
-					{
-						$val = $this->input->post( 'own_vehicle' );
-					}
-					elseif( isset($profile->own_vehicle) && !isset($_POST['submitbutt']))
-					{
-						$val = $profile->own_vehicle;
-					}					
-					?>
-					<div class="radio">
-						<label>
-							<input type="radio" value="yes" name="own_vehicle" <?php if($val == 'yes') echo 'checked';?>>
-							<span class="radio-content">
-								<span class="item-content"><?php echo get_languageword('Yes');?></span>
-								<i aria-hidden="true" class="fa uncheck fa-circle-thin"></i>
-								<i aria-hidden="true" class="fa check fa-dot-circle-o"></i>
-							</span>
-						</label>
-						<label>
-							<input type="radio" value="no" name="own_vehicle" <?php if($val == 'no') echo 'checked';?>>
-							<span class="radio-content">
-								<span class="item-content"><?php echo get_languageword('No');?></span>
-								<i aria-hidden="true" class="fa uncheck fa-circle-thin"></i>
-								<i aria-hidden="true" class="fa check fa-dot-circle-o"></i>
-							</span>
-						</label>
-					</div>
-				</div>
-
-			</div>
+		
 		</div>
 		<button class="btn-link-dark dash-btn" name="submitbutt" type="Submit"><?php echo get_languageword('SAVE');?></button>
 

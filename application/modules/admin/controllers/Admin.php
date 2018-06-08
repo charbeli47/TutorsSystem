@@ -396,7 +396,7 @@ class Admin extends MY_Controller
 
 		//display columns
 		//$crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','end_date','days_off','preferred_location','admin_commission','admin_commission_val','status');
-        $crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','time_slot','preferred_location','admin_commission','admin_commission_val','status');
+        $crud->columns('booking_id','student_id','tutor_id','course_id','content','fee','course_duration','start_date','time_slot','started_at','ended_at','status');
 
 		$status = array('pending' => get_languageword('pending'), 'approved' => get_languageword('approved'), 'cancelled_before_course_started' => get_languageword('cancelled_before_course_started'), 'cancelled_when_course_running' => get_languageword('cancelled_when_course_running'), 'cancelled_after_course_completed' => get_languageword('cancelled_after_course_completed'), 'session_initiated' => get_languageword('session_initiated'), 'running' => get_languageword('running'), 'completed' => get_languageword('completed'), 'called_for_admin_intervention' => get_languageword('claim_for_admin_intervention'), 'closed' => get_languageword('closed'));
 

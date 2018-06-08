@@ -188,7 +188,7 @@ class Tutor extends MY_Controller
 			$this->form_validation->set_rules('seo_keywords',get_languageword('seo_keywords'), 'trim|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('meta_desc',get_languageword('meta_description'),'trim|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('teaching_experience', get_languageword('teaching_experience'), 'trim|required|xss_clean');
-			$this->form_validation->set_rules('willing_to_travel', get_languageword('willing_to_travel'), 'trim|required|xss_clean');
+			//$this->form_validation->set_rules('willing_to_travel', get_languageword('willing_to_travel'), 'trim|required|xss_clean');
 			$this->form_validation->set_rules('qualification', get_languageword('qualification'), 'trim|required|xss_clean');
 			$this->form_validation->set_rules('profile_page_title', get_languageword('profile_page_title'), 'trim|required|xss_clean');
 			if($_FILES['photo']['name'] != '')
@@ -209,8 +209,8 @@ class Tutor extends MY_Controller
 				$inputdata['meta_desc'] = $this->input->post('meta_desc');
 				$inputdata['teaching_experience'] = $this->input->post('teaching_experience');
 				$inputdata['duration_of_experience'] = $this->input->post('duration_of_experience');
-				$inputdata['willing_to_travel'] = $this->input->post('willing_to_travel');
-				$inputdata['own_vehicle'] = $this->input->post('own_vehicle');
+				//$inputdata['willing_to_travel'] = $this->input->post('willing_to_travel');
+				//$inputdata['own_vehicle'] = $this->input->post('own_vehicle');
 				
 				//by youssef keryakos
 				// i added this so user when he clicks on save changes in his profile profile will be updated in db
@@ -768,7 +768,7 @@ $date = new DateTime($row->start);
 
 		$val = !empty($val) ? $val : '';
 
-		return form_dropdown('course_id', $course_opts, $val, 'id="course_id" class="chosen-select form-control" ');
+		return form_dropdown('course_id', $course_opts, $val, 'id="course_id" class="chosen-select form-control" required');
 	}
     public function calendar_editcourse_dropdown($val)
 	{
@@ -1555,14 +1555,14 @@ $date = new DateTime($row->start);
 
 				$up_data['prev_status'] = $booking_det->status;
 				$up_data['status'] 		= 'closed';
-
+                $up_data['status_desc'] = $this->input->post('status_desc');
 				$up_data['updated_at'] 		= date('Y-m-d H:i:s');
 				$up_data['updated_by'] 		= $user_id;
-
+                $up_data['ended_at'] = date('Y-m-d H:i:s');
                 if($this->base_model->update_operation($up_data, 'bookings', array('booking_id' => $booking_id))){
                 $reviews_info['student_id'] = $booking_det->student_id;
                 $reviews_info['tutor_id'] = $user_id;
-                $reviews_info['comments'] = $this->input->post('status_desc');
+                //$reviews_info['comments'] = $this->input->post('status_desc');
                 $reviews_info['created_at'] = date("Y-m-d H:i:s");
                 $reviews_info['status'] = 'Approved';
                 $reviews_info['booking_id'] = $booking_id;
@@ -1863,7 +1863,7 @@ $date = new DateTime($row->start);
 		$crud->columns('course_id','comments','rating', 'created_at', 'updated_at','status');
 
 		//########Edit fields only#######
-		$crud->edit_fields('status');
+		$crud->edit_fields('comments');
 
 		//####### Changing column names #######
 		$crud->display_as('created_at','Posted Date');
@@ -1943,12 +1943,13 @@ $date = new DateTime($row->start);
 		$crud->display_as('admin_commission',get_languageword('admin_commission_percentage').' ('.get_languageword('with_credits').')');
 		$crud->display_as('per_credit_value',get_languageword('per_credit_value')." (".get_system_settings('currency_symbol').")");
 		$crud->display_as('start_date',get_languageword('preferred_commence_date'));
+        $crud->display_as('status_desc',get_languageword('Tutor comment'));
         $crud->unset_columns('admin_commission');
         $crud->unset_columns('fee');
         $crud->unset_columns('days_off');
         $crud->unset_columns('preferred_location');
         $crud->unset_columns('admin_commission_val');
-        $crud->unset_columns('status_desc');
+        //$crud->unset_columns('status_desc');
         if($param == "approved")
         {
             $crud->unset_edit();
@@ -1972,7 +1973,7 @@ $date = new DateTime($row->start);
 		$crud->field_type('updated_at', 'hidden', date('Y-m-d H:i:s'));
 
 		//Unset Fields
-		$crud->unset_fields('tutor_id', 'admin_commission_val', 'admin_commission','fee','days_off', 'preferred_location', 'status_desc');
+		$crud->unset_fields('tutor_id', 'admin_commission_val', 'admin_commission','fee','days_off', 'preferred_location');
 
 
 		//Authenticate whether Tutor editing/viewing his records only
@@ -2221,7 +2222,7 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 
 						if(!empty($email_tpl->template_content)) {
 
-							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
 							$temp_vars		= array('___STUDENT_NAME___', '___TUTOR_NAME___', '___COURSE_NAME___', '___DATE_TIME___',  '___LOGINLINK___');
 							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -2282,6 +2283,7 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
         $this->data['duration'] = $booking_det->duration_value;
         $this->data['activemenu'] 		= "sell_courses_online";
 		$this->data['activesubmenu'] 	= "publish";
+        $this->data["roomsession"] = $booking_det->roomsession;
 		$this->data['pagetitle'] 		= get_languageword('Course_Online');
 		$this->data['content'] 			= 'session_started';
         if(!isset($booking_det->started_at))
@@ -2416,7 +2418,7 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 
 						if(!empty($email_tpl->template_content)) {
 
-							$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, $booking_det->preferred_location, $student_addr);
+							$original_vars  = array($tutor_rec->username, $student_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, $booking_det->preferred_location, $student_addr);
 							$temp_vars		= array('___TUTOR_NAME___', '___STUDENT_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOCATION___', '___STUDENT_ADDRESS___');
 							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 
@@ -2427,7 +2429,7 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 									<p>
 										".get_languageword('You approved Student')." &quot;".$student_rec->username."&quot; ".get_languageword('booking for the course')." &quot;".$course_name."&quot;</p>
 									<p>
-										".get_languageword('for the timeslot')." &quot;".$booking_det->start_date." & ".$booking_det->time_slot."&quot; and &quot; ".$booking_det->preferred_location."&quot; ".get_languageword('as preferred location for sessions').".</p>
+										".get_languageword('for the timeslot')." &quot;".$booking_det->start_date." at ".$booking_det->time_slot."&quot; and &quot; ".$booking_det->preferred_location."&quot; ".get_languageword('as preferred location for sessions').".</p>
 									<p>
 										".get_languageword('Below is the address of the Student')."</p>
 									<p>
@@ -2477,7 +2479,7 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 
 						if(!empty($email_tpl->template_content)) {
 
-							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." & ".$booking_det->time_slot, $booking_det->preferred_location, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, $booking_det->preferred_location, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
 							$temp_vars		= array('___STUDENT_NAME___', '___TUTOR_NAME___', '___COURSE_NAME___', '___DATE_TIME___', '___LOCATION___', '___LOGINLINK___');
 							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
 

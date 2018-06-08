@@ -1,12 +1,38 @@
     
 <!-- Header #homepage -->
     <section class="header-homepage">
-	<img src="<?php echo URL_FRONT_IMAGES;?>mainimage.png" alt="" class="img-responsive">
+    <!--slider-->
+    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/homeslider/css/style.css">
+    
+    <div class="slider">
+	<div class="slider-inner">
+    <?php
+    $i=0; 
+      foreach($homeslider as $row)
+            {?>
+            <div class="slide <?php $i==0?"active":""?>"><img src="/assets/uploads/homeslider_logos/<?php echo $row->image?>" style="width:100%;height:auto;vertical-align:top"/></div>
+                <?php
+$i++;
+ }?>
+	</div>
+	
+	<nav class="slider-nav">
+    <?php
+        $j=0; 
+ foreach($homeslider as $row)
+            {?>
+            <div <?php echo $j==0?'class="active slidepointer"':'class="slidepointer"'?>></div>
+                <?php $j++; }?>
+		
+	</nav>
+</div>
+	
         <div class="container">
             <div class="row header-margin">
                 <div class="col-sm-12">
-                    <h1 class="hero-title"><?php echo get_languageword('Explore').' - '.get_languageword('Enrich').' - '.get_languageword('Excel');?></h1>
-                    <p class="hero-tag"><?php echo get_languageword('Everything you need in order to find the')?> <strong><?php echo get_languageword('right'); ?></strong> <?php echo get_languageword('class for you');?></p>
+                    <h1 class="hero-title"><?php echo get_languageword('Learn').' - '.get_languageword('Read').' - '.get_languageword('Practice');?></h1>
+                    <p class="hero-tag"><?php echo get_languageword('Live Conversation Classes With a vast choice of Arabic Teachers to find the')?> <strong><?php echo get_languageword('right'); ?></strong> <?php echo get_languageword('class for you');?></p>
                 </div>
                 <?php if(!$this->ion_auth->is_tutor()) { ?>
                 <div class="col-sm-12">
@@ -33,7 +59,70 @@
 
          } ?>
     <!-- Ends Advantages #homepage -->
+    <section>
+        <div class="container">
+            <div class="row">
+            <div class="col-sm-12 ">
+                        <h2 class="heading"><span><?php echo get_languageword('our_packages'); ?></span></h2>
+                    </div>
+				<?php 
+				  foreach($package_data as $l) { ?>
+			   	<div class="col-lg-4 col-md-4 col-sm-12">
+				  <div class="pricing_div">
+					  <div class="site_pac_hed green-hed">
+						<img src="/assets/uploads/package_logos/<?php echo $l->image?>" style="width:100%"/>
+						<?php 
+						$currency_symbol = '';
+						if(isset($site_settings->currency_symbol))
+						    $currency_symbol = $site_settings->currency_symbol;
+						$final_cost = $l->package_cost;
+						   if(isset($l->discount) && ($l->discount != 0))
+							if($l->discount_type == 'Value')
+							{
+								$final_cost = $l->package_cost - $l->discount;
+													
+							}
+							else
+							{
+								$discount = ($l->discount/100)*$l->package_cost;							
+								$final_cost = $l->package_cost - $discount;
+							?>
+						<?php } else { ?>
+						<?php 
+						   //if($currency_symbol != '')
+							//echo $currency_symbol.' ';
+							//echo $final_cost;
+						}
+							?> 
+					 </div>
+					<div class="pack-list">
+						<p><?php echo get_languageword('Package Name');?> <strong><?php echo $l->package_name?></strong></p>
+						<p><?php echo get_languageword('Classes to be obtained: '); ?> <strong><?php echo $l->credits?></strong></p>
 
+						<?php if(isset($l->discount) && ($l->discount_type == 'Value')){?>
+						<p><strong> <?php echo get_languageword('Discount: ');?><?php echo get_system_settings('currency_symbol').' '. $l->discount;?></strong></p>
+						<?php }
+						else
+						{?>
+							<p> <?php echo get_languageword('Discount: ');?><strong><?php echo  $l->discount;?> %</strong></p>
+						<?php }
+						?>
+
+						<p><?php echo get_languageword('Package Cost: ');?> <strike><?php echo get_system_settings('currency_symbol').' '.$l->package_cost?></strike><strong> <b>
+						<?php echo  get_system_settings('currency_symbol').' '. $final_cost;?></b></strong></p>
+						
+					 </div>
+
+					 <div class="radio">
+							<center><a href="/auth/login?red=/student/list-packages"><span class="nav-btn"> <i class="fa  fa-sign-in"></i> Sign Up </span></a></center>
+					</div>
+				  </div>
+				  <!--./pricing_div-->
+			   	</div>
+			   	<?php } ?>
+		</div>
+        </div>
+    </section>
 
     <!-- Our-Popular #homepage -->
     <?php if(!empty($popular_courses)) { ?>
@@ -107,7 +196,7 @@
         <div class="container">
             <div class="row row-margin">
                 <div class="col-sm-12 ">
-                    <h2 class="heading"><?php echo get_languageword('Recent Added');?> <span><?php echo get_languageword('Courses');?></span></h2>
+                    <h2 class="heading"><?php echo get_languageword('Recently Added');?> <span><?php echo get_languageword('Courses');?></span></h2>
                 </div>
                 <?php foreach($recent_courses as $row) { ?>
                 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -115,13 +204,13 @@
                         <a href="<?php echo '/course/'.$row->slug;?>">
                             <figure class="imghvr-zoom-in">
                                 <div class="card">
-                                    <div class="card-img">
+                                    <div class="card-img" style="height:auto">
                                         <img src="<?php echo get_course_img($row->image); ?>" class="img-responsive" alt="">
                                         <figcaption></figcaption>
                                     </div>
                                     <div class="card-content">
                                         <h4 class="card-title" title="<?php echo $row->name;?>"><?php echo $row->name;?></h4>
-                                        <p class="card-info animated fadeIn" title="<?php echo $row->description;?>"><?php if(!empty($row->description)) echo $row->description; else echo '&nbsp;';?></p>
+                                        <!--<p class="card-info animated fadeIn" title="<?php echo $row->description;?>"><?php if(!empty($row->description)) echo $row->description; else echo '&nbsp;';?></p>-->
                                     </div>
                                 </div>
                             </figure>
@@ -144,7 +233,18 @@
         }
     ?>
     <!-- Ends How-it-works #homepage -->
-
+    <div class="container" id='testimonials'>
+        <div class="row row-margin">
+        <div class="col-sm-12 ">
+                <h2 class="heading"><?php echo get_languageword('Here’s a little demo video to get you familiar with');?> <span><?php echo get_languageword('Odemy');?></span>   <?php echo get_languageword('Platform');?>!</h2>
+            </div>
+            <div class="col-sm-12">
+            <center>
+            <iframe class="homeyoutube" src="https://www.youtube.com/embed/XmU2bD8CVhI?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </center>
+            </div>
+        </div>
+    </div>
     <!-- Testimonial slider -->
     <div class="container" id='testimonials'>
         <div class="row row-margin">
@@ -250,3 +350,4 @@
 
    
 </script>
+<script  src="/homeslider/js/index.js"></script>

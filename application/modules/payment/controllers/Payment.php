@@ -79,6 +79,54 @@ class Payment extends MY_Controller
 						$this->paypal->add($package_name, $total_amount);
 						$this->paypal->pay(); /*Process the payment*/
 					}
+                    elseif($gateway_details[0]->type_id == CYBERSOURCE_PAYMENT_GATEWAY)
+                    {
+                        $csparams = array();
+                        foreach($field_values as $value) {	
+                        if($value->field_key == 'Profile_Id') {
+									$csparams['profile_id'] = $value->field_output_value;
+								}
+								if($value->field_key == 'Access_Key') {
+									$csparams['access_key'] = $value->field_output_value;
+								}
+								if($value->field_key == 'Secret_Key') {
+									$csparams['Secret_Key'] = $value->field_output_value;
+								}
+                                if($value->field_key == 'Payment_Url') {
+									$csparams['Payment_Url'] = $value->field_output_value;
+								}
+                                if($value->field_key == 'Return_Url') {
+									$csparams['override_custom_receipt_page'] = $value->field_output_value;
+								}
+                        }
+						$csparams['productinfo'] = $package_name;
+						$csparams['amount'] = $total_amount;
+						
+						$user_details = $this->base_model->fetch_records_from('users', array('id' => $this->ion_auth->get_user_id()));
+						if(!empty($user_details))
+						{
+							$csparams['bill_to_forename'] = $user_details[0]->first_name;
+							$csparams['bill_to_surname'] = $user_details[0]->last_name;
+							$csparams['bill_to_email'] = $user_details[0]->email;
+							$csparams['bill_to_phone'] = $user_details[0]->phone;
+                            $csparams['bill_to_address_line1'] = $user_details[0]->city;
+                            $csparams['bill_to_address_line2'] = $user_details[0]->city;
+                            $csparams['bill_to_address_city'] = $user_details[0]->city;
+                            $csparams['consumer_id'] = $this->ion_auth->get_user_id();
+						    $csparams['item_0_code'] = $package_id;
+                            $csparams['item_0_sku'] = $package_id;
+                            $csparams['item_0_name'] = $package_name;
+                            $csparams['item_0_quantity'] = "1";
+                            $csparams["line_item_count"] = "1";
+                            $csparams["item_0_unit_price"] = $total_amount;
+                            $country = isset($user_details[0]->country)&&$user_details[0]->country!=""?$user_details[0]->country:"Lebanon";
+                            $country_details = $this->base_model->fetch_records_from('country', array('nicename' => $country));
+                            $csparams['bill_to_address_country'] = $country_details[0]->iso;
+						}						
+						$this->load->helper('cybersource');
+                        echo call_cybersource( $csparams );
+                        die();
+                    }
 					elseif($gateway_details[0]->type_id == PAYU_PAYMENT_GATEWAY ) //Payu Settings
 					{
 						$payuparams = array();
@@ -380,7 +428,170 @@ class Payment extends MY_Controller
 			$this->safe_redirect();
 		}
 	}
-	
+	function csconfirm()
+    {
+        foreach($_REQUEST as $name => $value) {
+            $params[$name] = $value;
+        }?>
+        <div class="customcontainer" style="width:50%;margin:20% auto;">
+<div class="course_li" style="width:85%;margin:0 auto;">Processing, please wait...</div>
+<form action="<?php echo $params["Payment_Url"];?>" method="post" id="sbmFrm"/>
+    <?php
+        foreach($params as $name => $value) {
+            if(!in_array($name, array('Payment_Url'))) {
+                echo "<input type=\"hidden\" id=\"" . $name . "\" name=\"" . $name . "\" value=\"" . $value . "\"/>\n";
+            }
+        }
+
+        echo "<input type=\"hidden\" id=\"signature\" name=\"signature\" value=\"" . sign($params) . "\"/>\n";
+    ?>
+
+
+
+</form>
+</div>
+<script>
+document.getElementById("sbmFrm").submit();
+</script>
+    <?php
+    }
+    function csreceipt()
+    {
+        foreach($_REQUEST as $name => $value) {
+            $params[$name] = $value;
+        }
+        if (strcmp($params["signature"], sign($params))==0) {
+            if(strtolower($_REQUEST["reason_code"])=="100")
+            {
+                $this->processCybersource($params);
+            }
+            else if(strtolower($_REQUEST["reason_code"])=="481")
+            {
+                $this->processCybersource($params);
+            }
+            else
+			{
+				$this->safe_redirect('', get_languageword('Transaction Failed Please try again'), FALSE);
+			}
+        }
+    }
+    function processCybersource($params)
+    {
+        $reference_number = $params["req_reference_number"];
+        $user_id = $params['req_consumer_id'];
+			$package_id = $params['req_item_0_code'];
+            $field_values = $this->db->get_where('system_settings_fields',array('type_id' => 53))->result();
+            $user_details = $this->base_model->get_user_details( $user_id );
+					$user_info = $user_details[0];
+                    
+					$subscription_info['user_id'] = $user_id;
+					$subscription_info['user_name'] = $user_info->first_name.' '.$user_info->last_name;
+					$subscription_info['user_type'] = $user_info->group_name;
+					$subscription_info['user_group_id'] = $user_info->group_id;
+					
+					$package_details = $this->base_model->fetch_records_from('packages', array('id' => $package_id));
+					$subscription_details 	= $package_details[0];
+					$subscription_info['package_id'] = $package_id;
+					$subscription_info['package_name'] = $subscription_details->package_name;
+					$subscription_info['package_cost'] = $subscription_details->package_cost;
+
+					$subscription_info['discount_type'] = $subscription_details->discount_type;
+					$subscription_info['discount_value'] = $subscription_details->discount;
+					$discount_amount 	= 0;
+					if(isset($subscription_details->discount) && ($subscription_details->discount != 0))
+					{
+						if($subscription_details->discount_type == 'Value')
+						{
+							$discount_amount = $subscription_details->discount;				
+						}
+						else
+						{
+							$discount_amount = ($subscription_details->package_cost/$subscription_details->discount)/100;
+						}
+					}
+					$subscription_info['discount_amount'] = $discount_amount;
+					
+					$subscription_info['amount_paid'] = $params["req_amount"];//$this->input->post('amount');
+					$subscription_info['credits'] 	  = $subscription_details->credits;					
+					$subscription_info['payment_type'] 		= "cybersource";
+					$subscription_info['transaction_no']   	= $reference_number;
+					$subscription_info['payment_received'] 	= "1";					
+					//$subscription_info['payer_id'] 			= $this->input->post("payer_id");
+					$subscription_info['payer_email'] 		= $user_info->email;
+					$subscription_info['payer_name'] 		= $user_info->first_name." ".$user_info->last_name;
+					$subscription_info['subscribe_date'] 	= date('Y-m-d H:i:s');
+
+					$ref 	= $this->base_model->insert_operation_id($subscription_info, 'subscriptions');
+					if($ref > 0)
+					{
+						$user_data['subscription_id'] 		= $ref;
+                        $coursesadded = $user_info->free_courses + $subscription_details->credits;
+                        
+                        $user_data['free_courses'] = $coursesadded;
+						$this->base_model->update_operation($user_data, 'users', array('id' => $user_id));
+
+						//Log Credits transaction data & update user net credits - Start
+						$log_data = array(
+							'user_id' => $user_id,
+							'credits' => $subscription_details->credits,
+							'per_credit_value' => get_system_settings('per_credit_value'),
+							'action'  => 'credited',
+							'purpose' => 'Package "'.$subscription_details->package_name.'" subscription',
+							'date_of_action	' => date('Y-m-d H:i:s'),
+							'reference_table' => 'subscriptions',
+							'reference_id' => $ref,
+						);
+						log_user_credits_transaction($log_data);
+
+						update_user_credits($user_id, $subscription_details->credits, 'credit');
+						//Log Credits transaction data & update user net credits - End
+					}
+
+					$this->prepare_flashmessage(get_languageword('Payment success Transaction Id '). ": <strong>" . 
+					$subscription_info['transaction_no'] . "</strong>", 0);
+					$this->session->unset_userdata('is_valid_request');
+					$this->session->unset_userdata('package_id');
+					$this->session->unset_userdata('gateway_id');
+					$user_type = getUserType($user_id);
+                    $email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '20'));
+                if(!empty($email_tpl)) {
+                $from 	= get_system_settings('Portal_Email');
+                $to = $user_info->email;
+                if(!empty($email_tpl->template_subject)) {
+
+						$sub = $email_tpl->template_subject;
+
+					} else {
+
+						$sub = get_languageword("Package Subscription Successfull");
+					}
+                    if(!empty($email_tpl->template_content)) {
+                        $original_vars  = array($user_info->first_name." ".$user_info->last_name, $subscription_details->credits);
+						$temp_vars		= array('_STUDENT_NAME_', '_COURSES_NUMBER_');
+						$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+                    }
+                     else {
+
+						$msg = "<p>
+	Dear ".$user_info->first_name." ".$user_info->last_name.",</p>
+<p>
+	Thank you for finding a suitable plan for you,</p>
+<p>
+	".$subscription_details->credits." free classes available</p>
+<p>
+	You can now book for free our classes at your own convenience for the available tutors and time slots</p>";
+					}
+                    sendEmail($from, $to, $sub, $msg);
+                }
+					if($user_type == "institute")
+						redirect(URL_INSTITUTE_SUBSCRIPTIONS, 'refresh');
+					else if($user_type == "tutor")
+						redirect(URL_TUTOR_SUBSCRIPTIONS, 'refresh');
+					else if($user_type == "student")
+						redirect(URL_STUDENT_SUBSCRIPTIONS, 'refresh');
+					else
+						redirect(URL_AUTH_INDEX);
+    }
 	function pagseguro_status() {
 		
 	}

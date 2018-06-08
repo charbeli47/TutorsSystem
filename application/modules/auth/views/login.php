@@ -14,7 +14,7 @@
 					'id' => 'token_form',
 					'class' => 'form-signin  comment-form',
 					);
-					echo form_open(current_uri(), $attrs);?>
+					echo form_open(current_uri().(isset($_GET["red"])?$_GET["red"]:""), $attrs);?>
 						<div class="input-group ">
 							<label><?php echo get_languageword('email');?><?php echo required_symbol();?></label>
 							<?php 
@@ -52,7 +52,7 @@
 				<span class="error"><?php echo (isset($message_create)) ? $message_create : '';?></span>
 				<div class="sign-block">
 					<h2><span><?php echo get_languageword('Register');?> </span> <?php echo get_languageword('');?></h2>
-					<?php echo form_open(current_uri(), array('class' => 'form-signup comment-form', 'name' => 'token_form', 'id' => 'token_form'));?>
+					<?php echo form_open(current_uri().(isset($_GET["red"])?$_GET["red"]:""), array('class' => 'form-signup comment-form', 'name' => 'token_form', 'id' => 'token_form'));?>
 
 						
 						<div class="input-group ">
@@ -136,7 +136,7 @@
 						</div>
 						
 						
-						<div class="input-group ">
+						<!--<div class="input-group ">
 							<label><?php echo get_languageword('pin_code');?></label>
 							<?php 
 							$attributes = array(
@@ -147,7 +147,7 @@
 							'class' => 'form-control',
 							);
 							echo form_input($attributes);?>
-						</div>
+						</div>-->
 
 						
 						<div class="input-group ">

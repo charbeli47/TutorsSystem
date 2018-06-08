@@ -14894,6 +14894,7 @@ ViewRegistry_1.defineView('listDay', {
     type: 'list',
     duration: { days: 1 },
     defaults: {
+        buttonText: 'Day',
         listDayFormat: 'dddd' // day-of-week is all we need. full date is probably in header
     }
 });
