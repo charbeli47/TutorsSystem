@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <div class="dashboard-panel">
 	<?php echo $message;?>
 	<div class="row">
@@ -72,7 +73,7 @@ var x = setInterval(function() {
 
 </div>
 <!-- Dashboard panel ends -->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/assets/timer/timercircle.css">
     <link rel="stylesheet" type="text/css" href="/assets/timer/skins/yellowcircle.css">
     <link rel="stylesheet" type="text/css" href="/assets/timer/skins/purplecircle.css">
