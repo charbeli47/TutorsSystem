@@ -360,9 +360,14 @@ define('URL_SUBJECTS_INDEX', SITEURL2."/subjects/index");
 define('URL_LOCATIONS_INDEX', SITEURL2."/locations/index");
 define('URL_CATEGORIES_INDEX', SITEURL2."/categories/index");
 define('URL_CATEGORIES_COURSES', SITEURL2."/categories/courses");
+define('URL_QUIZ_OPTIONS', SITEURL2."/quiz/options");
+
 define('URL_CERTIFICATES_INDEX', SITEURL2."/certificates/index");
 
+//added by youssef//
+define('URL_QUIZ_INDEX', SITEURL2."/quiz/index");
 
+//
 //INSTITUTE MODULE CONSTANTS
 define('URL_INSTITUTE_INDEX', SITEURL2."/institute/index");
 define('URL_INSTITUTE_LIST_PACKAGES', SITEURL2."/institute/list-packages");

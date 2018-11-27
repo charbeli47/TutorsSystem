@@ -370,6 +370,11 @@ class Admin extends MY_Controller
 		return $post_array;
 	}
 
+	// added by youssef///
+
+	function quiz_questions()
+	{
+	}
 
 	function student_bookings()
 	{

@@ -48,6 +48,8 @@ define('MAX_DISPLAY_CATS_MENU', 6);
 
 
 //Tables
+define('TBL_QUESTIONS', TBL_PREFIX.'quizquestions');
+
 define('TBL_CATEGORIES', TBL_PREFIX.'categories');
 define('TBL_COURSE_CATEGORIES', TBL_PREFIX.'course_categories');
 define('TBL_TUTOR_COURSES', TBL_PREFIX.'tutor_courses');

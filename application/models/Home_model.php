@@ -50,6 +50,31 @@ class Home_Model extends CI_Model
 		return $result->result();
 	}
 
+	
+	function get_cweight()
+	{
+		$query = "SELECT * FROM pre_curriculumweight";			 
+		$cu = $this->db->query($query);
+
+		 return ($cu->num_rows() > 0) ? $cu->result() : FALSE;
+	}
+	
+	function get_quizquestions()
+	{
+		$query = "SELECT * FROM pre_quizquestions";			 
+		$quizquestions = $this->db->query($query);
+
+		 return ($quizquestions->num_rows() > 0) ? $quizquestions->result() : FALSE;
+	}
+
+	function get_optionsforquestion()
+	{
+		$query = "SELECT * FROM pre_questionoptions";			 
+		$options = $this->db->query($query);
+
+		 return ($options->num_rows() > 0) ? $options->result() : FALSE;
+	}
+
     function list_student_packages()
 	{		
 		$query = "select * from " . $this->db->dbprefix('packages') . " 
