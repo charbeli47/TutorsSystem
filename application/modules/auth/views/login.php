@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row row-margin">
 			<!-- Sign in section -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 				<div class="sign-block signin-left">
 					<h2><span><?php echo get_languageword('Sign In');?></span> <?php echo get_languageword('With Your Account');?></h2>
 					
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<!-- Sign up section -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<span class="error"><?php echo (isset($message_create)) ? $message_create : '';?></span>
 				<div class="sign-block">
 					<h2><span><?php echo get_languageword('Register');?> </span> <?php echo get_languageword('');?></h2>
@@ -146,7 +146,7 @@
 						'class' => 'form-control',
 						);
 						echo form_password($attributes);?>
-						</div>
+						</div>-->
 						
 						
 						<!--<div class="input-group ">
@@ -163,7 +163,7 @@
 						</div>-->
 
 						
-						<div class="input-group ">
+						<!--<div class="input-group ">
 							<label><?php echo get_languageword('Phone Number');?><?php echo required_symbol();?></label>
 							<div class="row">
 	    						<div class="col-sm-6 pad-right0">
@@ -190,7 +190,7 @@
 						<button class="btn-link-dark  center-block" type="submit" name="create"><?php echo get_languageword('Create an Account');?></button>
 					</form>
 				</div>
-			</div>
+			</div>-->
 
 		</div>
 	</div>

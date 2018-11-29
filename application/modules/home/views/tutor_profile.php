@@ -194,7 +194,7 @@
                     <h2 class="heading-line"><?php echo get_languageword('reserve_your_spot'); ?></h2>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                    <h4 class="fee" id="fee"><?php  echo $row->fee?>$ / 25 min</h2>
+                    <!--<h4 class="fee" id="fee"><?php // echo $row->fee?>$ / 25 min</h4>-->
                     <div class="feeperhour" id="duration"> </div>
                     
                 </div>

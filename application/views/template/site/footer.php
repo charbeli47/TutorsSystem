@@ -139,15 +139,15 @@
                 <?php if(isset($this->config->item('site_settings')->designed_by) && $this->config->item('site_settings')->designed_by != '') { ?>
                 <span class="copy-right pull-right">
                     <?php
-                            echo "<strong>".get_languageword('designed_by')."</strong> ";
-                            if(isset($this->config->item('site_settings')->url_designed_by) && $this->config->item('site_settings')->url_designed_by != '')
-                                echo '<a target="_blank" href="'.$this->config->item('site_settings')->url_designed_by.'">'.$this->config->item('site_settings')->designed_by.'</a>';
-                            else
-                                echo $this->config->item('site_settings')->designed_by;
+                           // echo "<strong>".get_languageword('designed_by')."</strong> ";
+                            //if(isset($this->config->item('site_settings')->url_designed_by) && $this->config->item('site_settings')->url_designed_by != '')
+                            //    echo '<a target="_blank" href="'.$this->config->item('site_settings')->url_designed_by.'">'.$this->config->item('site_settings')->designed_by.'</a>';
+                           // else
+                            //    echo $this->config->item('site_settings')->designed_by;
                     ?> &nbsp; &nbsp;
-                    <?php if(isset($this->config->item('site_settings')->rights_reserved_by) && $this->config->item('site_settings')->rights_reserved_by != '') {
+                    <?php /*if(isset($this->config->item('site_settings')->rights_reserved_by) && $this->config->item('site_settings')->rights_reserved_by != '') {
                         echo $this->config->item('site_settings')->rights_reserved_by;
-                    }
+                    }*/
                     ?>
 
 
@@ -155,7 +155,7 @@
                 <?php } ?>
 
 
-                <ul class="social-share">
+             <!--   <ul class="social-share">
                     <?php if(isset($this->config->item('social_settings')->facebook) && $this->config->item('social_settings')->facebook != '') { ?>
                     <li class="fb-color"><a href="<?php echo $this->config->item('social_settings')->facebook;?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
                     <?php } ?>
@@ -178,7 +178,7 @@
                     <?php if(isset($this->config->item('social_settings')->youtube) && $this->config->item('social_settings')->youtube != '') { ?>
                     <li class="yt-color"><a href="<?php echo $this->config->item('social_settings')->youtube;?>" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
                     <?php } ?>
-                </ul>
+                </ul>-->
             </div>
         </div>
         <?php } ?>
