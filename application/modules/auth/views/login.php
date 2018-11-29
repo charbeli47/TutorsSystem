@@ -97,6 +97,19 @@
 							echo form_input($attributes);?>
 						</div>
 
+						<div class="input-group " id="div_age">
+							<label><?php echo get_languageword('age');?><?php echo required_symbol();?></label>
+								<?php 
+							$attributes = array(
+							'name'	=> 'age',
+							'id'	=> 'age',
+							'value'	=> $this->form_validation->set_value('age'),
+							'placeholder'=>  get_languageword('age'),
+							'class' => 'form-control',
+							);
+							echo form_input($attributes);?>
+						</div>
+
 						<div class="input-group ">
 							<label><?php echo get_languageword('Email');?><?php echo required_symbol();?></label>
 							<?php 

@@ -102,13 +102,13 @@ class Auth extends MY_Controller {
 			//$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group');
             
 			if($param=='3'){
-            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
-			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'fee','video', 'user_belongs_group');
+            $crud->add_fields('email','first_name','last_name', 'gender','age', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group');
+			$crud->edit_fields('first_name','last_name', 'gender','age', 'active', 'phone_code', 'phone', 'email', 'fee','video', 'user_belongs_group');
 			}
 			else
             {
-            $crud->add_fields('email','first_name','last_name', 'gender', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group','free_courses');
-			$crud->edit_fields('first_name','last_name', 'gender', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group','free_courses');
+            $crud->add_fields('email','first_name','last_name', 'gender','age', 'phone_code', 'phone', 'password', 'confirm_password', 'user_belongs_group','free_courses');
+			$crud->edit_fields('first_name','last_name', 'gender','age', 'active', 'phone_code', 'phone', 'email', 'user_belongs_group','free_courses');
             }
 
 			$crud->callback_field('phone_code', array($this, 'callback_field_phone_code'));
@@ -323,6 +323,7 @@ class Auth extends MY_Controller {
 								'country' 				=> $code_country[1],
 								'phone' 				=> $post_array['phone'],
 								'gender' 				=> $post_array['gender'],
+								'age' 				=> $post_array['age'],
 								'user_belongs_group'	=> $post_array['user_belongs_group'],
                                 'free_courses'          => $free,
 								'last_updated' 			=> date('Y-m-d H:i:s')
@@ -360,6 +361,7 @@ class Auth extends MY_Controller {
 								'country' 				=> $code_country[1],
 								'phone' 				=> $post_array['phone'],
 								'gender' 				=> $post_array['gender'],
+								'age' 				=> $post_array['age'],
 								'active' 				=> $post_array['active'],
 								'user_belongs_group' 	=> $post_array['user_belongs_group'],
 								'last_updated' 			=> date('Y-m-d H:i:s'),
@@ -601,6 +603,7 @@ class Auth extends MY_Controller {
 			//Validate User feilds			
 			 $this->form_validation->set_rules('first_name',get_languageword('first_ name'),'required');
 			 $this->form_validation->set_rules('last_name',get_languageword('last_name'),'xss_clean');
+			 $this->form_validation->set_rules('age',get_languageword('age'),'required|numeric');
 			 $this->form_validation->set_rules('phone_code',get_languageword('phone_code'),'required|numeric');
 			 $this->form_validation->set_rules('mobile_number',get_languageword('mobile_number'),'required|numeric|exact_length[10]');
 						
@@ -629,6 +632,7 @@ class Auth extends MY_Controller {
 					'username' => $email,
 					'first_name' 			=> $this->input->post('first_name'),
 					'last_name'  			=> $this->input->post('last_name'),
+					'age'  			=> $this->input->post('age'),
 					'current_language'      => 'english',
 					'phone_code'     	=> $this->input->post('phone_code'),
 					'mobile_number'     	=> $this->input->post('mobile_number'),
