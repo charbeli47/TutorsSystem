@@ -543,9 +543,9 @@ class Home extends MY_Controller
 
 					$student_rec = getUserRec($student_id);
 					$tutor_rec 	 = getUserRec($tutor_id);
-                    $coursesadded = $student_rec->free_courses -1;
+                    //$coursesadded = $student_rec->free_courses -1;
                         
-                        $user_data['free_courses'] = $coursesadded;
+                      //  $user_data['free_courses'] = $coursesadded;
 						$this->base_model->update_operation($user_data, 'users', array('id' => $student_id));
 
 					if(!empty($email_tpl->from_email)) {

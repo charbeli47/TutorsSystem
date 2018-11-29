@@ -59,7 +59,7 @@ $i++;
 
          } ?>
     <!-- Ends Advantages #homepage -->
-    <section>
+    <!--<section>
         <div class="container">
             <div class="row">
             <div class="col-sm-12 ">
@@ -117,12 +117,11 @@ $i++;
 							<center><a href="/auth/login?red=/student/list-packages"><span class="nav-btn"> <i class="fa  fa-sign-in"></i> Sign Up </span></a></center>
 					</div>
 				  </div>
-				  <!--./pricing_div-->
 			   	</div>
 			   	<?php } ?>
 		</div>
         </div>
-    </section>
+    </section>-->
 
     <!-- Our-Popular #homepage -->
     <?php if(!empty($popular_courses)) { ?>
@@ -246,7 +245,7 @@ $i++;
         </div>
     </div>
     <!-- Testimonial slider -->
-    <div class="container" id='testimonials'>
+    <!--<div class="container" id='testimonials'>
         <div class="row row-margin">
             <div class="col-sm-12 ">
                 <h2 class="heading"><?php echo get_languageword('Why Students');?> <span><?php echo get_languageword('Love Us');?></span></h2>
@@ -280,16 +279,16 @@ $i++;
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Ends Testimonial slider -->
 
     <!-- Counter #Homepage -->
     <?php //$this->load->view('lesson_count.php'); ?>
     <!-- Counter #Homepage -->
 
-    <?php if(!empty($home_tutor_ratings)) {?>
+    <?php /*if(!empty($home_tutor_ratings)) {*/?>
     <!-- Top-rated slider -->
-    <section class="weekly-top-rated">
+   <!-- <section class="weekly-top-rated">
         <div class="container">
             <div class="row row-margin">
                 <div class="col-md-12">
@@ -322,15 +321,15 @@ $i++;
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- Ends Top-rated slider -->
-<?php } ?>
+<?php /*} */?>
     <!-- Call-to-register -->
-    <?php if(strip_tags($this->config->item('site_settings')->are_you_teacher_section) == "On") {
+    <?php /* if(strip_tags($this->config->item('site_settings')->are_you_teacher_section) == "On") {
 
             echo $this->config->item('sections')->Are_You_A_Teacher_Section;
 
-         } ?>
+         }*/ ?>
     <!-- Call-to-register -->
 
 
