@@ -913,6 +913,21 @@ class Ion_auth_model extends CI_Model
 		$salt       = $this->store_salt ? $this->salt() : FALSE;
 		$password   = $this->hash_password($password, $salt);
 
+		
+		if ($groups['0'] =='2') {
+  // Users table.
+		$data = array(
+		    $this->identity_column   => $identity,
+		    'password'   => $password,
+		    'email'      => $email,
+		    'ip_address' => $ip_address,
+		    'created_on' => time(),
+		    'active'     => (($manual_activation === false) ? 1 : 0),
+			'net_credits'  => '20'
+		);
+
+}
+else{
 		// Users table.
 		$data = array(
 		    $this->identity_column   => $identity,
@@ -921,8 +936,9 @@ class Ion_auth_model extends CI_Model
 		    'ip_address' => $ip_address,
 		    'created_on' => time(),
 		    'active'     => (($manual_activation === false) ? 1 : 0)
+			
 		);
-
+		}
 		if ($this->store_salt)
 		{
 			$data['salt'] = $salt;

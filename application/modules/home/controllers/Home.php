@@ -65,8 +65,14 @@ class Home extends MY_Controller
 
 		//Recent Added Courses
 		$this->data['recent_courses'] = $this->home_model->get_courses(array('order_by' => 'courses.id DESC', 'limit' => 6));
-
-
+		// quizquestions by youssef
+			$this->data['quiz_questions'] = $this->home_model->get_quizquestions();
+			//
+		// questionoptions by youssef
+		
+			$this->data['options_question'] = $this->home_model->get_optionsforquestion();
+			$this->data['cuweight'] = $this->home_model->get_cweight();
+			//
 		/* Category-wise Popular Courses - Start */
 			$category_limit = 8;
 			$course_limit   = 4;

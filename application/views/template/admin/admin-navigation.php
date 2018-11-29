@@ -389,6 +389,27 @@
 	</li>
 	<!--Profile End-->	
 
+
+
+
+	<!--quiz test  Start-->
+	<li class='treeview <?php if(isset($activemenu) && $activemenu == 'Quiz test') echo 'active';?>'>
+		<a href='#'>
+		<i class='fa fa-user'></i> <?php echo get_languageword('Quiz test');?> <i class='fa fa-angle-left pull-right'></i>
+		</a>
+		<ul class='treeview-menu'>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'list-questions') echo ' class="active"';?>>
+				<a href='<?php echo URL_QUIZ_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('listofquestions');?></a>
+			</li>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'quizquestions-add') echo ' class="active"';?>>
+				<a href='<?php echo URL_QUIZ_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Addquestions');?></a>
+			</li>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'add_option') echo ' class="active"';?>>
+				<a href='<?php echo URL_QUIZ_OPTIONS;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Addoptions');?></a>
+			</li>
+		</ul>
+	</li>
+	<!--quiz test  End-->	
 		
 	<li class=''>
 	<a href='<?php echo URL_AUTH_LOGOUT;?>'>

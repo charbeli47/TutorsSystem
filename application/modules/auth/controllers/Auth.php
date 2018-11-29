@@ -633,9 +633,13 @@ class Auth extends MY_Controller {
 					'phone_code'     	=> $this->input->post('phone_code'),
 					'mobile_number'     	=> $this->input->post('mobile_number'),
 					'admin_read_status'      => '0'
+					
+					
 				);
 				$group = array(GRP_USER);
-								
+
+				
+						
 				/* if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data,$group)) */
 				$id = $this->ion_auth->register($identity, $password, $email, $additional_data,$group);
 				
@@ -673,7 +677,7 @@ class Auth extends MY_Controller {
 						$to 		= $email;
 						$sub 		= $this->config->item('site_title', 'ion_auth') 
 						. ' - ' . "Welcome Message";
-						//sendEmail($from, $to, $sub, $content); 
+						sendEmail($from, $to, $sub, $content); 
 					}
 					
 					/**default package subscription for user if admin provides**/
@@ -1410,6 +1414,212 @@ class Auth extends MY_Controller {
 			redirect('auth', 'refresh');
 		}
 	}
+
+	// create a new user
+	function quiz_questions()
+    {
+	    $this->data['title'] = "Create Quiz question";
+
+        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $tables = $this->config->item('tables','ion_auth');
+        $identity_column = $this->config->item('identity','ion_auth');
+        $this->data['identity_column'] = $identity_column;
+
+        // validate form input
+        $this->form_validation->set_rules('question', $this->lang->line('create_user_validation_fname_label'), 'required');
+       // $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+
+        if ($this->form_validation->run() == true)
+        {
+            $question = ucfirst(strtolower($this->input->post('question')));
+			
+
+			$slug = prepare_slug($username, 'slug', 'users');
+                
+            
+            $additional_data = array(
+                'username' => $username,
+                'slug' => $slug,
+				'first_name' => $first_name,
+                'last_name'  => $last_name,
+                'mobile_number'=> $this->input->post('phone'),
+				'admin_read_status'      => '0'
+            );
+        $group = array(GRP_USER);
+		
+		$id = $this->ion_auth->register($identity, $password, $email, $additional_data, $group);
+			
+        if ($id)
+        {
+            
+			$email_template = $this->db->get_where(TBL_PREFIX.TBL_EMAIL_TEMPLATES,array('template_key'=>'registration_template','status'=>'Active'))->result();
+			if(count($email_template)>0) 
+			{
+				$email_template = $email_template[0];			
+				$content 	= $email_template->email_template;
+				
+				$content 	= str_replace("__NAME__", $this->input->post('first_name').' '.$this->input->post('last_name'),$content);						
+				$content 	= str_replace("__LOGO__", base_url().'assets/uploads/'.$this->config->item('site_settings')->logo,$content);
+				$content 	= str_replace("__CONTACTUS__", $this->config->item('site_settings')->address,$content);
+
+				$content 	= str_replace("__ACTIVATELINK__", SITEURL2,$content);	
+
+				
+				$content 		= str_replace("__URL__", SITEURL2,$content);
+				$content 		= str_replace("__SITETITLE__", $this->config->item('site_settings')->site_title,$content);
+				
+				$content 		= str_replace("__COPYRIGHTS__", $this->config->item('site_settings')->rights_reserved_by,$content);
+				$content 		= str_replace("__EMAIL__", $email,$content);
+				$content 	= str_replace("__PASSWORD__", $password,$content);				
+								
+				$from 		= $this->config->item('admin_email', 'ion_auth');
+				$to 		= $email;
+				$sub 		= $this->config->item('site_title', 'ion_auth') 
+				. ' - ' . "Welcome Message";
+				sendEmail($from, $to, $sub, $content); 
+			}
+		
+			/**default package subscription for user if admin provides**/
+			if(isset($this->config->item('quote_settings')->would_you_like_to_provide_package_to_user) && ($this->config->item('quote_settings')->would_you_like_to_provide_package_to_user) == 'Yes')
+			{
+				if(($this->config->item('quote_settings')->package_id != '') && ($this->config->item('quote_settings')->no_of_days_package_provide > 0) )
+				{
+					$package = $this->base_model->fetch_records_from(TBL_PACKAGES,array('package_id'=>$this->config->item('quote_settings')->package_id));
+					
+					$days = '';
+					$days = $this->config->item('quote_settings')->no_of_days_package_provide;
+					if(count($package)>0)
+					{
+						$user = getUserRec($id);
+						
+						$package = $package[0];
+						
+						$sub_data['package_id'] = $package->package_id;
+						$sub_data['subscribed_date'] = date('Y-m-d');
+						$sub_data['expire_date'] = date(
+													'Y-m-d', 
+													strtotime("+ ".$days." days")
+													);
+						$sub_data['no_of_quotes_provided'] = $package->no_of_quotes;
+						$sub_data['no_of_quotes_used'] = 0;
+						$sub_data['package_name'] = $package->package_name;
+						$sub_data['subscription_duration_in_days'] = $this->config->item('quote_settings')->no_of_days_package_provide;
+						$sub_data['package_cost'] = $package->package_cost;
+						$sub_data['user_id'] = $id;
+						$sub_data['user_name'] = $user->first_name.' '.$user->last_name;
+						$sub_data['user_email'] = $user->email;
+						$sub_data['status'] = 'Active';
+						$sub_data['subscription_type'] = 'gift';
+						
+						
+						if($this->base_model->insert_operation($sub_data,TBL_SUBSCRIPTIONS))
+						{
+							$user_data['is_premium'] = 1;
+							$user_data['package_id'] = $package->package_id;
+							$user_data['no_of_package_quotes'] = $package->no_of_quotes;
+							$user_data['no_of_package_quotes_used'] = 0;
+							
+							$whr['id'] = $id;
+							$this->base_model->update_operation($user_data,TBL_USERS,$whr);
+						}
+					}
+				}
+			}
+			/**default package subscription end**/
+            // check to see if we are creating the user
+            // redirect them back to the admin page
+            $this->session->set_flashdata('message', $this->ion_auth->messages());
+			if ($this->ion_auth->is_admin())
+			{
+				$this->prepare_flashmessage(get_languageword('MSG_USER_CREATED'), 0);
+				redirect('auth/index', 'refresh');
+			}
+			else
+			{
+				redirect("auth", 'refresh');
+			}
+        }
+		}
+        else
+        {
+            // display the create user form
+            // set the flash data error message if there is one
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+			if($this->data['message'] != '')
+			$this->data['message'] = $this->prepare_message($this->data['message'], 1);
+			
+
+            $this->data['first_name'] = array(
+                'name'  => 'first_name',
+                'id'    => 'first_name',
+                'type'  => 'text',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('first_name'),
+            );
+            $this->data['last_name'] = array(
+                'name'  => 'last_name',
+                'id'    => 'last_name',
+                'type'  => 'text',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('last_name'),
+            );
+            $this->data['identity'] = array(
+                'name'  => 'identity',
+                'id'    => 'identity',
+                'type'  => 'text',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('identity
+                '),
+            );
+            $this->data['email'] = array(
+                'name'  => 'email',
+                'id'    => 'email',
+                'type'  => 'text',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('email'),
+            );
+           /*  $this->data['company'] = array(
+                'name'  => 'company',
+                'id'    => 'company',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('company'),
+            ); */
+            $this->data['phone'] = array(
+                'name'  => 'phone',
+                'id'    => 'phone',
+                'type'  => 'text',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('phone'),
+            );
+
+            $this->data['password'] = array(
+                'name'  => 'password',
+                'id'    => 'password',
+                'type'  => 'password',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('password'),
+            );
+            $this->data['password_confirm'] = array(
+                'name'  => 'password_confirm',
+                'id'    => 'password_confirm',
+                'type'  => 'password',
+				'required'=>'true',
+                'value' => $this->form_validation->set_value('password_confirm'),
+            );
+
+			$this->data['activemenu'] = 'users';
+			$this->data['activesubmenu'] = 'add';
+			$this->data['pagetitle'] = get_languageword('create_user');
+			$this->data['helptext'] = array();
+            $this->data['content'] = 'create_user';
+            $this->_render_page('template/admin/admin-template', $this->data);
+        }
+    }
+
 	// create a new user
 	function create_user()
     {

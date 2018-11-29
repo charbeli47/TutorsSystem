@@ -37,6 +37,10 @@ if( $contact_settings != '' || $system_settings!='') { ?>
                             <p><?php echo $site_settings->phone; ?></p>
                         </li>
                         <?php } ?>
+						<li>
+						<h4>Teacher Applications:</h4>
+						<p>hr@odemy.net</p>
+						</li>
                     </ul>
                 </div>
                 <?php } ?>

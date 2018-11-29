@@ -189,7 +189,7 @@ function &DB($params = '', $query_builder_override = NULL)
 		 */
 		class CI_DB extends CI_DB_driver { }
 	}
-
+	
 	// Load the DB driver
 	$driver_file = BASEPATH.'database/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php';
 

@@ -179,6 +179,114 @@ $i++;
     </section>
     <?php } ?>
     <!-- Ends Our-Popular #homepage -->
+	<div class="container">
+	<div id="questionsdiv">
+	<h2 class="heading">Take The Quiz To Know Your Appropriate Curriculum To Brgin with</h2>
+	
+	  <?php
+	  $i=0;
+	  foreach ($quiz_questions as $quest) { 
+	  if ($i=="0") {
+   ?>
+	<div class="col-sm-12 quizdiv" style="display:block">
+   <h3 class="heading-line"><?php echo $quest->question?></h3>
+    <?php
+	  foreach ($options_question as $opt) {  
+	  if($opt->questionid==$quest->idquestion){
+	  if($opt->correct==0){
+	   ?>
+	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>
+	 <?php }
+	 else {
+	 ?>
+	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php echo $opt->optiontext?><br>  <br>
+	<?php  } 
+	}
+	} ?>
+    <br>  <br>
+    <input class="nav-btn next"  value=" Next ">
+   
+</div>
+  <?php }
+  else{
+    ?>
+	<div class="col-sm-12 quizdiv" style="display:none">
+   <h3 class="heading-line" ><?php echo $quest->question?></h3>
+   
+   <?php
+	  foreach ($options_question as $opt) {  
+   if($opt->questionid==$quest->idquestion){
+   if($opt->correct==0){
+	   ?>
+	   <input type="radio" style="opacity:8"name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>
+	 <?php }
+	 else {
+	 ?>
+	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php echo $opt->optiontext?><br>  <br>
+	<?php  } 
+	}
+	} ?>
+	
+    <br>  <br>
+	<?php if($i==count($quiz_questions)-1){
+	?>
+    <input class="nav-btn" onclick="showresult()"  value="Show Results">
+	<?php }
+	else {
+	 ?>
+	 <input class="nav-btn next"  value=" Next ">
+
+	<?php }
+	?>
+   
+</div>
+  <?php }
+  $i++;
+  } ?>
+
+ </div> 
+<div class="col-sm-12" id="resultsdiv" style="display:none">
+<h2 class="heading">Quiz Results</h2>  
+   <h3 class="heading-line">Match Your Score: <?php
+    foreach ($cuweight as $weight) { 
+	echo $weight->score."-".$weight->curriculum." "; 
+	}
+   
+   ?></h3><label id="quizscore" style="color:green;font-size:20px"></label>
+   </div>
+   </div>
+  
+ 
+  <script>
+  $('.next').click(function(){
+   $(this).parent().hide().next().show();//hide parent and show next
+});
+</script>
+<script>
+var countquestions=document.getElementsByClassName("quizdiv").length;
+function showresult(){
+document.getElementById("questionsdiv").style.display = "none";
+document.getElementById("resultsdiv").style.display = "block";
+debugger
+var somme=0;
+for (var j = 0; j<countquestions; j++) { 
+var radios = document.getElementsByName('question'+j);
+for (var x = 0, length = radios.length; x < length; x++)
+{
+ if (radios[x].checked)
+ {
+  // do whatever you want with the checked radio
+  somme=somme+parseInt(radios[x].value);
+// only one radio can be logically checked, don't check the rest
+  break;
+ }
+}
+}
+//alert(somme);
+  document.getElementById('quizscore').innerHTML = somme;
+
+}
+</script>
 
 
     <!-- Featured-On #homepage -->
