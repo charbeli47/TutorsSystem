@@ -60,6 +60,8 @@ for(var i=0; i<el.options.length; i++) {
           $('#editdescription').val(event.description);
           $('#editstart_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
           $('#event_id').val(event.id);
+		  $('#bookingIds').val(event.bookingIds);
+		  $("#total_bookings").html(event.total_bookings);
           $('#editModal').modal();
        },
     });
@@ -142,6 +144,12 @@ function formatDate(date) {
                     <input type="text" class="form-control" name="editstart_date" id="editstart_date">
                 </div>
         </div>
+		<div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Total Bookings</label>
+                <div class="col-md-8">
+                    <label id="total_bookings"></label>
+                </div>
+        </div>
         
             <input type="hidden" name="eventid" id="event_id" value="0" />
       </div>
@@ -149,6 +157,10 @@ function formatDate(date) {
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <input type="submit" class="btn btn-primary" value="Update Event">
         <?php echo form_close() ?>
+		<form method="post" action="/tutor/openbatchzoom" style="float:left">
+		<input type="hidden" id="bookingIds" name="bookingIds"/>
+		<input type="submit" class="btn btn-danger" id="joinbut" style="padding:0px" value="Initiate session"/>
+		</form>
       </div>
     </div>
   </div>

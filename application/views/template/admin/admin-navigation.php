@@ -399,13 +399,13 @@
 		</a>
 		<ul class='treeview-menu'>
 			<li <?php if(isset($activesubmenu) && $activesubmenu == 'list-questions') echo ' class="active"';?>>
-				<a href='<?php echo URL_QUIZ_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('listofquestions');?></a>
+				<a href='<?php echo URL_QUIZ_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('list_of_questions');?></a>
 			</li>
-			<li <?php if(isset($activesubmenu) && $activesubmenu == 'quizquestions-add') echo ' class="active"';?>>
-				<a href='<?php echo URL_QUIZ_INDEX;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Addquestions');?></a>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'options') echo ' class="active"';?>>
+				<a href='<?php echo URL_QUIZ_OPTIONS;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Options');?></a>
 			</li>
-			<li <?php if(isset($activesubmenu) && $activesubmenu == 'add_option') echo ' class="active"';?>>
-				<a href='<?php echo URL_QUIZ_OPTIONS;?>'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Addoptions');?></a>
+			<li <?php if(isset($activesubmenu) && $activesubmenu == 'curriculum-weight') echo ' class="active"';?>>
+				<a href='quiz/curriculum-weight'><i class='fa fa-circle-o'></i> <?php echo get_languageword('Curriculum_Weight');?></a>
 			</li>
 		</ul>
 	</li>

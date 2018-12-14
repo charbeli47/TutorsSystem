@@ -181,7 +181,7 @@ $i++;
     <!-- Ends Our-Popular #homepage -->
 	<div class="container">
 	<div id="questionsdiv">
-	<h2 class="heading">Take The Quiz To Know Your Appropriate Curriculum To Brgin with</h2>
+	<h2 class="heading">Take The Quiz To Know Your Appropriate Curriculum To Begin with</h2>
 	
 	  <?php
 	  $i=0;
@@ -204,7 +204,7 @@ $i++;
 	}
 	} ?>
     <br>  <br>
-    <input class="nav-btn next"  value=" Next ">
+    <input type="submit" class="nav-btn next"  value=" Next ">
    
 </div>
   <?php }
@@ -216,7 +216,7 @@ $i++;
    <?php
 	  foreach ($options_question as $opt) {  
    if($opt->questionid==$quest->idquestion){
-   if($opt->correct==0){
+   if($opt->correct=='YES'){
 	   ?>
 	   <input type="radio" style="opacity:8"name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>
 	 <?php }
@@ -230,11 +230,11 @@ $i++;
     <br>  <br>
 	<?php if($i==count($quiz_questions)-1){
 	?>
-    <input class="nav-btn" onclick="showresult()"  value="Show Results">
+    <input type="submit" class="nav-btn" onclick="showresult()"  value="Show Results">
 	<?php }
 	else {
 	 ?>
-	 <input class="nav-btn next"  value=" Next ">
+	 <input type="submit" class="nav-btn next"   value=" Next ">
 
 	<?php }
 	?>
@@ -247,12 +247,7 @@ $i++;
  </div> 
 <div class="col-sm-12" id="resultsdiv" style="display:none">
 <h2 class="heading">Quiz Results</h2>  
-   <h3 class="heading-line">Match Your Score: <?php
-    foreach ($cuweight as $weight) { 
-	echo $weight->score."-".$weight->curriculum." "; 
-	}
-   
-   ?></h3><label id="quizscore" style="color:green;font-size:20px"></label>
+   <center><h3 id="resultscore"> </h3></center>
    </div>
    </div>
   
@@ -267,7 +262,7 @@ var countquestions=document.getElementsByClassName("quizdiv").length;
 function showresult(){
 document.getElementById("questionsdiv").style.display = "none";
 document.getElementById("resultsdiv").style.display = "block";
-debugger
+
 var somme=0;
 for (var j = 0; j<countquestions; j++) { 
 var radios = document.getElementsByName('question'+j);
@@ -282,8 +277,11 @@ for (var x = 0, length = radios.length; x < length; x++)
  }
 }
 }
+$.post("/home/GetQuizScore/" + somme,function(msg){
+		document.getElementById('resultscore').innerHTML = "We recommend you to take <span style='color:green'>" + msg+"</span>";
+});
 //alert(somme);
-  document.getElementById('quizscore').innerHTML = somme;
+  
 
 }
 </script>

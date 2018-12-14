@@ -63,7 +63,7 @@ $i++;
 					<form method="post" action="/zoom">
                     <input type="hidden" name="bookingId" value="<?php echo $row->booking_id;?>"/>
 							<!--<a href="<?php echo $action->link_url."&roomid=".$row->roomsession; ?>" class="crud-action" title="<?php echo $action->label?>" id="joinbut<?php echo $i?>" name="testvideocall" style="visibility:hidden"></form>-->
-							<input type="submit" id="joinbut<?php echo $i?>" name="testvideocall" style="display:none; background-color:#950d11;color:white;padding:5px;border-radius:5px;text-align:center;border:0px" value="Initiate session" onclick="window.open('/session-started/<?php echo $row->booking_id ?>', '_blank');"/></form>
+							<input type="submit" id="joinbut<?php echo $i?>" name="testvideocall" style="background-color:#950d11;color:white;padding:5px;border-radius:5px;text-align:center;border:0px" value="Initiate session" onclick="window.open('/session-started/<?php echo $row->booking_id ?>', '_blank');"/></form>
 
 							<?php 
 							

@@ -203,7 +203,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         <a href="<?php echo URL_AUTH_LOGIN;?>"> <span class="nav-btn"> <i class="fa  fa-sign-in"></i> &nbsp; <?php echo get_languageword('Login');?> <span class="hidden-navbtn"><?php echo get_languageword('Or');?> <?php echo get_languageword('Register');?></span></span>
                         </a>
                     </li>
-                    <!--<li><a style="cursor:pointer" onclick="$('#bookmeModal').modal();" ><span class="nav-btn" style="background-color:#97d089;border:2px solid #97d089"><?php echo get_languageword('Request_your_free_trial_now');?>  </span></a></li>-->
+                    <li><a style="cursor:pointer" onclick="$('#bookmeModal').modal();" ><span class="nav-btn" style="background-color:#97d089;border:2px solid #97d089"><?php echo get_languageword('Request_your_free_trial_now');?>  </span></a></li>
 					<?php } else {
                     $user_id=$this->ion_auth->get_user_id();
                     $approved = 1;

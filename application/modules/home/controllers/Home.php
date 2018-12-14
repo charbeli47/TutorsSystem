@@ -25,6 +25,10 @@ class Home extends MY_Controller
 		}
 
 	}
+	function GetQuizScore($score)
+	{
+		echo $this->home_model->get_cweightscore($score);
+	}
 	/*** Displays the Index Page**/
 	function index()
 	{
@@ -176,7 +180,15 @@ class Home extends MY_Controller
     $tz = new DateTimeZone($timezone);  
     $user_id = $_REQUEST["tutor_id"];
     $now = date('Y-m-d H:i:s');
-    $results = $this->db->query("select * from pre_tutor_courses where start>'$now' and status=1 and not exists (select null from pre_bookings where status='approved' and pre_tutor_courses.id = pre_bookings.tutor_course_id) and tutor_id=".$user_id)->result();
+   //bacth session
+   $student_id = $this->ion_auth->get_user_id();
+   if(isset($student_id))
+	$results = $this->db->query("select * from pre_tutor_courses where start>'$now' and status=1 and not exists (select null from pre_bookings where status='approved' and pre_tutor_courses.id = pre_bookings.tutor_course_id and student_id=".$student_id.") and tutor_id=".$user_id)->result();
+	else
+	{
+		$results = $this->db->query("select * from pre_tutor_courses where start>'$now' and status=1 and tutor_id=".$user_id)->result();
+	}
+   //one session $results = $this->db->query("select * from pre_tutor_courses where start>'$now' and status=1 and not exists (select null from pre_bookings where status='approved' and pre_tutor_courses.id = pre_bookings.tutor_course_id) and tutor_id=".$user_id)->result();
     //$results = $this->db->where("start > NOW() and id not in(select tutor_course_id from pre_bookings where status='approved')")->get_where('tutor_courses',array('status' => '1','tutor_id'=>$user_id))->result();
         //$results = $this->db->get("tutor_courses")->result();
          $arr = array();
@@ -549,9 +561,9 @@ class Home extends MY_Controller
 
 					$student_rec = getUserRec($student_id);
 					$tutor_rec 	 = getUserRec($tutor_id);
-                    //$coursesadded = $student_rec->free_courses -1;
+                    $coursesadded = $student_rec->free_courses -1;
                         
-                      //  $user_data['free_courses'] = $coursesadded;
+                      $user_data['free_courses'] = $coursesadded;
 						$this->base_model->update_operation($user_data, 'users', array('id' => $student_id));
 
 					if(!empty($email_tpl->from_email)) {

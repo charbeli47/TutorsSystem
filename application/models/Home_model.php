@@ -58,7 +58,11 @@ class Home_Model extends CI_Model
 
 		 return ($cu->num_rows() > 0) ? $cu->result() : FALSE;
 	}
-	
+	function get_cweightscore($score)
+	{
+		$query = "SELECT curriculum FROM pre_curriculumweight where score=$score";			 
+		return $this->db->query($query)->row()->curriculum;
+	}
 	function get_quizquestions()
 	{
 		$query = "SELECT * FROM pre_quizquestions";			 

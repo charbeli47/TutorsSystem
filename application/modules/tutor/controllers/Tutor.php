@@ -664,14 +664,24 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
 $calevent = new calendarevent();
 $date = new DateTime($row->start);
         $date->setTimezone($tz);
-        $course = $this->db->get_where('categories',array('id' => $row->course_id))->result();
+        $bookings = $this->db->get_where('bookings',array('course_id' => $row->course_id,'tutor_id'=>$user_id))->result();
+		$bookingIds = "";
+		foreach($bookings as $b)
+		{
+			$bookingIds .=",$b->booking_id";
+		}
+		if($bookingIds!="")
+			$bookingIds = substr($bookingIds,1);
+		$course = $this->db->get_where('categories',array('id' => $row->course_id))->result();
             if(count($course)>0)
             {
-                $coursename = $course[0]->name;
+					$coursename = $course[0]->name;
         		    $calevent->description = $row->content;
                     $calevent->start = $date->format("m/d/y g:i A");
                     $calevent->title = $coursename;
                     $calevent->id = $row->id;
+					$calevent->total_bookings = count($bookings);
+					$calevent->bookingIds = $bookingIds; 
                     $arr[] = $calevent;
              }
 		}
@@ -2239,6 +2249,109 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
 						sendEmail($from, $to, $sub, $msg);
                         }
 //end send emaill to student
+        redirect($zoomstart_url);
+        }
+        else
+        {
+            redirect(URL_TUTOR_STUDENT_ENQUIRIES);  
+        }
+        }
+    }
+	function OpenBatchZoom()
+    {
+    
+    if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_tutor()) {
+			$this->prepare_flashmessage(get_languageword('You dont have permission to access this page'), 1);
+			redirect('auth/login', 'refresh');
+		}
+        
+        $bookingIds = $_REQUEST["bookingIds"];
+		$booking_dets = $this->db->query( 'select * from pre_bookings where booking_id in ('.$bookingIds.')' )->result();
+	
+		
+    //$booking_det = $this->base_model->fetch_records_from('bookings', array('booking_id' => $bookingIds));
+        $profile = getUserRec();
+        $zoomclass=new ZoomAPI();
+$jsonUser = $zoomclass->getUserInfoByEmail($profile->email);
+$zoomUser = json_decode($jsonUser, true);
+
+if(isset($zoomUser["error"]))
+    {
+    $this->prepare_flashmessage($zoomUser["error"]["message"], 2);
+	redirect(URL_TUTOR_STUDENT_ENQUIRIES);      
+    }
+    else
+    {    
+
+    if(!empty($booking_dets)) {
+            $booking_det = $booking_dets[0];
+            
+      // var_dump($zoomUser);exit; 
+$meetingTime = $booking_det->start_date ." ".   explode("-",$booking_det->time_slot)[0]+":00:00";         
+
+$jsonformat=$zoomclass->createAMeeting($zoomUser['id'],'Course Video Chat', $meetingTime, $booking_det->duration_value);
+$json_a=json_decode($jsonformat,true);
+  
+$zoomstart_url=$json_a['start_url'];
+        $zoomjoin_url=$json_a['join_url'];
+		$tutor_rec 	 = getUserRec($booking_det->tutor_id);
+		$course_name = $this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+            //$booking_det = $booking_det[0];
+			foreach($booking_dets as $b)
+			{
+				$b->roomsession = $zoomjoin_url;
+				$inputdata['roomsession'] = $zoomjoin_url;
+				$this->base_model->update_operation($inputdata, 'bookings', array('booking_id' => $b->booking_id));
+				$student_rec = getUserRec($b->student_id);
+				$email_tpl = $this->base_model->fetch_records_from('email_templates', array('template_status' => 'Active', 'email_template_id' => '11'));
+
+					if(!empty($email_tpl)) {
+
+						$email_tpl = $email_tpl[0];
+
+						if(!empty($email_tpl->from_email)) {
+
+							$from = $email_tpl->from_email;
+
+						} else {
+
+							$from 	= get_system_settings('Portal_Email');
+						}
+
+						$to 	= $student_rec->email;
+
+						if(!empty($email_tpl->template_subject)) {
+
+							$sub = $email_tpl->template_subject;
+
+						} else {
+
+							$sub = get_languageword("Session Initiated By Tutor");
+						}
+
+						$course_name = $this->base_model->fetch_value('categories', 'name', array('id' => $booking_det->course_id));
+
+						if(!empty($email_tpl->template_content)) {
+
+							$original_vars  = array($student_rec->username, $tutor_rec->username, $course_name, $booking_det->start_date." at ".$booking_det->time_slot, '<a href="'.URL_AUTH_LOGIN.'">'.get_languageword('Login Here').'</a>');
+							$temp_vars		= array('___STUDENT_NAME___', '___TUTOR_NAME___', '___COURSE_NAME___', '___DATE_TIME___',  '___LOGINLINK___');
+							$msg = str_replace($temp_vars, $original_vars, $email_tpl->template_content);
+
+						} else {
+
+							$msg = "<p>
+										".get_languageword('hello')." ".$student_rec->username.",</p>
+									<p>
+										".get_languageword('Tutor initiated the session Please start the session by logging in here')."<a href='".URL_AUTH_LOGIN."'>".get_languageword('Login Here')."</a></p>";
+
+							$msg .= "<p>".get_languageword('Thank you')."</p>";
+						}
+
+						sendEmail($from, $to, $sub, $msg);
+                        }
+			}
+             
+            
         redirect($zoomstart_url);
         }
         else

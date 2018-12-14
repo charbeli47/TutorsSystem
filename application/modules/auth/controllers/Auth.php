@@ -893,7 +893,7 @@ class Auth extends MY_Controller {
 			 $this->form_validation->set_rules('pin_code',get_languageword('pin_code'),'xss_clean');
 			 $this->form_validation->set_rules('phone_code',get_languageword('phone_code'),'required');
 			 $this->form_validation->set_rules('phone',get_languageword('phone'),'required');
-						
+				$this->form_validation->set_rules('age',get_languageword('age'),'required');		
 			if($identity_column !== 'email')
 			{
 				$this->form_validation->set_rules('identity',get_languageword('Email'),'required|is_unique['.$tables['users'].'.'.$identity_column.']|valid_email');
@@ -914,7 +914,8 @@ class Auth extends MY_Controller {
 				$identity 	= ($identity_column==='email') ? $email : $this->input->post('identity');
 				$password 	= $this->input->post('password');
 				$additional_data = array();
-
+				$age = $this->input->post('age');
+				$gender = $this->input->post('gender')=="0"?"Male":"Female";
 				//Prepare User related data
 				$first_name = ucfirst(strtolower($this->input->post('first_name')));
 				$last_name = ucfirst(strtolower($this->input->post('last_name')));
@@ -929,12 +930,15 @@ class Auth extends MY_Controller {
 				$additional_data = array(
 					'username' => $username,
 					'slug' => $slug,
+					'age'=>$age,
+					'gender'=>$gender,
 					'first_name' 	=> $first_name,
 					'last_name'  	=> $last_name,
 					'pin_code'   	=> $this->input->post('pin_code'),
 					'phone_code'   	=> $phone_code,
 					'phone'     	=> $this->input->post('phone'),
 					'user_belongs_group' => $user_belongs_group,
+					'free_courses' =>2,
 				);
 				$group = array($user_belongs_group);
 				
@@ -967,6 +971,8 @@ class Auth extends MY_Controller {
 
 		$countries = $this->base_model->fetch_records_from('country');
 		$country_opts = array('' => get_languageword('select_Phone_Code'));
+		$gender_opts = array('Male','Female');
+		$this->data['gender_opts'] = $gender_opts;
 		foreach ($countries as $key => $value) {
 			$country_opts[$key.'_'.$value->phonecode] = $value->nicename." +".$value->phonecode;
 		}
