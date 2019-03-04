@@ -177,6 +177,7 @@ class Home extends MY_Controller
     public function get_calendar_courses()
     {
     $timezone = $_REQUEST["timezone"];
+	date_default_timezone_set('Europe/London');
     $tz = new DateTimeZone($timezone);  
     $user_id = $_REQUEST["tutor_id"];
     $now = date('Y-m-d H:i:s');
@@ -373,6 +374,44 @@ class Home extends MY_Controller
         }
 		$this->_render_page('template/site/site-template', $this->data);
 	}
+	function send_push($token, $sender_id)
+	{
+		if(isset($token))
+		{
+			$registrationIDs = array();
+			array_push($registrationIDs,$token);
+			$datamsg = array
+			(
+				'key'   => $sender_id,
+			);
+			$apikey = "AAAA34AnjqA:APA91bHjNERd68Rmia2L4x6N1UlBIwnm6_YVruM72amkWP3-5rrPkU7UfyWfUdULva0s9SzSc_U3MlUQt1j0nKsYPGwTvd7VeS-1sHxYr3iLrWPpe2kwDTHrt53ICFyHWhHzAO5UsKEZ";
+			$fcmMsg = array(
+				'body' => "You have got booked by a student",
+				'title' => "New Booking from a student",
+				'sound' => "default",
+				'color' => "#203E78" 
+			);
+			$fcmFields = array(
+			'data'          => $datamsg,
+			'registration_ids'=>$registrationIDs,
+					'priority' => 'high',
+				'notification' => $fcmMsg
+			);
+			$headers = array(
+				'Authorization: key=' . $apikey,
+				'Content-Type: application/json'
+			);
+			$ch = curl_init();
+			curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+			curl_setopt( $ch,CURLOPT_POST, true );
+			curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+			curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+			curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fcmFields ) );
+			$result = curl_exec($ch );
+			curl_close( $ch );
+		}
+	}
     function book_free_tutor()
 	{
 		if (!$this->ion_auth->logged_in()) {
@@ -422,7 +461,7 @@ class Home extends MY_Controller
 		//$fee 					= $course_details->fee;
 		$tutor_rec 	 = getUserRec($tutor_id);
 		$fee 					= $tutor_rec ->fee;
-
+		$this->send_push($tutor_rec->push_token, $tutor_id);
 		//Check If student has sufficient credits to book tutor
 		if ( $fee > 0 ) { // If the course is paid only we need to check for credits!!
 			if(!is_eligible_to_make_booking($student_id, $fee)) {
@@ -431,9 +470,11 @@ class Home extends MY_Controller
 				redirect(URL_STUDENT_LIST_PACKAGES, 'refresh');
 			}
 		}
-
-		$start_date  			= date('Y-m-d', strtotime($this->input->post('start_date')));
-		$time_slot   			= $this->input->post('time_slot_hidden');
+		$d = $course_details->start;
+		$timestamp = strtotime($d);
+		$dtime = new DateTime($d);
+		$start_date  			= date("Y-m-d", $timestamp);//date('Y-m-d', strtotime($this->input->post('start_date')));
+		$time_slot   			= $dtime->format("g:i A");//$this->input->post('time_slot_hidden');
 
 		/// khaline jarebbb ekheddoun men hon sah sah  100 bel 100////
 		
@@ -714,7 +755,7 @@ class Home extends MY_Controller
 		//$fee 					= $course_details->fee;
 		$tutor_rec 	 = getUserRec($tutor_id);
 		$fee 					= $tutor_rec ->fee;
-
+		$this->send_push($tutor_rec->push_token, $tutor_id);
 		//Check If student has sufficient credits to book tutor
 		if ( $fee > 0 ) { // If the course is paid only we need to check for credits!!
 			if(!is_eligible_to_make_booking($student_id, $fee)) {

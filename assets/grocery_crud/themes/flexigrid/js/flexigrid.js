@@ -124,7 +124,7 @@ $(function(){
 						    if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
 						        $("#joinbut" + i).css("display", "block");
 						        setTimeout(function () {
-						            $("#joinbut" + i).css("display", "none");
+						            //$("#joinbut" + i).css("display", "none");
 						        }, (dbminutes + 59 - minutes) * 60 * 1000);
 						    }
 						}
@@ -368,7 +368,7 @@ $(function(){
 		        if ((currentdate == preffereddate && allowed == true && currenttime >= dbtime && status == "Approved") || status == "Session Initiated" || status == "Running") {
 		            $("#joinbut" + i).css("display", "block");
 		            setTimeout(function () {
-		                $("#joinbut" + i).css("display", "none");
+		                //$("#joinbut" + i).css("display", "none");
 		            }, (dbminutes + 59 - minutes) * 60 * 1000);
 		        }
 		    }

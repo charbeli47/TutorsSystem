@@ -26,16 +26,61 @@
 		</thead>		
 		<tbody>
 		<?php $i=0; ?> 
-<?php foreach($list as $num_row => $row){
-$i++;
+<?php
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+       $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+function get_timezone()
+{  //$_SERVER['REMOTE_ADDR']
+//$ip = get_client_ip();
 
+$timezone = file_get_contents('http://seu.brandseducation.com/timezone.php');
+//$ipInfo = json_decode($ipInfo);
+//$timezone = $ipInfo->timezone;
+return $timezone;
+}
+foreach($list as $num_row => $row){
+$i++;
+if(isset($row->{"time_slot"}))
+{
+	$timeslot = $row->{"time_slot"};
+	$satrt_Date = $row->{"start_date"};
+	$timezone = get_timezone();
+	$tz = new DateTimeZone($timezone);
+	$start = $satrt_Date." ".$timeslot;
+	$start = str_replace('/', '-', $start);
+	
+	$date = new DateTime($start);
+
+	$date->setTimezone($tz);
+	}
 ?>        
 		<tr  <?php if($num_row % 2 == 1){?>class="erow"<?php }?>>
 			<?php foreach($columns as $column){?>
 			<td width='<?php echo $column_width?>%' class='<?php if(isset($order_by[0]) &&  $column->field_name == $order_by[0]){?>sorted<?php }?>'>
-            <?php if($column->field_name!="roomsession"){?> 
+            <?php if($column->field_name!="roomsession"){
+			if($column->field_name == "preferred_commence_date"){?> 
+			<div class='text-left<?php echo $i?>'><?php echo $date->format('dd/MM/yyyy'); ?></div>
+			<?php }else if($column->field_name == "time_slot"){?> 
+			<div class='text-left<?php echo $i?>'><?php echo $date->format('h:i:s A'); ?></div>
+			<?php }else{?>
 				<div class='text-left<?php echo $i?>'><?php echo $row->{$column->field_name} != '' ? $row->{$column->field_name} : '&nbsp;' ; ?></div>
-                <?php }else if(($row->status =='Session Initiated' || $row->status =='Running' ) && isset($row->status) && $row->status !=""){?>
+                <?php }}else if(($row->status =='Session Initiated' || $row->status =='Running' ) && isset($row->status) && $row->status !=""){?>
                 <a href="<?php echo $row->{$column->field_name}?>" target="_blank" style="display:block;background-color:#950d11;color:white;display:block;padding:5px;border-radius:5px;text-align:center" onclick="changeSessionToRunning(<?php echo $row->booking_id?>,this)">Join</a>
                 <?php }?>
 			</td>
@@ -107,7 +152,10 @@ $i++;
                      function changeSessionToRunning(bookingId, f)
                      {
                         $.post("/home/ChangeStatus",{bookingId:bookingId}, function(data){if(data=="success"){f.style.display = "none";}});
+						
                      } 
+					 var timez = Intl.DateTimeFormat().resolvedOptions().timeZone;
+					 $.post("/timezone.php",{timezone:timez});
 					</script>
 <?php
 /*Zoom Support*/

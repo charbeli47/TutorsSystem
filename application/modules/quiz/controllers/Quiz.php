@@ -181,13 +181,14 @@ class Quiz extends MY_Controller
 				$categories_arr[$cat->idquestion] = $cat->question;
 			}
 		}
-		$crud->field_type('questions', 'multiselect', $categories_arr);		
+		$crud->field_type('questions', 'dropdown', $categories_arr);		
 		
 		//Rules
 		$crud->set_rules('sort_order',get_languageword('sort_order'),'trim|required|integer');
 		//$crud->order_by('id','desc');
-		$crud->callback_insert(array($this,'course_insert_callback'));
-		$crud->callback_update(array($this,'course_update_callback'));
+		
+		$crud->callback_insert(array($this,'quizoption_insert_callback'));
+		$crud->callback_update(array($this,'quizoption_update_callback'));
 		//$crud->callback_before_insert(array($this,'callback_cat_before_insert'));
 		//$crud->callback_before_update(array($this,'callback_cat_before_update'));
 		$output = $crud->render();
@@ -217,7 +218,7 @@ class Quiz extends MY_Controller
 		$this->grocery_output($this->data);
 	}
 	
-	function course_insert_callback( $post_array )
+	function quizoption_insert_callback( $post_array )
 	{
 		//$data = array(
 			//'is_parent' => 0,
@@ -234,18 +235,18 @@ class Quiz extends MY_Controller
             //'video' =>$post_array['video'],
 			//'categories' => implode(',', $post_array['categories']),
 		//);
-
-		$data = array(
+		
+		/*$data = array(
 			'optiontext' => $post_array['optiontext'],
 			'correct' => $post_array['correct'],
 			'questionid' => $post_array['questions'],
 		);
-		$this->db->insert('questionoptions', $data);
+		$this->db->insert('questionoptions', $data);*/
 		
-		return TRUE;
+		return true;
 	}
 	
-	function course_update_callback( $post_array, $primary_key )
+	function quizoption_update_callback( $post_array, $primary_key )
 	{
 
 		$data = array(

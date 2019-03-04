@@ -351,6 +351,7 @@ function formatDate(date) {
                             $attributes = 'id="book_tutor_form" class="comment-form" ';
                             echo form_open('/confirm-payment', $attributes); 
                         ?>
+						<input type="hidden" id="timezone" name="timezone"/>
                         <ul class="reserve-form">
                             <?php $sno = 1; 
 

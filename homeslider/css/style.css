@@ -85,3 +85,13 @@
           transform: scale(2);
   opacity: 1;
 }
+@media(max-width:600px)
+{
+    .navbar{
+        position:fixed;
+        width:100%;
+    }
+    .slider{
+        padding-top:88px;
+    }
+}

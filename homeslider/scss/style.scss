@@ -96,3 +96,13 @@ $yellow: #f1c40f;
 		}
 	}
 }
+@media(max-width:600px) {
+    .navbar {
+        position: fixed;
+        width: 100%;
+    }
+
+    .slider {
+        padding-top: 88px;
+    }
+}

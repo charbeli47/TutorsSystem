@@ -52,3 +52,4 @@
         <!-- Dashboard section  -->
 
         <?php $this->load->view('template/site/footer', $grocery_output); ?>
+		<script>document.onload = RegisterUser();</script>

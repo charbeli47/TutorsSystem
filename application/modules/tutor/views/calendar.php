@@ -63,6 +63,14 @@ for(var i=0; i<el.options.length; i++) {
 		  $('#bookingIds').val(event.bookingIds);
 		  $("#total_bookings").html(event.total_bookings);
           $('#editModal').modal();
+		  var nowd = new Date();
+		  var thend = new Date(event.start);
+		  var same = nowd.getTime() >= thend.getTime();
+		  if(same == true ||event.total_bookings==0)
+			$("#bookingform").hide();
+		  else
+			$("#bookingform").show();
+
        },
     });
 });
@@ -157,9 +165,10 @@ function formatDate(date) {
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <input type="submit" class="btn btn-primary" value="Update Event">
         <?php echo form_close() ?>
-		<form method="post" action="/tutor/openbatchzoom" style="float:left">
+		<form method="post" action="/tutor/openbatchzoom" style="float:left" id="bookingform">
+		<input type="hidden" id="timezonehidden" name="timezonehidden"/>
 		<input type="hidden" id="bookingIds" name="bookingIds"/>
-		<input type="submit" class="btn btn-danger" id="joinbut" style="padding:0px" value="Initiate session"/>
+		<input type="submit" class="btn btn-danger" id="joinbut" style="padding:5px" value="Initiate session"/>
 		</form>
       </div>
     </div>

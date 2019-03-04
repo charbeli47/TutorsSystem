@@ -453,6 +453,84 @@ $(document).ready(function () {
 <script src="<?php echo base_url() ?>fullcalendar/lib/moment.min.js"></script>
                <script src="<?php echo base_url() ?>fullcalendar/fullcalendar.min.js"></script>
                <script src="<?php echo base_url() ?>fullcalendar/gcal.js"></script>
+			   <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+			   <script>
+  // Initialize Firebase
+  function RegisterUser()
+  {
+	 var config = {
+    apiKey: "AIzaSyBjEugGDIJPCPnkU155rEiyDZ60_Jjoz8g",
+    authDomain: "linguo-79db5.firebaseapp.com",
+    databaseURL: "https://linguo-79db5.firebaseio.com",
+    projectId: "linguo-79db5",
+    storageBucket: "linguo-79db5.appspot.com",
+    messagingSenderId: "959927783072"
+  };
+  firebase.initializeApp(config);
+	  const messaging = firebase.messaging();
+	  messaging.requestPermission()
+	  .then(function(){
+		console.log('Notification permission granted.');
+		if(isTokenSentToServer())
+		{
+			console.log('Token already saved.');
+		}
+		else
+		{
+			getRegToken(messaging);
+		}
+	})
+	.catch(function(err){
+		console.log('Unable to get permission to notify.',err);
+	});
+	messaging.onMessage(function(payload){
+    console.log('Message received:' + payload.notification);
+    notificationTitle = payload.notification.title;
+    notificationOptions = {
+        body:payload.notification.body,
+        icon:"/assets/uploads/settings/thumbs/setting_35.png"
+    };
+    var notification = new Notification(notificationTitle, notificationOptions);
+    notification.onclick = function() { 
+    var myWindow = window.open("https://lin-guo.com/auth/login","_blank");
+    myWindow.focus();
+  };
+});
+}
+function getRegToken(messaging)
+{
+    messaging.getToken().then(function(currentToken){
+            if(currentToken){
+                saveToken(currentToken);
+                console.log(currentToken);
+                setTokenSentToServer(true);
+            }
+            else
+            {
+                console.log('No Instance ID token available. Request permission to generate one.');
+                setTokenSentToServer(false);
+            }
+        })
+        .catch(function(err){
+            console.log('An error occured while retrieving token. ',err);
+            setTokenSentToServer(false);
+        });
+}
+function setTokenSentToServer(sent){
+    window.localStorage.setItem('sentToServer',(sent?1:0));
+}
+function isTokenSentToServer()
+{
+    return window.localStorage.getItem('sentToServer')==1;
+}
+function saveToken(currentToken)
+{
+    window.localStorage.setItem("Token",currentToken);
+	var link = "https://lin-guo.com/api/user/token/"+currentToken;
+    $.get(link,function(result){});
+}
+
+</script>
 </body>
 
 </html>

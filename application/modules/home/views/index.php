@@ -179,70 +179,70 @@ $i++;
     </section>
     <?php } ?>
     <!-- Ends Our-Popular #homepage -->
-	<div class="container">
+	<!--<div class="container">
 	<div id="questionsdiv">
-	<h2 class="heading">Take The Quiz To Know Your Appropriate Curriculum To Begin with</h2>
+	<h2 class="heading">Take The Quiz To Know Your Appropriate Curriculum To Begin with</h2>-->
 	
 	  <?php
-	  $i=0;
+	 /* $i=0;
 	  foreach ($quiz_questions as $quest) { 
-	  if ($i=="0") {
+	  if ($i=="0") {*/
    ?>
-	<div class="col-sm-12 quizdiv" style="display:block">
-   <h3 class="heading-line"><?php echo $quest->question?></h3>
+	<!--<div class="col-sm-12 quizdiv" style="display:block">
+   <h3 class="heading-line"><?php //echo $quest->question?></h3>-->
     <?php
-	  foreach ($options_question as $opt) {  
+	 /* foreach ($options_question as $opt) {  
 	  if($opt->questionid==$quest->idquestion){
-	  if($opt->correct==0){
+	  if($opt->correct==0){*/
 	   ?>
-	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>
-	 <?php }
-	 else {
+	   <!--<input type="radio" style="opacity:8" name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>-->
+	 <?php /*}
+	 else {*/
 	 ?>
-	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php echo $opt->optiontext?><br>  <br>
-	<?php  } 
+	   <!--<input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php //echo $opt->optiontext?><br>  <br>-->
+	<?php  /*} 
 	}
-	} ?>
+	}*/ ?>
     <br>  <br>
-    <input type="submit" class="nav-btn next"  value=" Next ">
+    <!--<input type="submit" class="nav-btn next"  value=" Next ">
    
-</div>
-  <?php }
-  else{
+</div>-->
+  <?php /*}
+  else{*/
     ?>
-	<div class="col-sm-12 quizdiv" style="display:none">
-   <h3 class="heading-line" ><?php echo $quest->question?></h3>
-   
+	<!--<div class="col-sm-12 quizdiv" style="display:none">
+   <h3 class="heading-line" ><?php //echo $quest->question?></h3>
+   -->
    <?php
-	  foreach ($options_question as $opt) {  
+	  /*foreach ($options_question as $opt) {  
    if($opt->questionid==$quest->idquestion){
-   if($opt->correct=='YES'){
+   if($opt->correct=='YES'){*/
 	   ?>
-	   <input type="radio" style="opacity:8"name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>
-	 <?php }
-	 else {
+	   <!--<input type="radio" style="opacity:8"name="question<?php echo $i?>" value="0" ><?php echo $opt->optiontext?><br>  <br>-->
+	 <?php /*}
+	 else {*/
 	 ?>
-	   <input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php echo $opt->optiontext?><br>  <br>
-	<?php  } 
+	   <!--<input type="radio" style="opacity:8" name="question<?php echo $i?>" value="20" ><?php echo $opt->optiontext?><br>  <br>-->
+	<?php  /*} 
 	}
-	} ?>
+	}*/ ?>
 	
-    <br>  <br>
-	<?php if($i==count($quiz_questions)-1){
+    <!--<br>  <br>-->
+	<?php /*if($i==count($quiz_questions)-1){*/
 	?>
-    <input type="submit" class="nav-btn" onclick="showresult()"  value="Show Results">
-	<?php }
-	else {
+    <!--<input type="submit" class="nav-btn" onclick="showresult()"  value="Show Results">-->
+	<?php /*}
+	else {*/
 	 ?>
-	 <input type="submit" class="nav-btn next"   value=" Next ">
+	 <!--<input type="submit" class="nav-btn next"   value=" Next ">-->
 
-	<?php }
+	<?php //}
 	?>
    
-</div>
-  <?php }
+<!--</div>
+  <?php /*}
   $i++;
-  } ?>
+  }*/ ?>
 
  </div> 
 <div class="col-sm-12" id="resultsdiv" style="display:none">
@@ -250,7 +250,7 @@ $i++;
    <center><h3 id="resultscore"> </h3></center>
    </div>
    </div>
-  
+  -->
  
   <script>
   $('.next').click(function(){

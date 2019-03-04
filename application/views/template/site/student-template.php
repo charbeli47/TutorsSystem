@@ -37,3 +37,4 @@
 <!-- Dashboard section  -->
 
 <?php $this->load->view('template/site/footer'); ?>
+<script>document.onload = RegisterUser();</script>

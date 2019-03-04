@@ -978,7 +978,7 @@ class Home_Model extends CI_Model
 
        
 
-        $rs = $this->db->select('course_id, duration_value, duration_type, fee, per_credit_value, content, time_slots, days_off')
+        $rs = $this->db->select('course_id, duration_value, duration_type, fee, per_credit_value, content, time_slots, days_off, start')
                        ->get_where(
                                     'tutor_courses',array(
                                             'id' => $course_id, 

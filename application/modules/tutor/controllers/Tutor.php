@@ -652,6 +652,7 @@ $this->data['pagetitle'] = get_languageword('Manage_Calendar');
     public function get_calendar_courses()
     {
     $timezone = $_REQUEST["timezone"];
+	date_default_timezone_set('Europe/London');
     $tz = new DateTimeZone($timezone);  
     $user_id = $this->ion_auth->get_user_id();
     $results = $this->db->get_where('tutor_courses',array('status' => '1','tutor_id'=>$user_id))->result();
@@ -693,7 +694,8 @@ $date = new DateTime($row->start);
     public function add_course()
     {
         $timezone = $_REQUEST["timezone"];
-        $servertimezone = date_default_timezone_get();
+		date_default_timezone_set($timezone);
+        //$servertimezone = date_default_timezone_get();
         $tutor_id = $this->ion_auth->get_user_id();
         $start_date = $this->input->post("start_date", TRUE);
         $course_id = $this->input->post("course_id", TRUE);
@@ -701,8 +703,8 @@ $date = new DateTime($row->start);
         $start_time = $this->input->post("start_time", TRUE);
         $date = $start_date." ".$start_time;
         if(!empty($date)) {
-       $sd = new DateTime($date, new DateTimeZone($timezone));
-       $tz = new DateTimeZone($servertimezone); 
+       $sd = new DateTime($date);
+	   $tz = new DateTimeZone("Europe/London"); 
        $sd->setTimezone($tz);
        $date = date_format($sd, 'Y-m-d H:i:s');
        $start_date_timestamp = $sd->getTimestamp();
@@ -2188,7 +2190,6 @@ if(isset($zoomUser["error"]))
             
       // var_dump($zoomUser);exit; 
 $meetingTime = $booking_det->start_date ." ".   explode("-",$booking_det->time_slot)[0]+":00:00";         
-
 $jsonformat=$zoomclass->createAMeeting($zoomUser['id'],'Course Video Chat', $meetingTime, $booking_det->duration_value);
 $json_a=json_decode($jsonformat,true);
   
@@ -2257,6 +2258,32 @@ $email_tpl = $this->base_model->fetch_records_from('email_templates', array('tem
         }
         }
     }
+	function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+       $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+function get_timezone()
+{  //$_SERVER['REMOTE_ADDR']
+$ip = get_client_ip();
+$ipInfo = file_get_contents('http://ip-api.com/json/' . $ip);
+$ipInfo = json_decode($ipInfo);
+$timezone = $ipInfo->timezone;
+return $timezone;
+}
 	function OpenBatchZoom()
     {
     
@@ -2407,8 +2434,49 @@ $zoomstart_url=$json_a['start_url'];
             $this->data['started_at'] =    $newformat->getTimestamp();     
         }
 		$this->data['texteditor'] 		= TRUE;
+		$student_rec = getUserRec($booking_det->student_id);
+		$this->send_push($student_rec->push_token, $booking_det->student_id);
         $this->_render_page('template/site/tutor-template', $this->data);
     }
+	function send_push($token, $sender_id)
+	{
+		if(isset($token))
+		{
+			$registrationIDs = array();
+			array_push($registrationIDs,$token);
+			$datamsg = array
+			(
+				'key'   => $sender_id,
+			);
+			$apikey = "AAAA34AnjqA:APA91bHjNERd68Rmia2L4x6N1UlBIwnm6_YVruM72amkWP3-5rrPkU7UfyWfUdULva0s9SzSc_U3MlUQt1j0nKsYPGwTvd7VeS-1sHxYr3iLrWPpe2kwDTHrt53ICFyHWhHzAO5UsKEZ";
+			$fcmMsg = array(
+				'body' => "Your teacher initiated the session",
+				'title' => "Session initiated",
+				'sound' => "default",
+				'color' => "#203E78" 
+			);
+			$fcmFields = array(
+			'data'          => $datamsg,
+			'registration_ids'=>$registrationIDs,
+					'priority' => 'high',
+				'notification' => $fcmMsg
+			);
+			$headers = array(
+				'Authorization: key=' . $apikey,
+				'Content-Type: application/json'
+			);
+			$ch = curl_init();
+			curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+			curl_setopt( $ch,CURLOPT_POST, true );
+			curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+			curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+			curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fcmFields ) );
+			$result = curl_exec($ch );
+			curl_close( $ch );
+		}
+	}
+
 	function join_link( $primary_key , $row ) {
 		$user_id = $this->ion_auth->get_user_id();
 		$now = date('Y-m-d');
